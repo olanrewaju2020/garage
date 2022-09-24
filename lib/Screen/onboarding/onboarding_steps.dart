@@ -66,11 +66,15 @@ class _OnboardingStepsState extends State<OnboardingSteps> {
                   width: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      widget:
-                      new Login();
-                      _pageController.nextPage(
-                          curve: Curves.decelerate,
-                          duration: const Duration(milliseconds: 1200));
+                      if(_pageController.page == 2) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const Login())
+                        );
+                      } else {
+                        _pageController.nextPage(
+                            curve: Curves.decelerate,
+                            duration: const Duration(milliseconds: 1200));
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(), primary: Colors.green),
