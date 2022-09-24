@@ -9,7 +9,7 @@ import 'package:garage_repair/Screen/onboarding/onboarding_steps.dart';
 void main() {
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: LandingPage(),
+    home: Login(),
   ));
 }
 

@@ -137,6 +137,9 @@ class _AddMaintainance2State extends State<AddMaintainance2> {
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                    ),
                     onPressed: () {
                       // Navigator.push(
                       //     context,
