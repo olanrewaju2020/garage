@@ -183,6 +183,9 @@ class _CreateAccountState extends State<CreateAccount> {
                       height: 50,
                       width: double.infinity,
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green,
+                        ),
                         onPressed: () {
                           Navigator.push(
                               context,

@@ -190,6 +190,9 @@ class _QuickState extends State<Quick> {
                     height: 50,
                     width: double.infinity,
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                      ),
                       onPressed: () {
                         // Navigator.push(
                         //     context,

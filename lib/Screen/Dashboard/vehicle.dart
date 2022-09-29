@@ -49,51 +49,7 @@ class _ProfileState extends State<Profile> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => CarDetails()));
                   },
-                  child: Container(
-                    height: 65,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 17.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'AJ11AH',
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                'Status',
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.grey[400]),
-                              ),
-                              Text(
-                                'Available',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: vehicle(),
                 )
               ]),
         ),
@@ -110,6 +66,61 @@ class _ProfileState extends State<Profile> {
             builder: (context) => AddVehicle(),
           ));
         },
+      ),
+    );
+  }
+}
+
+class vehicle extends StatelessWidget {
+  const vehicle({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 65,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 17.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'AJ11AH',
+              style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  'Status',
+                  style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey[400]),
+                ),
+                Text(
+                  'Available',
+                  style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

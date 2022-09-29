@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/quick.dart';
+import '../Components/first_vehicle_inspection.dart';
+import '../Components/first_vehicle_repair.dart';
+import '../Components/first_vehicle_servicing.dart';
+import '../Components/vehicle_repair.dart';
+import '../Components/vehicle_inspection.dart';
 
 class DashboardHome extends StatefulWidget {
   const DashboardHome({Key? key}) : super(key: key);
@@ -77,7 +82,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                     childAspectRatio: .85,
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20,
-                    children: [
+                    children: const [
                       NewWidget(
                         title: 'Vehicle Inspection',
                         imageLog: 'assets/images/7.png',
@@ -111,7 +116,7 @@ class _DashboardHomeState extends State<DashboardHome> {
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Quick(),
+            builder: (context) => FirstVehicleInspection(),
           ));
         },
       ),
@@ -321,15 +326,8 @@ class NewWidget extends StatelessWidget {
       child: Container(
         // padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(13),
-          // boxShadow: [
-          //   BoxShadow(
-          //     offset: Offset(0, 17,),
-          //     blurRadius: 17,
-          //     spreadRadius: -23,
-          //       color: kShadowColor
-          //   )
-          // ]
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(13),
         ),
         child: Material(
           color: Colors.transparent,

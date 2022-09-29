@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Components/add_maintaince.dart';
+import '../Components/maintenance_history.dart';
 
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
@@ -45,8 +46,8 @@ class _ChatState extends State<Chat> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    // Navigator.of(context).push(
-                    //     MaterialPageRoute(builder: (context) => CarDetails()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => MaintenanceHistory()));
                   },
                   child: Container(
                     height: 65,

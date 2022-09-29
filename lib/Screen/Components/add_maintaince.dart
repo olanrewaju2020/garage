@@ -120,6 +120,9 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                         height: 50,
                         width: double.infinity,
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.green,
+                          ),
                           onPressed: () {
                             // Navigator.push(
                             //     context,
