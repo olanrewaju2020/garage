@@ -116,7 +116,7 @@ class _DashboardHomeState extends State<DashboardHome> {
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FirstVehicleInspection(),
+            builder: (context) => Quick(),
           ));
         },
       ),
