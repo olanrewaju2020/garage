@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../Settings/change_password.dart';
 import '../Settings/contact_details.dart';
 import '../Settings/logout.dart';
+import '../Settings/support.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -133,40 +134,46 @@ class _SettingsState extends State<Settings> {
             SizedBox(
               height: 20,
             ),
-            Container(
-              height: 65,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.support_agent,
-                          size: 30,
-                          color: Colors.green,
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          'Contact Support',
-                          style: TextStyle(color: Colors.black, fontSize: 15),
-                        )
-                      ],
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.grey[400],
-                      size: 17,
-                    )
-                  ],
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) => new Support()));
+              },
+              child: Container(
+                height: 65,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.support_agent,
+                            size: 30,
+                            color: Colors.green,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Contact Support',
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          )
+                        ],
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey[400],
+                        size: 17,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -215,10 +222,8 @@ class _SettingsState extends State<Settings> {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => new LogOut()));
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) => new LogOut()));
               },
               child: Container(
                 height: 65,
