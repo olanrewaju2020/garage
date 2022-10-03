@@ -8,6 +8,15 @@ class SubTowing extends StatefulWidget {
 }
 
 class _SubTowingState extends State<SubTowing> {
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -24,7 +33,7 @@ class _SubTowingState extends State<SubTowing> {
             ),
           ),
           title: Text(
-            'Vehicle Repair',
+            'Recue Service',
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 13,
@@ -165,12 +174,7 @@ class _SubTowingState extends State<SubTowing> {
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.green,
                               ),
-                              onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     new MaterialPageRoute(
-                                //         builder: (context) => new Dashboard()));
-                              },
+                              onPressed: () {},
                               child: Text(
                                 'Proceed',
                                 style: TextStyle(
@@ -194,6 +198,7 @@ class _SubTowingState extends State<SubTowing> {
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: TextField(
                         autofocus: false,
+                        onTap: _showDatePicker,
                         style: TextStyle(fontSize: 15.0, color: Colors.black),
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -293,27 +298,7 @@ class _SubTowingState extends State<SubTowing> {
                                     fontSize: 12),
                               ),
                               SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Oil change',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Oil filter',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12),
-                              ),
-                              SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -350,7 +335,7 @@ class _SubTowingState extends State<SubTowing> {
                                         fontSize: 12),
                                   ),
                                   Text(
-                                    '26,000',
+                                    '12,000',
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500,

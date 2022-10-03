@@ -8,6 +8,15 @@ class Inspection extends StatefulWidget {
 }
 
 class _InspectionState extends State<Inspection> {
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -24,7 +33,7 @@ class _InspectionState extends State<Inspection> {
             ),
           ),
           title: Text(
-            'Vehicle Repair',
+            'Vehicle Inspextion',
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 13,
@@ -194,6 +203,7 @@ class _InspectionState extends State<Inspection> {
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: TextField(
                         autofocus: false,
+                        onTap: _showDatePicker,
                         style: TextStyle(fontSize: 15.0, color: Colors.black),
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -225,12 +235,7 @@ class _InspectionState extends State<Inspection> {
                             style: ElevatedButton.styleFrom(
                               primary: Colors.green,
                             ),
-                            onPressed: () {
-                              // Navigator.push(
-                              //     context,
-                              //     new MaterialPageRoute(
-                              //         builder: (context) => new Dashboard()));
-                            },
+                            onPressed: () {},
                             child: Text(
                               'Proceed',
                               style: TextStyle(
@@ -252,7 +257,7 @@ class _InspectionState extends State<Inspection> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: Container(
-                        height: 230,
+                        height: 220,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -293,27 +298,7 @@ class _InspectionState extends State<Inspection> {
                                     fontSize: 12),
                               ),
                               SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Oil change',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Oil filter',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12),
-                              ),
-                              SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
                               Row(
                                 mainAxisAlignment:

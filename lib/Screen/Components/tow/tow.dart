@@ -25,7 +25,7 @@ class _TowingState extends State<Towing> {
           ),
         ),
         title: Text(
-          'Vehicle Repair',
+          'Rescue Service',
           style: TextStyle(
               color: Colors.black,
               fontSize: 15,

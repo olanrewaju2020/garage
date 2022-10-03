@@ -8,6 +8,15 @@ class VehicleRepair extends StatefulWidget {
 }
 
 class _VehicleRepairState extends State<VehicleRepair> {
+  void _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -194,6 +203,7 @@ class _VehicleRepairState extends State<VehicleRepair> {
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: TextField(
                         autofocus: false,
+                        onTap: _showDatePicker,
                         style: TextStyle(fontSize: 15.0, color: Colors.black),
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -212,7 +222,6 @@ class _VehicleRepairState extends State<VehicleRepair> {
                           ),
                         ),
                       ),
-
                     ),
                     Spacer(),
                     Padding(
@@ -317,7 +326,8 @@ class _VehicleRepairState extends State<VehicleRepair> {
                                 height: 10,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'VAT (7.5%)',
@@ -339,7 +349,8 @@ class _VehicleRepairState extends State<VehicleRepair> {
                                 height: 5,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Sub Total',
@@ -361,7 +372,8 @@ class _VehicleRepairState extends State<VehicleRepair> {
                                 height: 5,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Total',
@@ -383,7 +395,8 @@ class _VehicleRepairState extends State<VehicleRepair> {
                                 height: 20,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Total order',
@@ -404,7 +417,6 @@ class _VehicleRepairState extends State<VehicleRepair> {
                             ],
                           ),
                         ),
-
                       ),
                     ),
                     Spacer(),

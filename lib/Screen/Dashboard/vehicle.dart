@@ -15,14 +15,6 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: Color(0xfff4f4f2),
       appBar: AppBar(
-        // leading: InkWell(
-        //   onTap: () => Navigator.of(context).pop(),
-        //   child: Icon(
-        //     Icons.arrow_back_ios,
-        //     color: Colors.green,
-        //     size: 15,
-        //   ),
-        // ),
         title: Text(
           'vehicle',
           style: TextStyle(
