@@ -9,7 +9,6 @@ class Inspection extends StatefulWidget {
 
 class _InspectionState extends State<Inspection> {
   @override
-  var _currentStep = 0;
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,

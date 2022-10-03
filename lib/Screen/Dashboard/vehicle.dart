@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Components/add_vehicle.dart';
-import '../Components/car_details.dart';
+import '../Components/details/car_details.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -15,14 +15,14 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: Color(0xfff4f4f2),
       appBar: AppBar(
-        leading: InkWell(
-          onTap: () => Navigator.of(context).pop(),
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.green,
-            size: 15,
-          ),
-        ),
+        // leading: InkWell(
+        //   onTap: () => Navigator.of(context).pop(),
+        //   child: Icon(
+        //     Icons.arrow_back_ios,
+        //     color: Colors.green,
+        //     size: 15,
+        //   ),
+        // ),
         title: Text(
           'vehicle',
           style: TextStyle(

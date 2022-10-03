@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Components/details.dart';
-import 'package:garage_repair/Screen/Dashboard/setting.dart';
-import '../Components/vic_history.dart';
+import 'package:garage_repair/Screen/Components/details/details.dart';
+import 'package:garage_repair/Screen/Components/details/vic_history.dart';
 
 class CarDetails extends StatefulWidget {
   const CarDetails({Key? key}) : super(key: key);

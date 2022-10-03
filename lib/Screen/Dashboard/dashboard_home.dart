@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Components/quick.dart';
-import '../Components/first_vehicle_inspection.dart';
-import '../Components/first_vehicle_repair.dart';
-import '../Components/first_vehicle_servicing.dart';
-import '../Components/vehicle_repair.dart';
-import '../Components/vehicle_inspection.dart';
+import 'package:garage_repair/Screen/Components/details/quick.dart';
+
+import '../Components/inspection/inspection.dart';
+import '../Components/repair/repairs.dart';
+import '../Components/servicing/servicing.dart';
+import '../Components/tow/tow.dart';
 
 class DashboardHome extends StatefulWidget {
   const DashboardHome({Key? key}) : super(key: key);
@@ -82,23 +82,23 @@ class _DashboardHomeState extends State<DashboardHome> {
                     childAspectRatio: .85,
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20,
-                    children: const [
+                    children: [
                       NewWidget(
-                        title: 'Vehicle Inspection',
-                        imageLog: 'assets/images/7.png',
-                      ),
+                          title: 'Vehicle Inspection',
+                          imageLog: 'assets/images/7.png',
+                          route: FirstVehicleInspection()),
                       NewWidget(
-                        title: 'Vehicle Servicing',
-                        imageLog: 'assets/images/6.png',
-                      ),
+                          title: 'Vehicle Servicing',
+                          imageLog: 'assets/images/6.png',
+                          route: FirstVehicleServices()),
                       NewWidget(
-                        title: 'Rescue Service',
-                        imageLog: 'assets/images/tow2.png',
-                      ),
+                          title: 'Rescue Service',
+                          imageLog: 'assets/images/tow2.png',
+                          route: Towing()),
                       NewWidget(
-                        title: 'Vehicle Repair',
-                        imageLog: 'assets/images/spanner.png',
-                      ),
+                          title: 'Vehicle Repair',
+                          imageLog: 'assets/images/spanner.png',
+                          route: FirstVehicleRepairStage()),
                     ],
                   ),
                 ),
@@ -313,11 +313,13 @@ void bottomsheet(context) {
 class NewWidget extends StatelessWidget {
   final String imageLog;
   final String title;
-  const NewWidget({
-    Key? key,
-    required this.imageLog,
-    required this.title,
-  }) : super(key: key);
+  final Widget route;
+  const NewWidget(
+      {Key? key,
+      required this.imageLog,
+      required this.title,
+      required this.route})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -332,7 +334,10 @@ class NewWidget extends StatelessWidget {
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => route));
+            },
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(

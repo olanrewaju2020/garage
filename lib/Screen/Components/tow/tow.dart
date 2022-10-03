@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Components/vehicle_inspection.dart';
+import 'package:garage_repair/Screen/Components/tow/sub_tow.dart';
 
-import '../Dashboard/vehicle.dart';
+import '../../Dashboard/vehicle.dart';
 
-class FirstVehicleInspection extends StatefulWidget {
-  const FirstVehicleInspection({Key? key}) : super(key: key);
+class Towing extends StatefulWidget {
+  const Towing({Key? key}) : super(key: key);
 
   @override
-  State<FirstVehicleInspection> createState() => _FirstVehicleInspectionState();
+  State<Towing> createState() => _TowingState();
 }
 
-class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
+class _TowingState extends State<Towing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
           ),
         ),
         title: Text(
-          'Vehicle Inspection',
+          'Vehicle Repair',
           style: TextStyle(
               color: Colors.black,
               fontSize: 15,
@@ -46,7 +46,7 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
             child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Inspection()));
+                      MaterialPageRoute(builder: (context) => SubTowing()));
                 },
                 child: vehicle()),
           )

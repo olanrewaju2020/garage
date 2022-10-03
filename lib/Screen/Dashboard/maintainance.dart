@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Components/add_maintaince.dart';
-import '../Components/maintenance_history.dart';
+import '../Components/maintenace/add_maintaince.dart';
+import '../Components/maintenace/maintenance_history.dart';
 
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
@@ -15,15 +15,7 @@ class _ChatState extends State<Chat> {
     return Scaffold(
       backgroundColor: Color(0xfff4f4f2),
       appBar: AppBar(
-        leading: InkWell(
-          onTap: () => Navigator.of(context).pop(),
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.green,
-            size: 15,
-          ),
-        ),
-        title: Text(
+        title: const Text(
           'Maintenance',
           style: TextStyle(
               color: Colors.black,
@@ -41,13 +33,13 @@ class _ChatState extends State<Chat> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => MaintenanceHistory()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => MaintenanceHistory()));
                   },
                   child: Container(
                     height: 65,
@@ -64,7 +56,7 @@ class _ChatState extends State<Chat> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 18,
                               ),
                               Text(
@@ -74,10 +66,10 @@ class _ChatState extends State<Chat> {
                                     fontWeight: FontWeight.w400,
                                     color: Colors.grey[400]),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 1,
                               ),
-                              Text(
+                              const Text(
                                 'AJ64RT',
                                 style: TextStyle(
                                     fontSize: 13,
@@ -89,7 +81,7 @@ class _ChatState extends State<Chat> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 18,
                               ),
                               Text(
@@ -99,10 +91,10 @@ class _ChatState extends State<Chat> {
                                     fontWeight: FontWeight.w400,
                                     color: Colors.grey[400]),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 1,
                               ),
-                              Text(
+                              const Text(
                                 'Ajede Olanrewaju',
                                 style: TextStyle(
                                     fontSize: 13,
@@ -111,7 +103,11 @@ class _ChatState extends State<Chat> {
                               )
                             ],
                           ),
-                          Icon(Icons.arrow_forward_ios, size: 15, color: Colors.grey[400],)
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 15,
+                            color: Colors.grey[400],
+                          )
                         ],
                       ),
                     ),

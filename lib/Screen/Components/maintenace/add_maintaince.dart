@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../Components/add_maintainance_2.dart';
+
+import 'add_maintainance_2.dart';
 
 class AddMaintaincePlan extends StatefulWidget {
   const AddMaintaincePlan({Key? key}) : super(key: key);

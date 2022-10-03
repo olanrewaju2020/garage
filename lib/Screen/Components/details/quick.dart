@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Components/appbar.dart';
+import '../appbar.dart';
 
 class Quick extends StatefulWidget {
   const Quick({Key? key}) : super(key: key);

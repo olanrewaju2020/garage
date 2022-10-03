@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../Settings/change_password.dart';
+import '../Settings/contact_details.dart';
+import '../Settings/logout.dart';
+
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 
@@ -11,157 +15,251 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff4f4f2),
+      appBar: AppBar(
+        title: Text(
+          'Settings',
+          style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.normal),
+        ),
+        centerTitle: true,
+        elevation: 0.3,
+        backgroundColor: Colors.white,
+      ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 55,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 40.0),
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/larry.jpg'),
-                        fit: BoxFit.cover),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new ContactDetails()));
+              },
+              child: Container(
+                height: 65,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.person,
+                            size: 30,
+                            color: Colors.green,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Contact Details',
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          )
+                        ],
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey[400],
+                        size: 17,
+                      )
+                    ],
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new ChangePassword()));
+              },
+              child: Container(
+                height: 65,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.lock,
+                            size: 30,
+                            color: Colors.green,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Change Password',
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          )
+                        ],
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey[400],
+                        size: 17,
+                      )
+                    ],
+                  ),
+                ),
               ),
-              buildGestureDetector(context, 'Contact details'),
-              SizedBox(
-                height: 20,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 65,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
               ),
-              Divider(
-                height: 10,
-                thickness: 1,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.support_agent,
+                          size: 30,
+                          color: Colors.green,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          'Contact Support',
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        )
+                      ],
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey[400],
+                      size: 17,
+                    )
+                  ],
+                ),
               ),
-              SizedBox(
-                height: 10,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 65,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
               ),
-              buildGestureDetector(context, 'My account manager'),
-              SizedBox(
-                height: 20,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.question_mark_sharp,
+                          size: 30,
+                          color: Colors.green,
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          'Terms & Condition',
+                          style: TextStyle(color: Colors.black, fontSize: 15),
+                        )
+                      ],
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey[400],
+                      size: 17,
+                    )
+                  ],
+                ),
               ),
-              Divider(
-                height: 10,
-                thickness: 1,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new LogOut()));
+              },
+              child: Container(
+                height: 65,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.logout_rounded,
+                            size: 30,
+                            color: Colors.green,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(
+                            'Log out',
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          )
+                        ],
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey[400],
+                        size: 17,
+                      )
+                    ],
+                  ),
+                ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              buildGestureDetector(context, 'Payment'),
-              SizedBox(
-                height: 20,
-              ),
-              Divider(
-                height: 10,
-                thickness: 1,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              buildGestureDetector(context, 'Change password'),
-              SizedBox(
-                height: 20,
-              ),
-              Divider(
-                height: 10,
-                thickness: 1,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              buildGestureDetector(context, 'Service history'),
-              SizedBox(
-                height: 20,
-              ),
-              Divider(
-                height: 10,
-                thickness: 1,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              buildGestureDetector(context, 'Support'),
-              SizedBox(
-                height: 20,
-              ),
-              Divider(
-                height: 10,
-                thickness: 1,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              buildGestureDetector(context, 'Terms & conditions'),
-              SizedBox(
-                height: 20,
-              ),
-              Divider(
-                height: 10,
-                thickness: 1,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              buildGestureDetector(context, 'Privacy policy'),
-              SizedBox(
-                height: 20,
-              ),
-              Divider(
-                height: 10,
-                thickness: 1,
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              buildGestureDetector(context, 'Log out'),
-              SizedBox(
-                height: 20,
-              ),
-            ],
-          ),
+            )
+          ],
         ),
-      ),
-    );
-  }
-
-  GestureDetector buildGestureDetector(BuildContext context, String title) {
-    return GestureDetector(
-      onTap: () {},
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15,
-                    color: Colors.black),
-              ),
-            ],
-          ),
-          Divider(
-            height: 10,
-            thickness: 2,
-          ),
-          Icon(
-            Icons.arrow_forward_ios,
-            size: 15,
-            color: Colors.grey[400],
-          )
-        ],
       ),
     );
   }

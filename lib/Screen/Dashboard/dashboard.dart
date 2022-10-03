@@ -63,7 +63,8 @@ class _DashboardState extends State<Dashboard> {
               label: "Maintainance", icon: Icon(Icons.car_repair_outlined)),
           BottomNavigationBarItem(
               label: "Vehicle", icon: Icon(Icons.car_crash_outlined)),
-          BottomNavigationBarItem(label: "Menus", icon: Icon(Icons.menu)),
+          BottomNavigationBarItem(
+              label: "Settings", icon: Icon(Icons.settings)),
         ],
       ),
     );

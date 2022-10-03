@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Components/vehicle_repair.dart';
+import 'package:garage_repair/Screen/Components/repair/sub_repair.dart';
 
-import '../Dashboard/vehicle.dart';
+import '../../Dashboard/vehicle.dart';
+
 
 class FirstVehicleRepairStage extends StatefulWidget {
   const FirstVehicleRepairStage({Key? key}) : super(key: key);

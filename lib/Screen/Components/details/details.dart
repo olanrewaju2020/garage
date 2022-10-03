@@ -20,7 +20,7 @@ class _SubDetailsState extends State<SubDetails> {
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       color: Colors.black26,
                       blurRadius: 1,
@@ -28,17 +28,97 @@ class _SubDetailsState extends State<SubDetails> {
                 ]),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('VIN', style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13
-                    ),), Text('99879377373829347')],
+                    children: [
+                      const Text(
+                        'VIN',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 13),
+                      ),
+                      const Text('99879377373829347')
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Divider(),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('Model',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 13)),
+                      const Text('Toyota')
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Divider(),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('Make',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 13)),
+                      const Text('')
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Divider(),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('Series',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 13)),
+                      const Text('')
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Divider(),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Type',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 13)),
+                      Text('Truck')
+                    ],
                   ),
                 ),
                 Padding(
@@ -52,78 +132,12 @@ class _SubDetailsState extends State<SubDetails> {
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Model', style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13
-                    )), Text('Toyota')],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Divider(),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Make', style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13
-                    )), Text('')],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Divider(),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Series', style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13
-                    )), Text('')],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Divider(),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Type', style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13
-                    )), Text('Truck')],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Divider(),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Cylinder', style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13
-                    )), Text('8')],
+                    children: [
+                      Text('Cylinder',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 13)),
+                      Text('8')
+                    ],
                   ),
                 ),
               ],
