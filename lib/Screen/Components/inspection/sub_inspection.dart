@@ -73,23 +73,29 @@ class _InspectionState extends State<Inspection> {
                       SizedBox(
                         height: 20,
                       ),
-                      TextField(
-                        autofocus: false,
-                        style: TextStyle(fontSize: 15.0, color: Colors.black),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Name of contact person',
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: const EdgeInsets.only(
-                              left: 14.0, bottom: 6.0, top: 8.0),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
+                      GestureDetector(
+                        onTap: () {
+                          print('done');
+                        },
+                        child: TextField(
+                          autofocus: false,
+                          style: TextStyle(fontSize: 15.0, color: Colors.black),
+                          decoration: InputDecoration(
+                            suffixIcon: Icon(Icons.account_balance),
+                            border: InputBorder.none,
+                            hintText: 'Name of contact person',
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.only(
+                                left: 14.0, bottom: 6.0, top: 8.0),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
                           ),
                         ),
                       ),
