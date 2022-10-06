@@ -34,22 +34,23 @@ class _DashboardHomeState extends State<DashboardHome> {
                 SizedBox(
                   height: 15,
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 45,
-                    width: 45,
-                    decoration: BoxDecoration(
-                        color: Colors.green[300], shape: BoxShape.circle),
-                    child: GestureDetector(
-                        onTap: () {
-                          bottomsheet(context);
-                        },
-                        child: Icon(
-                          Icons.menu,
-                          color: Colors.white,
-                        )),
+                GestureDetector(
+                  onTap: () {
+                    bottomsheet(context);
+                  },
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 45,
+                      width: 45,
+                      decoration: BoxDecoration(
+                          color: Colors.green[300], shape: BoxShape.circle),
+                          child: Icon(
+                            Icons.menu,
+                            color: Colors.white,
+                          )
+                    ),
                   ),
                 ),
                 Text(
@@ -125,11 +126,11 @@ class _DashboardHomeState extends State<DashboardHome> {
 }
 
 void bottomsheet(context) {
-  showModalBottomSheet(
+  showBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
-            height: 481 - 74.0,
+        height: MediaQuery.of(context).size.height * 0.70,
             padding: EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -137,6 +138,7 @@ void bottomsheet(context) {
                     topLeft: Radius.circular(32),
                     topRight: Radius.circular(32))),
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 SizedBox(
                   height: 10,
@@ -156,7 +158,7 @@ void bottomsheet(context) {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 30,
+                        height: 45,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -195,7 +197,7 @@ void bottomsheet(context) {
                         ],
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 55,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -237,19 +239,20 @@ void bottomsheet(context) {
                         ],
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 55,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/in.png',
-                                height: 40,
-                                width: 40,
-                              ),
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [ Image.asset(
+                                  'assets/images/in.png',
+                                  height: 40,
+                                  width: 40,
+                                ),
+
                               SizedBox(
                                 height: 5,
                               ),
@@ -280,25 +283,28 @@ void bottomsheet(context) {
                         ],
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 55,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/cop.png',
-                                height: 40,
-                                width: 40,
-                              ),
-                              Text(
-                                'Cooperative',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w300),
-                              )
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 12.0),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/images/cop.png',
+                                  height: 40,
+                                  width: 40,
+                                ),
+                                Text(
+                                  'Cooperative',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 12, fontWeight: FontWeight.w300),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),
