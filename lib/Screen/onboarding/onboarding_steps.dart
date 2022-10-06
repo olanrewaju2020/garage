@@ -79,7 +79,7 @@ class _OnboardingStepsState extends State<OnboardingSteps> {
                     style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(), primary: Colors.green),
                     child:
-                        Icon(Icons.arrow_forward_rounded, color: Colors.white),
+                        const Icon(Icons.arrow_forward_rounded, color: Colors.white),
                     // child: SvgPicture.asset("assets/Unkown.png",
                     //     color: Colors.white),
                   ),
