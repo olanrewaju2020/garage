@@ -3,6 +3,7 @@ import 'package:garage_repair/Screen/Components/inspection/sub_inspection.dart';
 
 import '../../Dashboard/vehicle.dart';
 import '../Previous/previous.dart';
+import '../Previous/previous_details.dart';
 
 class FirstVehicleInspection extends StatefulWidget {
   const FirstVehicleInspection({Key? key}) : super(key: key);
@@ -43,9 +44,13 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
             height: 20,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: Previous()
-          )
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PreviousDetails()));
+                  },
+                  child: Previous()))
         ],
       ),
       floatingActionButton: FloatingActionButton(

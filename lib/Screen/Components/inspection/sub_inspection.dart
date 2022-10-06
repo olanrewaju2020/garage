@@ -172,6 +172,7 @@ class _InspectionState extends State<Inspection> {
                       TextField(
                         autofocus: false,
                         style: TextStyle(fontSize: 15.0, color: Colors.black),
+                        maxLines: 7,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Where should we meet you',
@@ -191,7 +192,7 @@ class _InspectionState extends State<Inspection> {
                       ),
                       Spacer(),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: Padding(
                           padding: const EdgeInsets.only(bottom: 28.0),
                           child: Container(

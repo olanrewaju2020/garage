@@ -58,6 +58,7 @@ class _PreviousState extends State<Previous> {
                 Icon(
                   Icons.print,
                   size: 17,
+                  color: Colors.green,
                 ),
                 SizedBox(
                   height: 3,
@@ -70,7 +71,7 @@ class _PreviousState extends State<Previous> {
                   onRatingUpdate: (rating) {},
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 7,
                 ),
                 Text(
                   'Pending', style: TextStyle(
