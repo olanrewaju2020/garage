@@ -20,7 +20,7 @@ class _InspectionState extends State<Inspection> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         backgroundColor: Color(0xfff4f4f2),
         appBar: AppBar(
@@ -33,7 +33,7 @@ class _InspectionState extends State<Inspection> {
             ),
           ),
           title: Text(
-            'Vehicle Inspextion',
+            'Vehicle Inspection',
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 13,
@@ -54,9 +54,6 @@ class _InspectionState extends State<Inspection> {
               tabs: [
                 Tab(
                   text: 'REQUEST',
-                ),
-                Tab(
-                  text: 'SELECT DATE',
                 ),
                 Tab(
                   text: 'CHECKOUT',
@@ -150,6 +147,30 @@ class _InspectionState extends State<Inspection> {
                       ),
                       TextField(
                         autofocus: false,
+                        onTap: _showDatePicker,
+                        style: TextStyle(fontSize: 15.0, color: Colors.black),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Date',
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.only(
+                              left: 14.0, bottom: 6.0, top: 8.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      TextField(
+                        autofocus: false,
                         style: TextStyle(fontSize: 15.0, color: Colors.black),
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -199,61 +220,6 @@ class _InspectionState extends State<Inspection> {
                       )
                     ],
                   ),
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: TextField(
-                        autofocus: false,
-                        onTap: _showDatePicker,
-                        style: TextStyle(fontSize: 15.0, color: Colors.black),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Date',
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: const EdgeInsets.only(
-                              left: 14.0, bottom: 6.0, top: 8.0),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 28.0),
-                        child: Container(
-                          height: 50,
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.green,
-                            ),
-                            onPressed: () {},
-                            child: Text(
-                              'Proceed',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 13),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
                 ),
                 Column(
                   children: [
