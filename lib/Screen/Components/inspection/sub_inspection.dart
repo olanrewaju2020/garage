@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../contact_person.dart';
+
 class Inspection extends StatefulWidget {
   const Inspection({Key? key}) : super(key: key);
 
@@ -36,15 +38,13 @@ class _InspectionState extends State<Inspection>
               return <Widget>[
                 SliverAppBar(
                   backgroundColor: Colors.white,
-                  title: Text("Request", style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15
-                  ),),
+                  title: Text(
+                    "Request",
+                    style: TextStyle(color: Colors.black, fontSize: 15),
+                  ),
                   centerTitle: true,
                   bottom: TabBar(
-                    labelStyle: TextStyle(
-                      fontSize: 10
-                    ),
+                    labelStyle: TextStyle(fontSize: 10),
                     indicatorColor: Colors.green,
                     labelColor: Color(0xff180352),
                     unselectedLabelColor: Color(0xff000000),
@@ -270,12 +270,15 @@ class RequestView extends StatelessWidget {
             decoration: InputDecoration(
               suffixIcon: GestureDetector(
                   onTap: () {
-                    print("==============================");
-                    print("It is working");
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new ContactPerson()));
                   },
-                  child: const Icon(Icons.account_balance)),
+                  child: const Icon(Icons.contact_phone)),
               border: InputBorder.none,
-              hintText: 'Name of contact person',
+              hintText: 'Contact person',
+              hintStyle: TextStyle(height: 1.9),
               filled: true,
               fillColor: Colors.white,
               contentPadding:
