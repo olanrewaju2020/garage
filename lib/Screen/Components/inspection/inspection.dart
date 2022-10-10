@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/inspection/sub_inspection.dart';
-
+import '../map.dart'
+    '';
 import '../../Dashboard/vehicle.dart';
 import '../Previous/previous.dart';
 import '../Previous/previous_details.dart';
@@ -62,7 +63,7 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Inspection(),
+            builder: (context) => Map(),
           ));
         },
       ),
