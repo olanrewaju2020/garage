@@ -63,7 +63,7 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Map(),
+            builder: (context) => Inspection(),
           ));
         },
       ),

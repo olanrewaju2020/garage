@@ -11,7 +11,7 @@ import 'Screen/Dashboard/google_map_screen.dart';
 void main() {
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: GoogleMapScreen(),//LandingPage(),
+    home: OnboardingSteps(), //LandingPage(),
   ));
 }
 

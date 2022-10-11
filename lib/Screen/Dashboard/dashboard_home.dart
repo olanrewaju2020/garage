@@ -5,6 +5,7 @@ import '../Components/inspection/inspection.dart';
 import '../Components/repair/repairs.dart';
 import '../Components/servicing/servicing.dart';
 import '../Components/tow/tow.dart';
+import 'insurance.dart';
 
 class DashboardHome extends StatefulWidget {
   const DashboardHome({Key? key}) : super(key: key);
@@ -245,23 +246,31 @@ void bottomsheet(context) {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [ Image.asset(
-                                  'assets/images/in.png',
-                                  height: 40,
-                                  width: 40,
-                                ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (context) => new Insurance()));
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [ Image.asset(
+                                    'assets/images/in.png',
+                                    height: 40,
+                                    width: 40,
+                                  ),
 
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Vehicle Insurance',
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w300),
-                              )
-                            ],
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Vehicle Insurance',
+                                  style: TextStyle(
+                                      fontSize: 12, fontWeight: FontWeight.w300),
+                                )
+                              ],
+                            ),
                           ),
                           Column(
                             children: [

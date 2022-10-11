@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/servicing/sub_servicing.dart';
 
 import '../../Dashboard/vehicle.dart';
+import '../Previous/previous.dart';
+import '../Previous/previous_details.dart';
 
 class FirstVehicleServices extends StatefulWidget {
   const FirstVehicleServices({Key? key}) : super(key: key);
@@ -25,7 +27,7 @@ class _FirstVehicleServicesState extends State<FirstVehicleServices> {
           ),
         ),
         title: Text(
-          'Vehicle Servicing',
+          'Previous Servicing',
           style: TextStyle(
               color: Colors.black,
               fontSize: 15,
@@ -42,14 +44,27 @@ class _FirstVehicleServicesState extends State<FirstVehicleServices> {
             height: 20,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Servicing()));
-                },
-                child: vehicle()),
-          )],
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PreviousDetails()));
+                  },
+                  child: Previous()))
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        elevation: 0,
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.green,
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => Servicing(),
+          ));
+        },
       ),
     );
   }

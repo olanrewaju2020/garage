@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../Dashboard/google_map_screen.dart';
 import '../contact_person.dart';
 
 class Inspection extends StatefulWidget {
@@ -79,7 +80,7 @@ class Checkout extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Container(
-            height: 220,
+            height: 320,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -120,7 +121,7 @@ class Checkout extends StatelessWidget {
                         fontSize: 12),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -136,13 +137,101 @@ class Checkout extends StatelessWidget {
                         'N562',
                         style: TextStyle(
                             color: Colors.black,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                             fontSize: 12),
                       )
                     ],
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Garage',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12),
+                      ),
+                      Text(
+                        'Mechco',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Contact Person',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12),
+                      ),
+                      Text(
+                        'Ajede Olanrewaju',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Contact Phone',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12),
+                      ),
+                      Text(
+                        '09093104312',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Date',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12),
+                      ),
+                      Text(
+                        '15-07-2000',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,13 +247,13 @@ class Checkout extends StatelessWidget {
                         '26,000',
                         style: TextStyle(
                             color: Colors.black,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                             fontSize: 12),
                       ),
                     ],
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -180,7 +269,7 @@ class Checkout extends StatelessWidget {
                         '26,N562',
                         style: TextStyle(
                             color: Colors.black,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                             fontSize: 12),
                       ),
                     ],
@@ -202,7 +291,7 @@ class Checkout extends StatelessWidget {
                         '10,750',
                         style: TextStyle(
                             color: Colors.black,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w400,
                             fontSize: 12),
                       ),
                     ],
@@ -300,8 +389,40 @@ class RequestView extends StatelessWidget {
             autofocus: false,
             style: const TextStyle(fontSize: 15.0, color: Colors.black),
             decoration: InputDecoration(
+              suffixIcon: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new GoogleMapScreen()));
+                  },
+                  child: const Icon(Icons.map)),
               border: InputBorder.none,
               hintText: 'Present vehicle location',
+              hintStyle: TextStyle(height: 1.9),
+              filled: true,
+              fillColor: Colors.white,
+              contentPadding:
+                  const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          TextField(
+            autofocus: false,
+            style: const TextStyle(fontSize: 15.0, color: Colors.black),
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Number of contact person',
               filled: true,
               fillColor: Colors.white,
               contentPadding:
@@ -324,11 +445,11 @@ class RequestView extends StatelessWidget {
             style: const TextStyle(fontSize: 15.0, color: Colors.black),
             decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Number of contact person',
+              hintText: 'Select garage',
               filled: true,
               fillColor: Colors.white,
               contentPadding:
-                  const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
+              const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),
                 borderRadius: BorderRadius.circular(10.0),
