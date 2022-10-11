@@ -1,12 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.garage_repair">
-
+    package="com.example.garage">
    <application
-        android:label="garage_repair"
+        android:label="garage"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-       <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="YOUR KEY HERE"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -32,9 +29,8 @@
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
-            android:value="2"
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDH82oRRaaVa5SgTq76UTLLNKEn-Cc760c"
-            />
+            android:value="2" />
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDH82oRRaaVa5SgTq76UTLLNKEn-Cc760c"/>
     </application>
 </manifest>

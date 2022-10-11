@@ -1,4 +1,4 @@
-package com.example.garage_repair
+package com.example.garage
 
 import io.flutter.embedding.android.FlutterActivity
 

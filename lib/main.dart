@@ -6,10 +6,12 @@ import 'package:garage_repair/Screen/onboarding/landing.dart';
 import 'package:garage_repair/Screen/onboarding/login.dart';
 import 'package:garage_repair/Screen/onboarding/onboarding_steps.dart';
 
+import 'Screen/Dashboard/google_map_screen.dart';
+
 void main() {
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: LandingPage(),
+    home: GoogleMapScreen(),//LandingPage(),
   ));
 }
 
