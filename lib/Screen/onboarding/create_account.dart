@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/onboarding/login.dart';
 
+import 'code_activation.dart';
+
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
 
@@ -14,7 +16,6 @@ class _CreateAccountState extends State<CreateAccount> {
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xfff4f4f2),
-
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -193,30 +194,30 @@ class _CreateAccountState extends State<CreateAccount> {
                 height: 35,
               ),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                                builder: (context) => new Login()));
-                      },
-                      child: Text(
-                        'Create account',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13),
-                      ),
+                padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new CodeActivation()));
+                    },
+                    child: Text(
+                      'Create account',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13),
                     ),
                   ),
                 ),
+              ),
               SizedBox(
                 height: 8,
               ),
