@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Dashboard/dashboard.dart';
 import 'package:garage_repair/Screen/onboarding/create_account.dart';
+import 'package:provider/provider.dart';
+
+import '../../bloc/auth_bloc.dart';
+import '../../misc/enum.dart';
+import '../../provider/auth_provider.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -10,6 +15,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final authBloc = AuthBloc();
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -35,59 +41,28 @@ class _LoginState extends State<Login> {
                     height: 150,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
-                  child: TextField(
-                    autofocus: false,
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Email address',
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding: const EdgeInsets.only(
-                          left: 14.0, bottom: 6.0, top: 8.0),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
+                  padding: const EdgeInsets.all(10),
+                  child: GTextField(
+                    stream: authBloc.email,
+                    hintText: 'Email address',
+                    onChanged: authBloc.emailOnChange,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Stack(
                     alignment: const Alignment(0, 0),
                     children: <Widget>[
-                      TextField(
-                        obscureText: true,
-                        autofocus: false,
-                        style: TextStyle(fontSize: 15.0, color: Colors.black),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'password',
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: const EdgeInsets.only(
-                              left: 14.0, bottom: 6.0, top: 8.0),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                        ),
-                      ),
-                      Positioned(right: 15, child: Icon(Icons.remove_red_eye))
+                      GTextField(
+                          stream: authBloc.password,
+                          onChanged: authBloc.passwordOnChange,
+                          hintText: 'Password'),
+                      const Positioned(
+                          right: 15, child: Icon(Icons.remove_red_eye))
                     ],
                   ),
                 ),
@@ -96,41 +71,47 @@ class _LoginState extends State<Login> {
                 ),
                 Container(
                   alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
+                  child: const Padding(
+                    padding: EdgeInsets.only(right: 15.0),
                     child: Text(
                       'Forgot password',
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 11),
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 11),
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      height: 50,
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) => new Dashboard()));
-                        },
-                        child: Text(
-                          'Log in',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13),
-                        ),
-                      ),
-                    )),
+                Consumer<AuthProvider>(
+                  builder: (context, provider, child) {
+                    return Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.green,
+                            ),
+                            onPressed: () async {
+                              provider.login(
+                                context: context,
+                                email: await authBloc.email.first,
+                                password: await authBloc.password.first
+                              );
+                            },
+                            child: const Text(
+                              'Log in',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 13),
+                            ),
+                          ),
+                        ));
+                  },
+                ),
                 SizedBox(
                   height: 2,
                 ),

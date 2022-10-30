@@ -1,0 +1,1 @@
+enum ApiStatus {none, loading, done}

@@ -5,13 +5,20 @@ import 'package:garage_repair/Screen/onboarding/create_account.dart';
 import 'package:garage_repair/Screen/onboarding/landing.dart';
 import 'package:garage_repair/Screen/onboarding/login.dart';
 import 'package:garage_repair/Screen/onboarding/onboarding_steps.dart';
+import 'package:provider/provider.dart';
 
 import 'Screen/Dashboard/google_map_screen.dart';
+import 'provider/auth_provider.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: OnboardingSteps(), //LandingPage(),
+  runApp( MultiProvider(
+    providers: [
+      ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+    ],
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const OnboardingSteps(), //LandingPage(),
+    ),
   ));
 }
 
