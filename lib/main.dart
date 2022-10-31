@@ -17,7 +17,7 @@ void main() {
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const OnboardingSteps(), //LandingPage(),
+      home: const LandingPage(), //LandingPage(),
     ),
   ));
 }

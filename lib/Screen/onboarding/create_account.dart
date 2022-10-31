@@ -57,26 +57,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 stream: authBloc.lastName,
                   onChanged: authBloc.lastNameOnChange,
                   controller: _lastNameCtrl, hintText: 'Last name'),
-              // TextField(
-              //   autofocus: false,
-              //   style: TextStyle(fontSize: 15.0, color: Colors.black),
-              //   decoration: InputDecoration(
-              //     border: InputBorder.none,
-              //     hintText: 'Last name',
-              //     filled: true,
-              //     fillColor: Colors.white,
-              //     contentPadding:
-              //         const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //   ),
-              // ),
+
               SizedBox(
                 height: 20,
               ),
@@ -84,26 +65,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 stream: authBloc.email,
                   onChanged: authBloc.emailOnChange,
                   controller: _emailCtrl, hintText: 'Email address'),
-              // TextField(
-              //   autofocus: false,
-              //   style: TextStyle(fontSize: 15.0, color: Colors.black),
-              //   decoration: InputDecoration(
-              //     border: InputBorder.none,
-              //     hintText: 'Email address',
-              //     filled: true,
-              //     fillColor: Colors.white,
-              //     contentPadding:
-              //         const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //   ),
-              // ),
+
               SizedBox(
                 height: 20,
               ),
@@ -113,26 +75,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   hintText: 'Phone number',
                 onChanged: authBloc.phoneOnChange
               ),
-              // TextField(
-              //   autofocus: false,
-              //   style: TextStyle(fontSize: 15.0, color: Colors.black),
-              //   decoration: InputDecoration(
-              //     border: InputBorder.none,
-              //     hintText: 'Phone number',
-              //     filled: true,
-              //     fillColor: Colors.white,
-              //     contentPadding:
-              //         const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //   ),
-              // ),
+
               SizedBox(
                 height: 20,
               ),
@@ -140,26 +83,6 @@ class _CreateAccountState extends State<CreateAccount> {
                 stream: authBloc.password,
                   onChanged: authBloc.passwordOnChange,
                   controller: _passwordCtrl, hintText: 'Password'),
-              // TextField(
-              //   autofocus: false,
-              //   style: TextStyle(fontSize: 15.0, color: Colors.black),
-              //   decoration: InputDecoration(
-              //     border: InputBorder.none,
-              //     hintText: 'Password',
-              //     filled: true,
-              //     fillColor: Colors.white,
-              //     contentPadding:
-              //         const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 height: 20,
               ),
@@ -167,26 +90,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 stream: authBloc.password,
                   controller: _confirmPasswordCtrl,
                   hintText: 'Confirm Password'),
-              // TextField(
-              //   autofocus: false,
-              //   style: TextStyle(fontSize: 15.0, color: Colors.black),
-              //   decoration: InputDecoration(
-              //     border: InputBorder.none,
-              //     hintText: 'Confirm Password',
-              //     filled: true,
-              //     fillColor: Colors.white,
-              //     contentPadding:
-              //         const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //   ),
-              // ),
+
               const SizedBox(
                 height: 20,
               ),
@@ -194,26 +98,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 stream: authBloc.aboutUs,
                   onChanged:  authBloc.aboutUsOnChange,
                   controller: _aboutUsCtrl, hintText: 'How do you hear about us?'),
-              // TextField(
-              //   autofocus: false,
-              //   style: const TextStyle(fontSize: 15.0, color: Colors.black),
-              //   decoration: InputDeHow do you hear about us?coration(
-              //     border: InputBorder.none,
-              //     hintText: '',
-              //     filled: true,
-              //     fillColor: Colors.white,
-              //     contentPadding:
-              //         const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-              //     focusedBorder: OutlineInputBorder(
-              //       borderSide: const BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: const BorderSide(color: Colors.white),
-              //       borderRadius: BorderRadius.circular(10.0),
-              //     ),
-              //   ),
-              // ),
+
               const SizedBox(
                 height: 35,
               ),
