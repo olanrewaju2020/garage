@@ -37,6 +37,7 @@ class AuthProvider extends ChangeNotifier with Validations {
 
   void login({required String email, required String password, required BuildContext context}) async {
     status = ApiStatus.loading;
+    notifyListeners();
     final response = await RestService().method(
         method: 'POST', url: 'entrance/login', body: User(
       email: email,
@@ -44,8 +45,8 @@ class AuthProvider extends ChangeNotifier with Validations {
     ).toLogin());
 
     status = ApiStatus.done;
-
     notifyListeners();
+
     if(response.isSuccessful) {
       Navigator.push(context, MaterialPageRoute(
               builder: (context) => const Dashboard()));

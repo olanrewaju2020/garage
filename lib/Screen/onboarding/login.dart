@@ -101,7 +101,7 @@ class _LoginState extends State<Login> {
                                 password: await authBloc.password.first
                               );
                             },
-                            child: const Text(
+                            child: provider.status == ApiStatus.loading ? const Center(child: CircularProgressIndicator()) :const Text(
                               'Log in',
                               style: TextStyle(
                                   color: Colors.white,
