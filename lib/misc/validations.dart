@@ -26,6 +26,8 @@ mixin Validations {
           name: 'Name Field',
           isRequired: true,
           isAlphaSpace: true,
+          minLength: 4,
+          maxLength: 20
         );
         if(rule.hasError) {
           sink.addError(rule.error!);
