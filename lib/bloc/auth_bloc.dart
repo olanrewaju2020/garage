@@ -1,4 +1,3 @@
-
 import 'package:garage_repair/misc/validations.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -17,7 +16,6 @@ class AuthBloc with Validations{
   Stream<String> get password => _password.stream.transform(validatePassword);
   Stream<String> get phone => _phone.stream.transform(validatePhone);
   Stream<String> get aboutUs => _aboutUs.stream;
-
 
   firstNameOnChange(String name) => _firstName.sink.add(name);
   lastNameOnChange(String name) => _lastName.sink.add(name);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/details/quick.dart';
+import 'package:provider/provider.dart';
 
+import '../../provider/auth_provider.dart';
 import '../Components/inspection/inspection.dart';
 import '../Components/repair/repairs.dart';
 import '../Components/servicing/servicing.dart';
@@ -17,6 +19,7 @@ class DashboardHome extends StatefulWidget {
 class _DashboardHomeState extends State<DashboardHome> {
   @override
   Widget build(BuildContext context) {
+    final _user = Provider.of<AuthProvider>(context).user;
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Color(0xfff4f4f2),
@@ -55,7 +58,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                   ),
                 ),
                 Text(
-                  'Good morning \nOlanrewaju.',
+                  'Good morning \n${_user.firstName}.',
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 20,

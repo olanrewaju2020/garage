@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:garage_repair/Screen/misc/utils.dart';
 
 import '../Models/user.dart';
 import '../Screen/Dashboard/dashboard.dart';
@@ -11,6 +10,16 @@ import '../misc/validations.dart';
 
 class AuthProvider extends ChangeNotifier with Validations {
   ApiStatus status = ApiStatus.none;
+  String? _email;
+  bool _isActivated = false;
+  bool _isLogin = false;
+  User? _user;
+
+  String get email => _email ?? '';
+  bool get isActivated => _isActivated;
+  bool get isLogin => _isLogin;
+  User get user => _user ?? User();
+
 
   Future<bool> register(
       {required String firstName,
@@ -30,6 +39,7 @@ class AuthProvider extends ChangeNotifier with Validations {
                 password: password)
             .toRegister());
     if(response.isSuccessful){
+      _email = email;
       return true;
     }
     return false;
@@ -44,12 +54,25 @@ class AuthProvider extends ChangeNotifier with Validations {
       password: password
     ).toLogin());
 
+    _isLogin = response.isSuccessful;
+    _user = User.fromAuthJson(response.data);
+
     status = ApiStatus.done;
     notifyListeners();
+  }
 
+  activateUser({required String otp}) async {
+    final response = await RestService().method(
+        method: "POST", url: 'entrance/activate', body: User(
+      email: _email, otp: otp
+    ).toActivateJson());
     if(response.isSuccessful) {
-      Navigator.push(context, MaterialPageRoute(
-              builder: (context) => const Dashboard()));
+      ShowToast(msg: response.data, type: ErrorType.success);
+      _isActivated = true;
+    } else {
+      ShowToast(msg: response.data, type: ErrorType.error);
     }
+
+    notifyListeners();
   }
 }
