@@ -11,7 +11,7 @@ import 'Screen/Dashboard/google_map_screen.dart';
 import 'provider/auth_provider.dart';
 
 void main() {
-  runApp( MultiProvider(
+  runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
     ],
