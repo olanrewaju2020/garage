@@ -12,11 +12,11 @@ class ApiResponse<T> {
   factory ApiResponse.fromJson(Map<String, dynamic> json){
     return ApiResponse(
       data: json['data'],
-      message: json['data'],
+      message: json['status'] == "success" ? null : json['data'],
       status: json['status'],
       isSuccessful: json['status'] == "success" ? true : false,
       hasError: json['status']  == "success" ? false : true,
-      error: json['data'],
+      error: json['status'] == "success" ? null : json['data'],
     );
   }
 

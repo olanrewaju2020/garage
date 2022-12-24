@@ -3,6 +3,8 @@ import 'package:garage_repair/Screen/Dashboard/maintainance.dart';
 import 'package:garage_repair/Screen/Dashboard/vehicle.dart';
 import 'package:garage_repair/Screen/Dashboard/repair.dart';
 import 'package:garage_repair/Screen/Dashboard/setting.dart';
+import 'package:provider/provider.dart';
+import '../../provider/auth_provider.dart';
 import './insurance.dart';
 import './dashboard_home.dart';
 

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/onboarding/login.dart';
 import 'package:pinput/pinput.dart';
+import 'package:provider/provider.dart';
+
+import '../../bloc/auth_bloc.dart';
+import '../../provider/auth_provider.dart';
 
 class CodeActivation extends StatefulWidget {
   @override
@@ -32,13 +37,13 @@ class _CodeActivation extends State<CodeActivation> {
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
             size: 15,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Account Activation',
           style: TextStyle(
               color: Colors.black,
@@ -55,7 +60,7 @@ class _CodeActivation extends State<CodeActivation> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 18),
               height: MediaQuery.of(context).size.height * 0.8,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,34 +69,43 @@ class _CodeActivation extends State<CodeActivation> {
                     height: 25,
                   ),
                   Text(
-                    'Verify OTP', style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.4,
-                    color: Colors.green.shade600
+                    'Verify OTP',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.4,
+                        color: Colors.green.shade600),
                   ),
-                  ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  StreamBuilder<String>(builder: (context, snapshot) {
-                    return Pinput(
-                      length: 6,
-                      useNativeKeyboard: true,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      defaultPinTheme: defaultPinTheme,
-                      enableSuggestions: true,
-                      closeKeyboardWhenCompleted: true,
-                      obscuringCharacter: '*',
-                      obscureText: true,
-                      keyboardType: TextInputType.number,
-                      separator: Container(
-                        height: 55,
-                        width: 10,
-                      ),
-                    );
-                  }),
-                  SizedBox(
+                  Consumer<AuthProvider>(
+                    builder: (context, provider, child) {
+                      return Pinput(
+                        length: 6,
+                        useNativeKeyboard: true,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        defaultPinTheme: defaultPinTheme,
+                        enableSuggestions: true,
+                        closeKeyboardWhenCompleted: true,
+                        obscuringCharacter: '*',
+                        obscureText: true,
+                        keyboardType: TextInputType.text,
+                        separator: Container(
+                          height: 55,
+                          width: 10,
+                        ),
+                        onCompleted: (val) {
+                          provider.activateUser(otp: val);
+                          if (provider.isActivated) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const Login()));
+                          }
+                        },
+                      );
+                    },
+                  ),
+                  const SizedBox(
                     height: 10,
                   ),
                 ],

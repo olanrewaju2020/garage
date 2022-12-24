@@ -4,8 +4,8 @@ class User {
   String? phone;
   String? email;
   String? tellUsWhereYouFoundUs;
-  String? password;
-
+  String? password, token, otp;
+  var uuid;
 
   User(
       {this.firstName,
@@ -13,16 +13,29 @@ class User {
       this.phone,
       this.email,
       this.tellUsWhereYouFoundUs,
-      this.password});
+      this.password,
+      this.token,
+      this.otp,
+      this.uuid});
 
   toRegister() {
     return {
       "firstName": firstName,
       "lastName": lastName,
-      "email" : email,
+      "email": email,
       "password": password,
       "phone": phone
     };
+  }
+
+  factory User.fromAuthJson(Map<String, dynamic> json) {
+    return User(
+        token: "token",
+        firstName: "firstName",
+        lastName: "lastName",
+        uuid: "uuid",
+        email: "email",
+        phone: "phone");
   }
 
   @override
@@ -31,9 +44,10 @@ class User {
   }
 
   toLogin() {
-    return {
-      "email": email,
-      "password": password
-    };
+    return {"email": email, "password": password};
+  }
+
+  toActivateJson() {
+    return {"otp": otp, "email": email};
   }
 }

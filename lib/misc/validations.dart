@@ -41,7 +41,7 @@ mixin Validations {
       handleData: (phone, sink){
         final rule = Rule(
           phone,
-          name: 'Email Field',
+          name: 'Phone Field',
           isRequired: true,
           isPhone: true,
         );
