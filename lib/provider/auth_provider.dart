@@ -46,21 +46,23 @@ class AuthProvider extends ChangeNotifier with Validations {
   void login({required String email, required String password, required BuildContext context}) async {
     status = ApiStatus.loading;
     notifyListeners();
-    RestService().method(
-        method: 'POST', url: 'entrance/login', body: User(
-      email: email,
-      password: password
-    ).toLogin()).then((response){
-      if(response.isSuccessful) {
-        _user = User.fromAuthJson(response.data);
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context) => const Dashboard()));
-      } else {
-        ShowToast(msg: response?.data!, type: ErrorType.error);
-      }
-    });
-
-    status = ApiStatus.done;
+    // RestService().method(
+    //     method: 'POST', url: 'entrance/login', body: User(
+    //   email: email,
+    //   password: password
+    // ).toLogin()).then((response){
+    //   if(response.isSuccessful) {
+    //     _user = User.fromAuthJson(response.data);
+    //     Navigator.push(context, MaterialPageRoute(
+    //         builder: (context) => const Dashboard()));
+    //   } else {
+    //     ShowToast(msg: response?.data!, type: ErrorType.error);
+    //   }
+    // });
+    //
+    // status = ApiStatus.done;
+    Navigator.push(context, MaterialPageRoute(
+        builder: (context) => const Dashboard()));
     notifyListeners();
   }
 
