@@ -9,7 +9,7 @@ import '../Screen/misc/utils.dart';
 import 'api_response.dart';
 
 class RestService {
-  String baseUrl = 'https://garage-app-api.herokuapp.com/';
+  String baseUrl = 'http://208.87.133.54:4000/';
   // String baseUrl = 'http://10.0.2.2:3003/';
   final _headers = {
     "Accept": "application/json",
@@ -23,6 +23,56 @@ class RestService {
     http.Response response;
     try {
       switch (method) {
+        case 'delete':
+          response = await client
+              .delete(
+            Uri.parse('$baseUrl$url'),
+            headers: _headers,
+            body: json.encode(body),
+          )
+              .timeout(const Duration(seconds: timeOutSeconds));
+          final decode = json.decode(response.body);
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            return ApiResponse.fromJson(decode);
+          }
+          else {
+            ShowToast(msg: decode['data'], type: ErrorType.error);
+            return  ApiResponse(
+                message: decode['data'],
+                isSuccessful:  false,
+                hasError: true,
+                data: null,
+                timestamp: DateTime.now(),
+                status:  null,
+                error: decode['data'],
+                path: url
+            );
+          }
+        case 'PUT':
+          response = await client
+              .put(
+            Uri.parse('$baseUrl$url'),
+            headers: _headers,
+            body: json.encode(body),
+          )
+              .timeout(const Duration(seconds: timeOutSeconds));
+          final decode = json.decode(response.body);
+          if (response.statusCode == 200 || response.statusCode == 201) {
+            return ApiResponse.fromJson(decode);
+          }
+          else {
+            ShowToast(msg: decode['data'], type: ErrorType.error);
+            return  ApiResponse(
+                message: decode['data'],
+                isSuccessful:  false,
+                hasError: true,
+                data: null,
+                timestamp: DateTime.now(),
+                status:  null,
+                error: decode['data'],
+                path: url
+            );
+          }
         case 'POST':
           response = await client
               .post(

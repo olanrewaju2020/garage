@@ -9,15 +9,17 @@ import 'package:provider/provider.dart';
 
 import 'Screen/Dashboard/google_map_screen.dart';
 import 'provider/auth_provider.dart';
+import 'provider/vehicle_provider.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+      ChangeNotifierProvider<VehicleProvider>(create: (_) => VehicleProvider()),
     ],
-    child: MaterialApp(
+    child: const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LandingPage(), //LandingPage(),
+      home: LandingPage(), //LandingPage(),
     ),
   ));
 }

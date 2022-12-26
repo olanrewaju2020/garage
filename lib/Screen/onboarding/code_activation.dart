@@ -65,7 +65,7 @@ class _CodeActivation extends State<CodeActivation> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Text(
@@ -96,11 +96,7 @@ class _CodeActivation extends State<CodeActivation> {
                           width: 10,
                         ),
                         onCompleted: (val) {
-                          provider.activateUser(otp: val);
-                          if (provider.isActivated) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const Login()));
-                          }
+                          provider.activateUser(otp: val, context: context);
                         },
                       );
                     },
