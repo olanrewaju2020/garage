@@ -12,14 +12,14 @@ import 'provider/auth_provider.dart';
 import 'provider/vehicle_provider.dart';
 
 void main() {
-  runApp( MultiProvider(
+  runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
       ChangeNotifierProvider<VehicleProvider>(create: (_) => VehicleProvider()),
     ],
     child: const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LandingPage(), //LandingPage(),
+      home: Dashboard(), //LandingPage(),
     ),
   ));
 }

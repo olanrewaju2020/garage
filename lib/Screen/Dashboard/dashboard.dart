@@ -23,6 +23,7 @@ class _DashboardState extends State<Dashboard> {
     Settings(),
   ];
   int currentIndex = 0;
+
   void onTap(int index) {
     setState(() {
       currentIndex = index;
@@ -62,7 +63,7 @@ class _DashboardState extends State<Dashboard> {
           BottomNavigationBarItem(
               label: "Home", icon: Icon(Icons.home_outlined)),
           BottomNavigationBarItem(
-              label: "Maintainance", icon: Icon(Icons.car_repair_outlined)),
+              label: "Services", icon: Icon(Icons.car_repair)),
           BottomNavigationBarItem(
               label: "Vehicle", icon: Icon(Icons.car_crash_outlined)),
           BottomNavigationBarItem(

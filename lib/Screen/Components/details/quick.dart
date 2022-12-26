@@ -67,6 +67,8 @@ class _QuickState extends State<Quick> {
               SizedBox(
                 height: 20,
               ),
+
+
               TextField(
                 autofocus: false,
                 style: TextStyle(fontSize: 15.0, color: Colors.black),

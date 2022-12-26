@@ -41,7 +41,7 @@ class _MaintenanceHistoryState extends State<MaintenanceHistory> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Container(
-              height: 320,
+              height: 400,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -53,6 +53,7 @@ class _MaintenanceHistoryState extends State<MaintenanceHistory> {
                         offset: Offset(0, 0))
                   ]),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
                     height: 25,
@@ -61,10 +62,17 @@ class _MaintenanceHistoryState extends State<MaintenanceHistory> {
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('VIN', style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13
-                      ),), Text('99879377373829347')],
+                      children: [
+                        Text(
+                          'VIN',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 13),
+                        ),
+                        Text('99879377373829347',style: TextStyle(
+                            fontSize: 12,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w400),)
+                      ],
                     ),
                   ),
                   Padding(
@@ -78,10 +86,15 @@ class _MaintenanceHistoryState extends State<MaintenanceHistory> {
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Address', style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13
-                      )), Text('10, Somorin, ABK')],
+                      children: [
+                        Text('Address',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 13)),
+                        Text('10, Somorin, ABK',style: TextStyle(
+                            fontSize: 12,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w400),)
+                      ],
                     ),
                   ),
                   Padding(
@@ -95,10 +108,12 @@ class _MaintenanceHistoryState extends State<MaintenanceHistory> {
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Maintenance Category', style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13
-                      )), Text('')],
+                      children: [
+                        Text('Maintenance Category',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 13)),
+                        Text('')
+                      ],
                     ),
                   ),
                   Padding(
@@ -112,10 +127,15 @@ class _MaintenanceHistoryState extends State<MaintenanceHistory> {
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Engineer incharge', style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13
-                      )), Text('Ajede Olanrewaju')],
+                      children: [
+                        Text('Engineer incharge',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 13)),
+                        Text('Ajede Olanrewaju',style: TextStyle(
+                            fontSize: 12,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w400),)
+                      ],
                     ),
                   ),
                   Padding(
@@ -129,10 +149,15 @@ class _MaintenanceHistoryState extends State<MaintenanceHistory> {
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Phone number', style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13
-                      )), Text('090986386257')],
+                      children: [
+                        Text('Phone number',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 13)),
+                        Text('090986386257',style: TextStyle(
+                            fontSize: 12,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w400),)
+                      ],
                     ),
                   ),
                   Padding(
@@ -146,10 +171,44 @@ class _MaintenanceHistoryState extends State<MaintenanceHistory> {
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text('Cost', style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 13
-                      )), Text('0')],
+                      children: [
+                        Text('Cost',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 13)),
+                        Text('0',style: TextStyle(
+                            fontSize: 12,
+                            fontStyle: FontStyle.normal,
+                            fontWeight: FontWeight.w400),)
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Divider(),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('Description',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 13)),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          'Description of maintenance goes as follows',
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontStyle: FontStyle.normal,
+                              fontWeight: FontWeight.w400),
+                        )
+                      ],
                     ),
                   ),
                 ],

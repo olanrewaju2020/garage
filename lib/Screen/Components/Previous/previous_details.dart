@@ -22,7 +22,7 @@ class _PreviousDetailsState extends State<PreviousDetails> {
           ),
         ),
         title: Text(
-          'Inspection Details',
+          'Service Details',
           style: TextStyle(
               color: Colors.black,
               fontSize: 15,
@@ -40,7 +40,7 @@ class _PreviousDetailsState extends State<PreviousDetails> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 240,
+                height: 300,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -195,6 +195,32 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                           ),
                           Text(
                             '10,Somorin,Abeokuta,Ogun-State',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Description',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            'Description on the previous inspection goes as follows',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.black87,
