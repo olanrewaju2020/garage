@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/misc/utils.dart';
 
 import '../Models/user.dart';
 import '../Screen/Dashboard/dashboard.dart';
 import '../Screen/misc/enum.dart';
+import '../Screen/onboarding/login.dart';
 import '../Service/rest_service.dart';
 import '../misc/validations.dart';
 
@@ -12,12 +12,10 @@ class AuthProvider extends ChangeNotifier with Validations {
   ApiStatus status = ApiStatus.none;
   String? _email;
   bool _isActivated = false;
-  bool _isLogin = false;
   User? _user;
 
   String get email => _email ?? '';
   bool get isActivated => _isActivated;
-  bool get isLogin => _isLogin;
   User get user => _user ?? User();
 
 
@@ -48,30 +46,39 @@ class AuthProvider extends ChangeNotifier with Validations {
   void login({required String email, required String password, required BuildContext context}) async {
     status = ApiStatus.loading;
     notifyListeners();
-    final response = await RestService().method(
+    RestService().method(
         method: 'POST', url: 'entrance/login', body: User(
       email: email,
       password: password
-    ).toLogin());
-
-    _isLogin = response.isSuccessful;
-    _user = User.fromAuthJson(response.data);
+    ).toLogin()).then((response){
+      if(response.isSuccessful) {
+        _user = User.fromAuthJson(response.data);
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => const Dashboard()));
+      } else {
+        ShowToast(msg: response?.data!, type: ErrorType.error);
+      }
+    });
 
     status = ApiStatus.done;
     notifyListeners();
   }
 
-  activateUser({required String otp}) async {
-    final response = await RestService().method(
+  activateUser({required String otp,required BuildContext context}) {
+    RestService().method(
         method: "POST", url: 'entrance/activate', body: User(
       email: _email, otp: otp
-    ).toActivateJson());
-    if(response.isSuccessful) {
-      ShowToast(msg: response.data, type: ErrorType.success);
-      _isActivated = true;
-    } else {
-      ShowToast(msg: response.data, type: ErrorType.error);
-    }
+    ).toActivateJson()).then((response){
+      if(response.isSuccessful) {
+        ShowToast(msg: response.data, type: ErrorType.success);
+        _isActivated = true;
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const Login()));
+      } else {
+        ShowToast(msg: response.data, type: ErrorType.error);
+      }
+    });
+
 
     notifyListeners();
   }

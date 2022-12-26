@@ -100,10 +100,6 @@ class _LoginState extends State<Login> {
                                 email: await authBloc.email.first,
                                 password: await authBloc.password.first
                               );
-                              if(provider.isLogin) {
-                                Navigator.push(context, MaterialPageRoute(
-                                              builder: (context) => const Dashboard()));
-                              }
                             },
                             child: provider.status == ApiStatus.loading ? const Center(child: CircularProgressIndicator()) :const Text(
                               'Log in',

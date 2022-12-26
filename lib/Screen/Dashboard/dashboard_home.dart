@@ -50,7 +50,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                       width: 45,
                       decoration: BoxDecoration(
                           color: Colors.green[300], shape: BoxShape.circle),
-                          child: Icon(
+                          child: const Icon(
                             Icons.menu,
                             color: Colors.white,
                           )
