@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../Components/Previous/previous.dart';
+import '../Components/Previous/previous_details.dart';
 import '../Components/maintenace/add_maintaince.dart';
 import '../Components/maintenace/maintenance_history.dart';
 
@@ -10,109 +12,139 @@ class Chat extends StatefulWidget {
 }
 
 class _ChatState extends State<Chat> {
+  void _showDatePicker(BuildContext context) {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2025),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff4f4f2),
-      appBar: AppBar(
-        title: const Text(
-          'Maintenance',
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.normal),
-        ),
-        centerTitle: true,
-        elevation: 0.3,
-        backgroundColor: Colors.white,
-      ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+          padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 45),
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => MaintenanceHistory()));
-                  },
-                  child: Container(
-                    height: 65,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 17.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 18,
-                              ),
-                              Text(
-                                'Vin no',
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.grey[400]),
-                              ),
-                              const SizedBox(
-                                height: 1,
-                              ),
-                              const Text(
-                                'AJ64RT',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              )
-                            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 130,
+                      child: TextField(
+                        autofocus: true,
+                        style: const TextStyle(
+                            fontSize: 15.0, color: Colors.black),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Search vehicle',
+                          hintStyle: TextStyle(fontSize: 12),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.only(
+                              left: 14.0, bottom: 6.0, top: 8.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 18,
-                              ),
-                              Text(
-                                'Engineer',
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.grey[400]),
-                              ),
-                              const SizedBox(
-                                height: 1,
-                              ),
-                              const Text(
-                                'Ajede Olanrewaju',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              )
-                            ],
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 15,
-                            color: Colors.grey[400],
-                          )
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                )
+                    Container(
+                      width: 100,
+                      child: TextField(
+                        autofocus: false,
+                        onTap: () {
+                          _showDatePicker(context);
+                        },
+                        style: const TextStyle(
+                            fontSize: 15.0, color: Colors.black),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Categories',
+                          hintStyle: TextStyle(fontSize: 12),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.only(
+                              left: 14.0, bottom: 6.0, top: 8.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      child: TextField(
+                        autofocus: false,
+                        onTap: () {
+                          _showDatePicker(context);
+                        },
+                        style: const TextStyle(
+                            fontSize: 15.0, color: Colors.black),
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "Date",
+                          hintStyle: TextStyle(fontSize: 12),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.only(
+                              left: 14.0, bottom: 6.0, top: 8.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: Padding(
+                          padding: const EdgeInsets.only(top: 0.0),
+                          child: Icon(
+                            Icons.search,
+                            size: 17,
+                          )),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Text(
+                  "Maintance history",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 15,
+                      fontStyle: FontStyle.normal),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PreviousDetails()));
+                    },
+                    child: Previous())
               ]),
         ),
       ),

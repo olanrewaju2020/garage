@@ -28,7 +28,7 @@ class _PreviousState extends State<Previous> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 25,
+                  height: 13,
                 ),
                 Text(
                   'Vin no',
@@ -43,7 +43,27 @@ class _PreviousState extends State<Previous> {
                 Text(
                   'AJ11AH',
                   style: TextStyle(
-                      fontSize: 13,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  'Date',
+                  style: TextStyle(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w300,
+                      color: Colors.grey[400]),
+                ),
+                SizedBox(
+                  height: 2,
+                ),
+                Text(
+                  '12-05-2000',
+                  style: TextStyle(
+                      fontSize: 11,
                       fontWeight: FontWeight.w500,
                       color: Colors.black),
                 ),
