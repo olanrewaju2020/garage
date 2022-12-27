@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Dashboard/dashboard.dart';
-import 'package:garage_repair/Screen/Dashboard/dashboard_home.dart';
-import 'package:garage_repair/Screen/onboarding/create_account.dart';
 import 'package:garage_repair/Screen/onboarding/landing.dart';
-import 'package:garage_repair/Screen/onboarding/login.dart';
-import 'package:garage_repair/Screen/onboarding/onboarding_steps.dart';
 import 'package:provider/provider.dart';
 
-import 'Screen/Dashboard/google_map_screen.dart';
 import 'provider/auth_provider.dart';
 import 'provider/vehicle_provider.dart';
 
@@ -17,9 +11,21 @@ void main() {
       ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
       ChangeNotifierProvider<VehicleProvider>(create: (_) => VehicleProvider()),
     ],
-    child: const MaterialApp(
+    child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LandingPage(), //LandingPage(),
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green )
+              .copyWith(secondary: Colors.greenAccent),
+        scaffoldBackgroundColor: Colors.grey,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.green.withOpacity(0.7)
+        ),
+        textTheme: TextTheme(
+          headlineSmall: TextStyle(fontSize: 9, color: Colors.grey[400]),
+          headlineMedium: TextStyle(fontSize: 12, color: Colors.grey[400])
+        )
+      ),
+      home: const LandingPage(), //LandingPage(),
     ),
   ));
 }

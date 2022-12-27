@@ -3,7 +3,6 @@ import 'package:garage_repair/provider/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../bloc/vehicle_bloc.dart';
-import '../../misc/enum.dart';
 import '../../provider/vehicle_provider.dart';
 import '../onboarding/create_account.dart';
 
@@ -58,50 +57,43 @@ class _AddVehicleState extends State<AddVehicle> {
                   suffixIconData: Icons.search
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * .6,
+                height: MediaQuery.of(context).size.height * .65,
                   child: ListView(
-                    children: const [
-                      VehicleData(
+                    children: [
+                      const VehicleData(
                         title: 'AB and Sons',
                         subtitle: "Owner's Name"
                       ),
-                      VehicleData(
+                      const VehicleData(
                           title: 'AJ 111 AAA',
                           subtitle: 'Registration Number:'
                       ),
-                      VehicleData(
+                      const VehicleData(
                           title: 'Silver',
                           subtitle:'Vehicle Color'
                       ),
-                      VehicleData(
+                      const VehicleData(
                           title: 'Camry',
                           subtitle:'Model'
                       ),
-                      VehicleData(
-                          title: 'Toyota',
-                          subtitle:'Vehicle Maker'
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children:  const [
+                          Expanded(child: VehicleData(
+                              title: 'Toyota',
+                              subtitle:'Vehicle Maker'
+                          )),
+                          Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: CircleAvatar(
+                              radius: 40,
+                              backgroundImage: AssetImage('assets/images/camry.jpeg'),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   )),
-              const CircleAvatar(
-                radius: 70,
-                backgroundImage: AssetImage('assets/images/camry.jpeg'),
-              ),
-
-              // const SizedBox(
-              //   height: 22,
-              // ),
-              // GTextField(
-              //   hintText: 'image',
-              //   onChanged: bloc.imageOnChanged,
-              //   stream: bloc.image,
-              // ),
-              // const SizedBox(
-              //   height: 22,
-              // ),
-              // SizedBox(
-              //   height: 35,
-              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0.0),
                 child: SizedBox(
@@ -115,19 +107,19 @@ class _AddVehicleState extends State<AddVehicle> {
                         ),
                         onPressed: () async {
                           provider.vehicleStore(
-                            context: context,
-                            vehicleNumber: await bloc.vehicleNumber.first,
-                            company: await bloc.company.first,
-                            color: await bloc.color.first,
-                            model: await bloc.model.first,
-                            image: await bloc.image.first,
-                            ownerId: await auth.uuid.first
+                              context: context,
+                              vehicleNumber: await bloc.vehicleNumber.first,
+                              company: await bloc.company.first,
+                              color: await bloc.color.first,
+                              model: await bloc.model.first,
+                              image: await bloc.image.first,
+                              ownerId: await auth.uuid.first
                           );
 
                         },
                         child: provider.status ?
-                          const Center(child: CircularProgressIndicator())
-                              : const Text(
+                        const Center(child: CircularProgressIndicator())
+                            : const Text(
                           'Add vehicle',
                           style: TextStyle(
                               color: Colors.white,
