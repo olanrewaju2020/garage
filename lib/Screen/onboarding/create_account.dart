@@ -191,6 +191,7 @@ class GTextField extends StatefulWidget {
   final Stream<String>? stream;
   final Function(String name)? onChanged;
   final bool isSecret;
+  final IconData? suffixIconData;
   const GTextField({
     Key? key,
     this.controller,
@@ -198,6 +199,7 @@ class GTextField extends StatefulWidget {
     required this.stream,
     this.isSecret = false,
     this.onChanged,
+    this.suffixIconData,
   }) : super(key: key);
 
   @override
@@ -215,6 +217,15 @@ class _GTextFieldState extends State<GTextField> {
             controller: widget.controller,
             style: const TextStyle(fontSize: 15.0, color: Colors.black),
             decoration: InputDecoration(
+              suffixIcon: GestureDetector(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          // color: Colors.green
+                      ),
+                      width: 15,
+                      child: Icon(widget.suffixIconData,
+                          color: Colors.black, size: 18))),
               border: InputBorder.none,
               errorBorder: OutlineInputBorder(
                   borderSide: const BorderSide(

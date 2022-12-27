@@ -19,7 +19,7 @@ void main() {
     ],
     child: const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Dashboard(), //LandingPage(),
+      home: LandingPage(), //LandingPage(),
     ),
   ));
 }

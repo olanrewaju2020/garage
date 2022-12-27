@@ -52,66 +52,66 @@ class _AddVehicleState extends State<AddVehicle> {
                 height: 20,
               ),
               GTextField(
-                hintText: 'Vehicle number',
+                hintText: 'Vehicle Identification Number',
                 onChanged: bloc.vehicleNumberOnChanged,
                 stream: bloc.vehicleNumber,
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              GTextField(
-                hintText: 'Company Name',
-                onChanged: bloc.companyOnChanged,
-                stream: bloc.company,
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              GTextField(
-                hintText: 'Registration Number',
-                onChanged: bloc.regNumberOnChanged,
-                stream: bloc.regNumber,
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              GTextField(
-                hintText: 'Color',
-                onChanged: bloc.colorOnChanged,
-                stream: bloc.color,
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              GTextField(
-                hintText: 'Model',
-                onChanged: bloc.modelOnChanged,
-                stream: bloc.model,
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              GTextField(
-                hintText: 'image',
-                onChanged: bloc.imageOnChanged,
-                stream: bloc.image,
-              ),
-              const SizedBox(
-                height: 22,
+                  suffixIconData: Icons.search
               ),
               SizedBox(
-                height: 35,
+                height: MediaQuery.of(context).size.height * .6,
+                  child: ListView(
+                    children: const [
+                      VehicleData(
+                        title: 'AB and Sons',
+                        subtitle: "Owner's Name"
+                      ),
+                      VehicleData(
+                          title: 'AJ 111 AAA',
+                          subtitle: 'Registration Number:'
+                      ),
+                      VehicleData(
+                          title: 'Silver',
+                          subtitle:'Vehicle Color'
+                      ),
+                      VehicleData(
+                          title: 'Camry',
+                          subtitle:'Model'
+                      ),
+                      VehicleData(
+                          title: 'Toyota',
+                          subtitle:'Vehicle Maker'
+                      ),
+                    ],
+                  )),
+              const CircleAvatar(
+                radius: 70,
+                backgroundImage: AssetImage('assets/images/camry.jpeg'),
               ),
+
+              // const SizedBox(
+              //   height: 22,
+              // ),
+              // GTextField(
+              //   hintText: 'image',
+              //   onChanged: bloc.imageOnChanged,
+              //   stream: bloc.image,
+              // ),
+              // const SizedBox(
+              //   height: 22,
+              // ),
+              // SizedBox(
+              //   height: 35,
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0.0),
-                child: Container(
+                child: SizedBox(
                   height: 50,
                   width: double.infinity,
                   child: Consumer<VehicleProvider>(
                     builder: (context, provider, child) {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
+                          backgroundColor: Colors.green,
                         ),
                         onPressed: () async {
                           provider.vehicleStore(
@@ -142,6 +142,30 @@ class _AddVehicleState extends State<AddVehicle> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class VehicleData extends StatelessWidget {
+  const VehicleData({
+    Key? key, required this.title, required this.subtitle,
+  }) : super(key: key);
+
+  final String title;
+  final String subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15)
+      ),
+      child: ListTile(
+        subtitle: Text(subtitle),
+        title: Text(title)
       ),
     );
   }

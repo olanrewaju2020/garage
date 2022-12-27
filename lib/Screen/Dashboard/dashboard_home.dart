@@ -8,6 +8,7 @@ import '../Components/repair/repairs.dart';
 import '../Components/servicing/servicing.dart';
 import '../Components/tow/tow.dart';
 import 'insurance.dart';
+import 'maintainance.dart';
 
 class DashboardHome extends StatefulWidget {
   const DashboardHome({Key? key}) : super(key: key);
@@ -58,27 +59,27 @@ class _DashboardHomeState extends State<DashboardHome> {
                   ),
                 ),
                 Text(
-                  'Good morning \n${_user.firstName}.',
-                  style: TextStyle(
+                  'Good morning \n${_user?.firstName ?? "John"}.',
+                  style: const TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 20,
                       color: Colors.white,
                       fontStyle: FontStyle.normal),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 25),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  margin: const EdgeInsets.symmetric(vertical: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(29.5)),
-                  child: TextField(
+                  child: const TextField(
                     decoration: InputDecoration(
                         hintText: 'Search',
                         icon: Icon(Icons.search),
                         border: InputBorder.none),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Expanded(
@@ -87,11 +88,11 @@ class _DashboardHomeState extends State<DashboardHome> {
                     childAspectRatio: .85,
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20,
-                    children: [
+                    children: const [
                       NewWidget(
                           title: 'Vehicle Inspection',
                           imageLog: 'assets/images/7.png',
-                          route: FirstVehicleInspection()),
+                          route: Maintenance()),
                       NewWidget(
                           title: 'Vehicle Servicing',
                           imageLog: 'assets/images/6.png',
@@ -114,16 +115,16 @@ class _DashboardHomeState extends State<DashboardHome> {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        child: Icon(
-          Icons.headset_mic_rounded,
-          color: Colors.white,
-        ),
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Quick(),
+            builder: (context) => const Quick(),
           ));
         },
+        child: const Icon(
+          Icons.headset_mic_rounded,
+          color: Colors.white,
+        ),
       ),
     );
   }

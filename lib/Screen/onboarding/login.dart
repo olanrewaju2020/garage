@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../bloc/auth_bloc.dart';
 import '../../provider/auth_provider.dart';
+import '../Components/g_button.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -89,26 +90,14 @@ class _LoginState extends State<Login> {
                         child: SizedBox(
                           height: 50,
                           width: double.infinity,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.green,
-                            ),
+                          child: GButton(
+                            label: 'Log in',
                             onPressed: () async {
                               provider.login(
-                                context: context,
-                                email: await authBloc.email.first,
-                                password: await authBloc.password.first
-                              );
+                                  context: context,
+                                  email: await authBloc.email.first,
+                                  password: await authBloc.password.first);
                             },
-                            child:
-                            //provider.status == ApiStatus.loading ? const Center(child: CircularProgressIndicator()) :
-                            const Text(
-                              'Log in',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 13),
-                            ),
                           ),
                         ));
                   },
@@ -120,7 +109,7 @@ class _LoginState extends State<Login> {
                   onTap: () {
                     Navigator.push(
                         context,
-                         MaterialPageRoute(
+                        MaterialPageRoute(
                             builder: (context) => const CreateAccount()));
                   },
                   child: const Center(
