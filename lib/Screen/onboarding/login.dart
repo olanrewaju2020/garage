@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Dashboard/dashboard.dart';
 import 'package:garage_repair/Screen/onboarding/create_account.dart';
 import 'package:provider/provider.dart';
 
 import '../../bloc/auth_bloc.dart';
-import '../../misc/enum.dart';
 import '../../provider/auth_provider.dart';
+import '../Components/g_button.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -20,7 +19,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        backgroundColor: Color(0xfff4f4f2),
+        backgroundColor: const Color(0xfff4f4f2),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -58,6 +57,7 @@ class _LoginState extends State<Login> {
                     alignment: const Alignment(0, 0),
                     children: <Widget>[
                       GTextField(
+                          isSecret: true,
                           stream: authBloc.password,
                           onChanged: authBloc.passwordOnChange,
                           hintText: 'Password'),
@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 ),
                 Container(
@@ -87,40 +87,30 @@ class _LoginState extends State<Login> {
                   builder: (context, provider, child) {
                     return Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Container(
+                        child: SizedBox(
                           height: 50,
                           width: double.infinity,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.green,
-                            ),
+                          child: GButton(
+                            label: 'Log in',
                             onPressed: () async {
                               provider.login(
-                                context: context,
-                                email: await authBloc.email.first,
-                                password: await authBloc.password.first
-                              );
+                                  context: context,
+                                  email: await authBloc.email.first,
+                                  password: await authBloc.password.first);
                             },
-                            child: provider.status == ApiStatus.loading ? const Center(child: CircularProgressIndicator()) :const Text(
-                              'Log in',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 13),
-                            ),
                           ),
                         ));
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 ),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
                         context,
-                        new MaterialPageRoute(
-                            builder: (context) => new CreateAccount()));
+                        MaterialPageRoute(
+                            builder: (context) => const CreateAccount()));
                   },
                   child: const Center(
                     child: Text.rich(TextSpan(

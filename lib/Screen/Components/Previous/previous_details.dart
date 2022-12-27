@@ -21,7 +21,7 @@ class _PreviousDetailsState extends State<PreviousDetails> {
             size: 15,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Service Details',
           style: TextStyle(
               color: Colors.black,
@@ -53,7 +53,7 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                        children: const [
                           Text(
                             'Name of inspector',
                             style: TextStyle(

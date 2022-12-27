@@ -17,25 +17,24 @@ class CreateAccount extends StatefulWidget {
 
 class _CreateAccountState extends State<CreateAccount> {
   final authBloc = AuthBloc();
-  TextEditingController _firstNameCtrl = TextEditingController();
-  TextEditingController _lastNameCtrl = TextEditingController();
-  TextEditingController _emailCtrl = TextEditingController();
-  TextEditingController _phoneCtrl = TextEditingController();
-  TextEditingController _passwordCtrl = TextEditingController();
-  TextEditingController _confirmPasswordCtrl = TextEditingController();
-  TextEditingController _aboutUsCtrl = TextEditingController();
+  final TextEditingController _firstNameCtrl = TextEditingController();
+  final TextEditingController _lastNameCtrl = TextEditingController();
+  final TextEditingController _emailCtrl = TextEditingController();
+  final TextEditingController _phoneCtrl = TextEditingController();
+  final TextEditingController _passwordCtrl = TextEditingController();
+  final TextEditingController _confirmPasswordCtrl = TextEditingController();
+  final TextEditingController _aboutUsCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               const Center(
@@ -50,7 +49,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   controller: _firstNameCtrl,
                   onChanged: authBloc.firstNameOnChange,
                   hintText: 'First name'),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GTextField(
@@ -58,7 +57,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   onChanged: authBloc.lastNameOnChange,
                   controller: _lastNameCtrl,
                   hintText: 'Last name'),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GTextField(
@@ -66,7 +65,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   onChanged: authBloc.emailOnChange,
                   controller: _emailCtrl,
                   hintText: 'Email address'),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GTextField(
@@ -74,7 +73,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   controller: _phoneCtrl,
                   hintText: 'Phone number',
                   onChanged: authBloc.phoneOnChange),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GTextField(
@@ -82,7 +81,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   onChanged: authBloc.passwordOnChange,
                   controller: _passwordCtrl,
                   hintText: 'Password'),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GTextField(
@@ -104,12 +103,12 @@ class _CreateAccountState extends State<CreateAccount> {
                 builder: (context, provider, child) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       width: double.infinity,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
+                          backgroundColor: Colors.green,
                         ),
                         onPressed: () {
                           if (_passwordCtrl.text == _confirmPasswordCtrl.text) {
@@ -191,12 +190,16 @@ class GTextField extends StatefulWidget {
   final String? hintText;
   final Stream<String>? stream;
   final Function(String name)? onChanged;
+  final bool isSecret;
+  final IconData? suffixIconData;
   const GTextField({
     Key? key,
     this.controller,
     this.hintText,
     required this.stream,
+    this.isSecret = false,
     this.onChanged,
+    this.suffixIconData,
   }) : super(key: key);
 
   @override
@@ -211,12 +214,21 @@ class _GTextFieldState extends State<GTextField> {
         builder: (context, snapshot) {
           return TextField(
             autofocus: false,
-            controller: widget?.controller,
+            controller: widget.controller,
             style: const TextStyle(fontSize: 15.0, color: Colors.black),
             decoration: InputDecoration(
+              suffixIcon: GestureDetector(
+                  child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          // color: Colors.green
+                      ),
+                      width: 15,
+                      child: Icon(widget.suffixIconData,
+                          color: Colors.black, size: 18))),
               border: InputBorder.none,
               errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.redAccent,
                   ),
                   borderRadius: BorderRadius.circular(10)),
@@ -238,6 +250,7 @@ class _GTextFieldState extends State<GTextField> {
             onChanged: widget.onChanged == null
                 ? null
                 : (val) => widget.onChanged!(val),
+            obscureText: widget.isSecret,
           );
         });
   }
