@@ -120,7 +120,7 @@ class _ChatState extends State<Chat> {
                       child: Padding(
                           padding: const EdgeInsets.only(top: 0.0),
                           child: Icon(
-                            Icons.search,
+                            Icons.filter_alt_sharp,
                             size: 17,
                           )),
                     )
