@@ -35,7 +35,7 @@ class _CreateAccountState extends State<CreateAccount> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 40,
+                height: 80,
               ),
               const Center(
                 child: Image(
@@ -44,52 +44,72 @@ class _CreateAccountState extends State<CreateAccount> {
                   height: 150,
                 ),
               ),
-              GTextField(
-                  stream: authBloc.firstName,
-                  controller: _firstNameCtrl,
-                  onChanged: authBloc.firstNameOnChange,
-                  hintText: 'First name'),
-              const SizedBox(
-                height: 20,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: GTextField(
+                        stream: authBloc.firstName,
+                        controller: _firstNameCtrl,
+                        onChanged: authBloc.firstNameOnChange,
+                        hintText: 'First name'),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: GTextField(
+                        stream: authBloc.lastName,
+                        onChanged: authBloc.lastNameOnChange,
+                        controller: _lastNameCtrl,
+                        hintText: 'Last name'),
+                  ),
+                ],
               ),
-              GTextField(
-                  stream: authBloc.lastName,
-                  onChanged: authBloc.lastNameOnChange,
-                  controller: _lastNameCtrl,
-                  hintText: 'Last name'),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 25,
               ),
-              GTextField(
-                  stream: authBloc.email,
-                  onChanged: authBloc.emailOnChange,
-                  controller: _emailCtrl,
-                  hintText: 'Email address'),
-              const SizedBox(
-                height: 20,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: GTextField(
+                        stream: authBloc.email,
+                        onChanged: authBloc.emailOnChange,
+                        controller: _emailCtrl,
+                        hintText: 'Email address'),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: GTextField(
+                        stream: authBloc.phone,
+                        controller: _phoneCtrl,
+                        hintText: 'Phone number',
+                        onChanged: authBloc.phoneOnChange),
+                  ),
+                ],
               ),
-              GTextField(
-                  stream: authBloc.phone,
-                  controller: _phoneCtrl,
-                  hintText: 'Phone number',
-                  onChanged: authBloc.phoneOnChange),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 25,
               ),
-              GTextField(
-                  stream: authBloc.password,
-                  onChanged: authBloc.passwordOnChange,
-                  controller: _passwordCtrl,
-                  hintText: 'Password'),
-              const SizedBox(
-                height: 20,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: GTextField(
+                        stream: authBloc.password,
+                        onChanged: authBloc.passwordOnChange,
+                        controller: _passwordCtrl,
+                        hintText: 'Password'),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                      child: GTextField(
+                          stream: authBloc.password,
+                          controller: _confirmPasswordCtrl,
+                          hintText: 'Confirm Password')),
+                ],
               ),
-              GTextField(
-                  stream: authBloc.password,
-                  controller: _confirmPasswordCtrl,
-                  hintText: 'Confirm Password'),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: 25,
               ),
               GTextField(
                   stream: authBloc.aboutUs,
@@ -97,7 +117,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   controller: _aboutUsCtrl,
                   hintText: 'How do you hear about us?'),
               const SizedBox(
-                height: 35,
+                height: 25,
               ),
               Consumer<AuthProvider>(
                 builder: (context, provider, child) {
@@ -215,17 +235,17 @@ class _GTextFieldState extends State<GTextField> {
           return TextField(
             autofocus: false,
             controller: widget.controller,
-            style: const TextStyle(fontSize: 15.0, color: Colors.black),
+            style: const TextStyle(fontSize: 12.0, height: 2.1, color: Colors.black),
             decoration: InputDecoration(
               suffixIcon: GestureDetector(
                   child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          // color: Colors.green
+                        borderRadius: BorderRadius.circular(50),
+                        // color: Colors.green
                       ),
                       width: 15,
                       child: Icon(widget.suffixIconData,
-                          color: Colors.black, size: 18))),
+                          color: Colors.black, size: 15))),
               border: InputBorder.none,
               errorBorder: OutlineInputBorder(
                   borderSide: const BorderSide(

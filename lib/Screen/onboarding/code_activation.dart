@@ -34,31 +34,26 @@ class _CodeActivation extends State<CodeActivation> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff4f4f2),
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () => Navigator.of(context).pop(),
-          child: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.green,
-            size: 15,
-          ),
-        ),
-        title: const Text(
-          'Account Activation',
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 13,
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.normal),
-        ),
-        centerTitle: true,
-        elevation: 0.3,
-        backgroundColor: Colors.white,
-      ),
+      // appBar: AppBar(
+      //   leading: InkWell(
+      //     onTap: () => Navigator.of(context).pop(),
+      //     child: const Icon(
+      //       Icons.arrow_back_ios,
+      //       color: Colors.green,
+      //       size: 15,
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   elevation: 0.3,
+      //   backgroundColor: Colors.white,
+      // ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 50,
+            ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 18),
               height: MediaQuery.of(context).size.height * 0.8,
@@ -66,43 +61,69 @@ class _CodeActivation extends State<CodeActivation> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 25,
+                    height: 30,
                   ),
-                  Text(
-                    'Verify OTP',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.4,
-                        color: Colors.green.shade600),
+                  Center(
+                      child: Image(
+                    image: AssetImage('assets/images/inbox.png'),
+                    width: 300,
+                    height: 300,
+                  )),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: Text(
+                      'Please enter the six digit code sent to \nyour registered email address.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5,
+                          letterSpacing: 0.4,
+                          color: Colors.black87),
+                    ),
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  Consumer<AuthProvider>(
-                    builder: (context, provider, child) {
-                      return Pinput(
-                        length: 6,
-                        useNativeKeyboard: true,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        defaultPinTheme: defaultPinTheme,
-                        enableSuggestions: true,
-                        closeKeyboardWhenCompleted: true,
-                        obscuringCharacter: '*',
-                        obscureText: true,
-                        keyboardType: TextInputType.text,
-                        separator: Container(
-                          height: 55,
-                          width: 10,
-                        ),
-                        onCompleted: (val) {
-                          provider.activateUser(otp: val, context: context);
-                        },
-                      );
-                    },
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Consumer<AuthProvider>(
+                      builder: (context, provider, child) {
+                        return Pinput(
+                          length: 6,
+                          useNativeKeyboard: true,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          defaultPinTheme: defaultPinTheme,
+                          enableSuggestions: true,
+                          closeKeyboardWhenCompleted: true,
+                          obscuringCharacter: '*',
+                          obscureText: true,
+                          keyboardType: TextInputType.text,
+                          separator: Container(
+                            width: 5,
+                          ),
+                          onCompleted: (val) {
+                            provider.activateUser(otp: val, context: context);
+                          },
+                        );
+                      },
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
+                  ),
+                  Center(
+                    child: Text(
+                      'Resend code',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.4,
+                          color: Colors.black87),
+                    ),
                   ),
                 ],
               ),

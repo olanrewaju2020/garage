@@ -30,7 +30,7 @@ class _AddMaintainance2State extends State<AddMaintainance2> {
                 fontStyle: FontStyle.normal),
           ),
           centerTitle: true,
-          elevation: 0.3,
+          elevation: 0.1,
           backgroundColor: Colors.white,
         ),
         body: SingleChildScrollView(
