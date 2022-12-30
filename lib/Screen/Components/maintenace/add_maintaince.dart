@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../Dashboard/vehicle.dart';
 import 'add_maintainance_2.dart';
 
 class AddMaintaincePlan extends StatefulWidget {
@@ -185,65 +186,10 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => AddMaintainance2()));
                   },
-                  child: Container(
-                    height: 65,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 17.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'AJ11AH',
-                            style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                'Status',
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.grey[400]),
-                              ),
-                              Text(
-                                'Available',
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: vehicle(),
                 )
               ]),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        elevation: 0,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.green,
-        onPressed: () {
-          _showModalBottomSheet(context);
-        },
       ),
     );
   }

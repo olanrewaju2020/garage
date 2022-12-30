@@ -27,6 +27,7 @@ class _CarDetailsState extends State<CarDetails>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff4f4f2),
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
@@ -50,18 +51,13 @@ class _CarDetailsState extends State<CarDetails>
             Material(
               elevation: 0,
               child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(20)),
                 child: TabBar(
                   controller: tabController,
                   labelColor: Color(0xff180352),
-                  unselectedLabelColor: Color(0xff000000),
                   indicatorColor: Colors.white,
                   indicatorWeight: 2,
                   indicator: BoxDecoration(
-                      color: Color.fromRGBO(146, 146, 210, 0.1),
-                      borderRadius: BorderRadius.circular(20)),
+                      color: Color.fromRGBO(146, 146, 210, 0.1),),
                   tabs: [
                     Tab(
                       text: 'History',
@@ -78,10 +74,7 @@ class _CarDetailsState extends State<CarDetails>
                 controller: tabController,
                 children: [
                   History(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: SubDetails(),
-                  ),
+                  SubDetails(),
                 ],
               ),
             )

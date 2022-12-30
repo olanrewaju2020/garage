@@ -15,13 +15,13 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: Color(0xfff4f4f2),
       appBar: AppBar(
-        title: Text(
-          'vehicle',
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 15,
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.normal),
+        leading: InkWell(
+          onTap: () => Navigator.of(context).pop(),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.green,
+            size: 15,
+          ),
         ),
         centerTitle: true,
         elevation: 0.3,
@@ -29,7 +29,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+          padding: const EdgeInsets.symmetric(horizontal: 13.0),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -71,7 +71,7 @@ class vehicle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 65,
+      height: 135,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -80,37 +80,90 @@ class vehicle extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 17.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'AJ11AH',
-              style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 15,
+                ),
+                Image.asset(
+                  'assets/images/Redcar.png',
+                  width: 120,
+                ),
+                SizedBox(
+                  height: 0,
+                ),
+                Text(
+                  'Available',
+                  style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 0.4,
+                      fontStyle: FontStyle.normal,
+                      color: Colors.green),
+                )
+              ],
+            )),
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 15,
                 ),
                 Text(
-                  'Status',
+                  'TOYOTA',
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontStyle: FontStyle.normal,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Camry',
                   style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
-                      color: Colors.grey[400]),
+                      color: Colors.grey[500]),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Text(
-                  'Available',
+                  'AB and Sons',
                   style: TextStyle(
-                      fontSize: 13,
+                      fontSize: 10,
                       fontWeight: FontWeight.w400,
-                      color: Colors.black),
-                )
+                      color: Colors.grey[500]),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'AJ11AH',
+                  style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey[500]),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'Silver',
+                  style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey[500]),
+                ),
               ],
-            )
+            ))
           ],
         ),
       ),

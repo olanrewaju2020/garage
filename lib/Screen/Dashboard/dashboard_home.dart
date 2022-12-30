@@ -41,7 +41,10 @@ class _DashboardHomeState extends State<DashboardHome> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    bottomsheet(context);
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => Notification()));
                   },
                   child: Align(
                     alignment: Alignment.topRight,
@@ -52,7 +55,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                       decoration: BoxDecoration(
                           color: Colors.green[300], shape: BoxShape.circle),
                           child: const Icon(
-                            Icons.menu,
+                            Icons.notifications,
                             color: Colors.white,
                           )
                     ),

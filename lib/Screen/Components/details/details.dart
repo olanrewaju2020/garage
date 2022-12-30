@@ -11,6 +11,7 @@ class _SubDetailsState extends State<SubDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xfff4f4f2),
       body: Padding(
         padding: const EdgeInsets.only(top: 38.0),
         child: Material(
@@ -22,9 +23,8 @@ class _SubDetailsState extends State<SubDetails> {
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: const [
                   BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 1,
-                      offset: Offset(0, 0))
+                    color: Colors.black26,
+                  )
                 ]),
             child: Column(
               children: [
