@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:garage_repair/misc/helper.dart';
 import 'package:garage_repair/misc/validations.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -19,9 +21,18 @@ class AuthBloc with Validations{
 
   firstNameOnChange(String name) => _firstName.sink.add(name);
   lastNameOnChange(String name) => _lastName.sink.add(name);
-  emailOnChange(String email) =>  _email.sink.add(email);
+  emailOnChange(String mail) =>  _email.sink.add(mail);
   passwordOnChange(String secret) => _password.sink.add(secret);
   phoneOnChange(String number) => _phone.sink.add(number);
   aboutUsOnChange(String word) => _aboutUs.sink.add(word);
 
+  Stream<bool> get isForgotFormValid =>
+      Rx.combineLatest([email], (values) => true);
+
+  @mustCallSuper
+  void dispose() {
+    Helper.reset([_email, _firstName, _lastName, _email,
+      _password, _phone, _aboutUs ]);
+
+  }
 }

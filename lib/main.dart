@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Dashboard/dashboard.dart';
 import 'package:garage_repair/Screen/onboarding/landing.dart';
 import 'package:provider/provider.dart';
 
-import 'Screen/onboarding/code_activation.dart';
-import 'Screen/onboarding/forgot_password.dart';
 import 'provider/auth_provider.dart';
 import 'provider/vehicle_provider.dart';
 
@@ -28,7 +25,7 @@ void main() {
           headlineMedium: TextStyle(fontSize: 12, color: Colors.grey[400])
         )
       ),
-      home:  Dashboard(), //LandingPage(),
+      home:  const LandingPage(),
     ),
   ));
 }

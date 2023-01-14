@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../bloc/vehicle_bloc.dart';
 import '../../provider/vehicle_provider.dart';
-import '../onboarding/create_account.dart';
+import 'g_text_field.dart';
 
 class AddVehicle extends StatefulWidget {
   const AddVehicle({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class _AddVehicleState extends State<AddVehicle> {
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
             size: 15,
@@ -73,7 +73,7 @@ class _AddVehicleState extends State<AddVehicle> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 35,
                 ),
                 SizedBox(

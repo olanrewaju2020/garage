@@ -25,6 +25,6 @@ class ShowToast {
     Fluttertoast.showToast(
       fontSize: 20,
         toastLength: Toast.LENGTH_LONG,
-        msg: msg!, backgroundColor:  backgroundColor, textColor: Colors.white);
+        msg: msg ?? '', backgroundColor:  backgroundColor, textColor: Colors.white);
   }
 }

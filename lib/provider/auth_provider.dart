@@ -9,7 +9,7 @@ import '../Service/rest_service.dart';
 import '../misc/validations.dart';
 
 class AuthProvider extends ChangeNotifier with Validations {
-  ApiStatus status = ApiStatus.none;
+  bool isLoading = false;
   String? _email;
   bool _isActivated = false;
   User? _user;
@@ -26,6 +26,8 @@ class AuthProvider extends ChangeNotifier with Validations {
       required String phone,
       required String password,
       required String aboutUs}) async {
+    isLoading = true;
+    notifyListeners();
     final response = await RestService().method(
         method: 'POST',
         url: 'entrance/signup',
@@ -36,6 +38,8 @@ class AuthProvider extends ChangeNotifier with Validations {
                 phone: phone,
                 password: password)
             .toRegister());
+    isLoading = false;
+    notifyListeners();
     if(response.isSuccessful){
       _email = email;
       return true;
@@ -44,29 +48,32 @@ class AuthProvider extends ChangeNotifier with Validations {
   }
 
   void login({required String email, required String password, required BuildContext context}) async {
-    status = ApiStatus.loading;
+    isLoading = true;
     notifyListeners();
-    // RestService().method(
-    //     method: 'POST', url: 'entrance/login', body: User(
-    //   email: email,
-    //   password: password
-    // ).toLogin()).then((response){
-    //   if(response.isSuccessful) {
-    //     _user = User.fromAuthJson(response.data);
-    //     Navigator.push(context, MaterialPageRoute(
-    //         builder: (context) => const Dashboard()));
-    //   } else {
-    //     ShowToast(msg: response?.data!, type: ErrorType.error);
-    //   }
-    // });
-    //
-    // status = ApiStatus.done;
+    RestService().method(
+        method: 'POST', url: 'entrance/login', body: User(
+      email: email,
+      password: password
+    ).toLogin()).then((response){
+      if(response.isSuccessful) {
+        _user = User.fromAuthJson(response.data);
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => const Dashboard()));
+      } else {
+        ShowToast(msg: response.error , type: ErrorType.error);
+      }
+    });
+
+    isLoading = false;
+    notifyListeners();
     Navigator.push(context, MaterialPageRoute(
         builder: (context) => const Dashboard()));
-    notifyListeners();
+
   }
 
   activateUser({required String otp,required BuildContext context}) {
+    isLoading = true;
+    notifyListeners();
     RestService().method(
         method: "POST", url: 'entrance/activate', body: User(
       email: _email, otp: otp
@@ -80,8 +87,20 @@ class AuthProvider extends ChangeNotifier with Validations {
         ShowToast(msg: response.data, type: ErrorType.error);
       }
     });
-
-
+    isLoading = false;
     notifyListeners();
+  }
+
+  resetPassword({required String email}) {
+    isLoading = true;
+    RestService().method(
+        method: 'POST',
+        url: "entrance/password/forgot",
+       body: {
+         "newPassword": "busayo@23",
+         "otp" : "zqbapy",
+         "email": "femisola@gmail.com"
+       }
+    );
   }
 }

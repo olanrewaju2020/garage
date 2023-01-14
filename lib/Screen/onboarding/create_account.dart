@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/g_loader.dart';
 import 'package:garage_repair/Screen/onboarding/login.dart';
 import 'package:provider/provider.dart';
 
 import '../../bloc/auth_bloc.dart';
 import '../../provider/auth_provider.dart';
+import '../Components/g_text_field.dart';
 import '../misc/enum.dart';
 import '../misc/utils.dart';
 import 'code_activation.dart';
@@ -28,7 +30,9 @@ class _CreateAccountState extends State<CreateAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xfff4f4f2),
-      body: SingleChildScrollView(
+      body: Consumer<AuthProvider>(
+  builder: (context, provider, child) {
+  return provider.isLoading ? const GLoader() : SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
@@ -64,7 +68,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
@@ -87,7 +91,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
@@ -108,7 +112,7 @@ class _CreateAccountState extends State<CreateAccount> {
                           hintText: 'Confirm Password')),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               GTextField(
@@ -200,78 +204,10 @@ class _CreateAccountState extends State<CreateAccount> {
             ],
           ),
         ),
-      ),
+      );
+  },
+),
     );
   }
 }
 
-class GTextField extends StatefulWidget {
-  final TextEditingController? controller;
-  final String? hintText;
-  final Stream<String>? stream;
-  final Function(String name)? onChanged;
-  final bool isSecret;
-  final IconData? suffixIconData;
-  const GTextField({
-    Key? key,
-    this.controller,
-    this.hintText,
-    required this.stream,
-    this.isSecret = false,
-    this.onChanged,
-    this.suffixIconData,
-  }) : super(key: key);
-
-  @override
-  State<GTextField> createState() => _GTextFieldState();
-}
-
-class _GTextFieldState extends State<GTextField> {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<String>(
-        stream: widget.stream,
-        builder: (context, snapshot) {
-          return TextField(
-            autofocus: false,
-            controller: widget.controller,
-            style: const TextStyle(fontSize: 12.0, height: 2.1, color: Colors.black),
-            decoration: InputDecoration(
-              suffixIcon: GestureDetector(
-                  child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        // color: Colors.green
-                      ),
-                      width: 15,
-                      child: Icon(widget.suffixIconData,
-                          color: Colors.black, size: 15))),
-              border: InputBorder.none,
-              errorBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(
-                    color: Colors.redAccent,
-                  ),
-                  borderRadius: BorderRadius.circular(10)),
-              hintText: widget.hintText,
-              errorText: snapshot.hasError ? '${snapshot.error}' : null,
-              filled: true,
-              fillColor: Colors.white,
-              contentPadding:
-                  const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.white),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: const BorderSide(color: Colors.white),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-            onChanged: widget.onChanged == null
-                ? null
-                : (val) => widget.onChanged!(val),
-            obscureText: widget.isSecret,
-          );
-        });
-  }
-}

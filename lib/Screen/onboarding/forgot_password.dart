@@ -1,7 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
+import '../../bloc/auth_bloc.dart';
 import '../Components/g_button.dart';
+import '../Components/g_text_field.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key}) : super(key: key);
@@ -11,10 +14,12 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  final bloc = AuthBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -24,7 +29,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               const SizedBox(
                 height: 160,
               ),
-              Center(
+              const Center(
                   child: Image(
                 image: AssetImage('assets/images/Fpassword.png'),
                 width: 250,
@@ -32,7 +37,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               const SizedBox(
                 height: 15,
               ),
-              Center(
+              const Center(
                 child: Text(
                   'Please enter your registered email address to \nreceive a verification code.',
                   textAlign: TextAlign.center,
@@ -49,28 +54,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
               SizedBox(
                 width: double.infinity,
-                child: TextField(
-                  autofocus: false,
-                  onTap: () {},
-                  style: const TextStyle(fontSize: 15.0, color: Colors.black),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Enter email",
-                    hintStyle:
-                        const TextStyle(fontSize: 10, color: Colors.grey),
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: const EdgeInsets.only(
-                        left: 14.0, bottom: 6.0, top: 8.0),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
+                child: GTextField(
+                  hintText: 'Enter Email',
+                  stream: bloc.email,
+                  onChanged: bloc.emailOnChange,
                 ),
               ),
               const SizedBox(
@@ -79,8 +66,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(
                 width: double.infinity,
                 child: GButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
+                    isValid: bloc.isForgotFormValid,
+                    onPressed: () async {
+                      // Navigator.of(context).pop();
+                      String email = await bloc.email.first;
+                      print("-===========================email");
+                      print(email);
+                      bloc.dispose();
+                      Timer timer = Timer(const Duration(seconds: 10), () async {
+                        print("========================timer");
+                        print(await bloc.email.first);
+                        Navigator.of(context).pop();
+                      });
+                      // timer.cancel();
                     },
                     label: "Send"),
               )

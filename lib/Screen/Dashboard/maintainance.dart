@@ -310,15 +310,15 @@ class _MaintenanceState extends State<Maintenance> {
                         fontSize: 13,
                         fontStyle: FontStyle.normal),
                   ),
-                  // const SizedBox(
-                  //   height: 16,
-                  // ),
-                  // GestureDetector(
-                  //     onTap: () {
-                  //       Navigator.of(context).push(MaterialPageRoute(
-                  //           builder: (context) => const PreviousDetails()));
-                  //     },
-                  //     child: const Previous())
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const PreviousDetails()));
+                      },
+                      child: const Previous())
                 ]),
           ),
         ),
