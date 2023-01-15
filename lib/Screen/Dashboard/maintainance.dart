@@ -54,7 +54,7 @@ class _MaintenanceState extends State<Maintenance> {
                               fontSize: 15.0, color: Colors.black),
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Search vehicle',
+                            hintText: 'Search for maintenance history',
                             hintStyle: const TextStyle(fontSize: 12),
                             filled: true,
                             fillColor: Colors.white,
@@ -81,7 +81,7 @@ class _MaintenanceState extends State<Maintenance> {
                                     padding: const EdgeInsets.only(
                                         top: 0, right: 24, left: 24),
                                     decoration: BoxDecoration(
-                                      color: Color(0xfff4f4f2),
+                                        color: Color(0xfff4f4f2),
                                         borderRadius: BorderRadius.vertical(
                                             top: Radius.circular(25))),
                                     child: Column(
@@ -295,7 +295,7 @@ class _MaintenanceState extends State<Maintenance> {
                           child: const Padding(
                               padding: EdgeInsets.only(left: 10.0),
                               child: Icon(Icons.filter_alt,
-                                  size: 20, color: Colors.green)),
+                                  size: 23, color: Colors.green)),
                         ),
                       ),
                     ],
@@ -310,6 +310,61 @@ class _MaintenanceState extends State<Maintenance> {
                         fontSize: 13,
                         fontStyle: FontStyle.normal),
                   ),
+
+                  SizedBox(
+                    height: 20,
+                  ),
+
+                  Container(
+                    height: 125,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 17.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                'TOYOTA',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Image.asset(
+                                'assets/images/Redcar.png',
+                                width: 90,
+                              ),
+                            ],
+                          )),
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                          ))
+                        ],
+                      ),
+                    ),
+                  )
+
                   // const SizedBox(
                   //   height: 16,
                   // ),
