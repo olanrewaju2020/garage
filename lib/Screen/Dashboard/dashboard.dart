@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Dashboard/maintainance.dart';
 import 'package:garage_repair/Screen/Dashboard/vehicle.dart';
-import 'package:garage_repair/Screen/Dashboard/repair.dart';
 import 'package:garage_repair/Screen/Dashboard/setting.dart';
-import 'package:provider/provider.dart';
-import '../../provider/auth_provider.dart';
-import './insurance.dart';
 import './dashboard_home.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({Key? key}) : super(key: key);
+  int currentIndex;
+  Dashboard({Key? key, this.currentIndex = 0}) : super(key: key);
 
   @override
   State<Dashboard> createState() => _DashboardState();
@@ -17,16 +14,15 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   List pages = [
-    DashboardHome(),
-    Maintenance(),
-    Profile(),
-    Settings(),
+    const DashboardHome(),
+    const Maintenance(),
+    const Profile(),
+    const Settings(),
   ];
-  int currentIndex = 0;
 
   void onTap(int index) {
     setState(() {
-      currentIndex = index;
+      widget.currentIndex = index;
     });
   }
 
@@ -34,25 +30,25 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: pages[currentIndex],
+      body: pages[widget.currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         unselectedFontSize: 0,
         selectedFontSize: 0,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         onTap: onTap,
-        unselectedLabelStyle: TextStyle(
+        unselectedLabelStyle:const TextStyle(
             fontWeight: FontWeight.w500,
             fontFamily: "manrope",
             fontSize: 8,
             height: 1.6,
             color: Color(0xffDADADA)),
-        selectedLabelStyle: TextStyle(
+        selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.w500,
             fontFamily: "manrope",
             fontSize: 8,
             color: Color(0xff180352)),
-        currentIndex: currentIndex,
+        currentIndex: widget.currentIndex,
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,

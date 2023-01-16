@@ -5,6 +5,7 @@ import '../Models/user.dart';
 import '../Screen/Dashboard/dashboard.dart';
 import '../Screen/misc/enum.dart';
 import '../Screen/onboarding/login.dart';
+import '../Screen/onboarding/new_password.dart';
 import '../Service/rest_service.dart';
 import '../misc/validations.dart';
 
@@ -28,16 +29,17 @@ class AuthProvider extends ChangeNotifier with Validations {
       required String aboutUs}) async {
     isLoading = true;
     notifyListeners();
+    Map<String, dynamic> request = User(
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        phone: phone,
+        password: password)
+        .toRegister();
     final response = await RestService().method(
         method: 'POST',
         url: 'entrance/signup',
-        body: User(
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                phone: phone,
-                password: password)
-            .toRegister());
+        body: request);
     isLoading = false;
     notifyListeners();
     if(response.isSuccessful){
@@ -58,7 +60,7 @@ class AuthProvider extends ChangeNotifier with Validations {
       if(response.isSuccessful) {
         _user = User.fromAuthJson(response.data);
         Navigator.push(context, MaterialPageRoute(
-            builder: (context) => const Dashboard()));
+            builder: (context) => Dashboard()));
       } else {
         ShowToast(msg: response.error , type: ErrorType.error);
       }
@@ -67,8 +69,7 @@ class AuthProvider extends ChangeNotifier with Validations {
     isLoading = false;
     notifyListeners();
     Navigator.push(context, MaterialPageRoute(
-        builder: (context) => const Dashboard()));
-
+        builder: (context) => Dashboard()));
   }
 
   activateUser({required String otp,required BuildContext context}) {
@@ -79,6 +80,8 @@ class AuthProvider extends ChangeNotifier with Validations {
       email: _email, otp: otp
     ).toActivateJson()).then((response){
       if(response.isSuccessful) {
+        isLoading = false;
+        notifyListeners();
         ShowToast(msg: response.data, type: ErrorType.success);
         _isActivated = true;
         Navigator.of(context).push(MaterialPageRoute(
@@ -86,6 +89,30 @@ class AuthProvider extends ChangeNotifier with Validations {
       } else {
         ShowToast(msg: response.data, type: ErrorType.error);
       }
+    });
+    isLoading = false;
+    notifyListeners();
+  }
+
+  sendOtp({required String email, required BuildContext context}) {
+    isLoading = true;
+    notifyListeners();
+    RestService().method(
+        method: 'POST',
+        url: "entrance/send-otp",
+        body: User(email: email).toEmail()
+    ).then((response) {
+        if(response.isSuccessful) {
+          isLoading = false;
+          notifyListeners();
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const NewPassword())
+          );
+        } else {
+          isLoading = false;
+          notifyListeners();
+          ShowToast(msg: response.error, type: ErrorType.error);
+        }
     });
     isLoading = false;
     notifyListeners();

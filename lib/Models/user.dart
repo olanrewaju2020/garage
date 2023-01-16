@@ -50,4 +50,6 @@ class User {
   toActivateJson() {
     return {"otp": otp, "email": email};
   }
+
+  toEmail()  => {"email": email};
 }

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class GButton extends StatelessWidget {
   final Stream<bool>? isValid;
-  const GButton({
+  bool isLoading;
+  GButton({
     Key? key,
-    required this.onPressed, required this.label, this.isValid
+    required this.onPressed, required this.label, this.isValid, this.isLoading = false
   }) : super(key: key);
 
   final VoidCallback onPressed;
@@ -20,9 +21,11 @@ class GButton extends StatelessWidget {
             backgroundColor: Colors.green,
           ),
           onPressed: (snapshot.hasData &&
-              snapshot.data != null) ? ()=> onPressed() : null,
+              snapshot.data != null) ? (isLoading ? () {} : ()=> onPressed() ): null,
           child:
-          //provider.status == ApiStatus.loading ? const Center(child: CircularProgressIndicator()) :
+          isLoading ? const Center(child: CircularProgressIndicator(
+            backgroundColor: Colors.white,
+          )) :
           Text(
             label,
             style: const TextStyle(

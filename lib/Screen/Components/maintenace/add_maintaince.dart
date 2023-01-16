@@ -186,7 +186,7 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => AddMaintainance2()));
                   },
-                  child: vehicle(),
+                  child: Vehicle(),
                 )
               ]),
         ),

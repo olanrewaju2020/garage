@@ -3,12 +3,11 @@ import 'package:garage_repair/Screen/Components/details/quick.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/auth_provider.dart';
-import '../Components/inspection/inspection.dart';
 import '../Components/repair/repairs.dart';
 import '../Components/servicing/servicing.dart';
 import '../Components/tow/tow.dart';
+import 'dashboard.dart';
 import 'insurance.dart';
-import 'maintainance.dart';
 
 class DashboardHome extends StatefulWidget {
   const DashboardHome({Key? key}) : super(key: key);
@@ -20,15 +19,15 @@ class DashboardHome extends StatefulWidget {
 class _DashboardHomeState extends State<DashboardHome> {
   @override
   Widget build(BuildContext context) {
-    final _user = Provider.of<AuthProvider>(context).user;
+    final user = Provider.of<AuthProvider>(context).user;
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       body: Stack(
         children: [
           Container(
             height: size.height * .45,
-            decoration: BoxDecoration(color: Colors.green),
+            decoration: const BoxDecoration(color: Colors.green),
           ),
           SafeArea(
               child: Padding(
@@ -36,7 +35,7 @@ class _DashboardHomeState extends State<DashboardHome> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 GestureDetector(
@@ -62,7 +61,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                   ),
                 ),
                 Text(
-                  'Good morning \n${_user?.firstName ?? "John"}.',
+                  'Good morning \n${user.firstName ?? "John"}.',
                   style: const TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 20,
@@ -91,20 +90,20 @@ class _DashboardHomeState extends State<DashboardHome> {
                     childAspectRatio: .85,
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 20,
-                    children: const [
+                    children: [
                       NewWidget(
                           title: 'Vehicle Inspection',
                           imageLog: 'assets/images/7.png',
-                          route: Maintenance()),
-                      NewWidget(
+                          route: Dashboard(currentIndex: 1)),
+                      const NewWidget(
                           title: 'Vehicle Servicing',
                           imageLog: 'assets/images/6.png',
                           route: FirstVehicleServices()),
-                      NewWidget(
+                      const NewWidget(
                           title: 'Rescue Service',
                           imageLog: 'assets/images/tow2.png',
                           route: Towing()),
-                      NewWidget(
+                      const NewWidget(
                           title: 'Vehicle Repair',
                           imageLog: 'assets/images/spanner.png',
                           route: FirstVehicleRepairStage()),
@@ -139,8 +138,8 @@ void bottomsheet(context) {
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         height: MediaQuery.of(context).size.height * 0.70,
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(32),
@@ -148,7 +147,7 @@ void bottomsheet(context) {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
@@ -165,7 +164,7 @@ void bottomsheet(context) {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                       Row(
@@ -179,7 +178,7 @@ void bottomsheet(context) {
                                 height: 45,
                                 width: 45,
                               ),
-                              Text(
+                              const Text(
                                 'Vehicle Servicing',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -194,7 +193,7 @@ void bottomsheet(context) {
                                 height: 45,
                                 width: 45,
                               ),
-                              Text(
+                              const Text(
                                 'Vehicle Inspection',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -204,7 +203,7 @@ void bottomsheet(context) {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 55,
                       ),
                       Row(
@@ -218,7 +217,7 @@ void bottomsheet(context) {
                                 height: 40,
                                 width: 50,
                               ),
-                              Text(
+                              const Text(
                                 'Rescue Service',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -233,10 +232,10 @@ void bottomsheet(context) {
                                 height: 35,
                                 width: 35,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
-                              Text(
+                              const Text(
                                 'Vehicle Repair',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -246,7 +245,7 @@ void bottomsheet(context) {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 55,
                       ),
                       Row(
@@ -257,8 +256,8 @@ void bottomsheet(context) {
                             onTap: () {
                               Navigator.push(
                                   context,
-                                  new MaterialPageRoute(
-                                      builder: (context) => new Insurance()));
+                                   MaterialPageRoute(
+                                      builder: (context) => const Insurance()));
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -268,10 +267,10 @@ void bottomsheet(context) {
                                     width: 40,
                                   ),
 
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
-                                Text(
+                                const Text(
                                   'Vehicle Insurance',
                                   style: TextStyle(
                                       fontSize: 12, fontWeight: FontWeight.w300),
@@ -286,10 +285,10 @@ void bottomsheet(context) {
                                 height: 40,
                                 width: 40,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
-                              Text(
+                              const Text(
                                 'Vehicle Parts',
                                 style: TextStyle(
                                     fontSize: 12, fontWeight: FontWeight.w300),
@@ -298,7 +297,7 @@ void bottomsheet(context) {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 55,
                       ),
                       Row(
@@ -313,7 +312,7 @@ void bottomsheet(context) {
                                   height: 40,
                                   width: 40,
                                 ),
-                                Text(
+                                const Text(
                                   'Cooperative',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -364,16 +363,16 @@ class NewWidget extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   Image.asset(
                     imageLog,
                     width: 100,
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                   )
                 ],
               ),

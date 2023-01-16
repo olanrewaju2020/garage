@@ -20,6 +20,12 @@ class _LoginState extends State<Login> {
   final _authBloc = AuthBloc();
 
   @override
+  void dispose() {
+    _authBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final double height = MediaQuery
         .of(context)
@@ -106,6 +112,7 @@ class _LoginState extends State<Login> {
                               height: 50,
                               width: double.infinity,
                               child: GButton(
+                                isValid: _authBloc.isLoginFormValid,
                                 label: 'Log in',
                                 onPressed: () async {
                                   provider.login(

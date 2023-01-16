@@ -13,11 +13,11 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
             size: 15,
@@ -33,38 +33,38 @@ class _ProfileState extends State<Profile> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => CarDetails()));
+                        MaterialPageRoute(builder: (context) => const CarDetails()));
                   },
-                  child: vehicle(),
+                  child: const Vehicle(),
                 )
               ]),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => AddVehicle(),
+            builder: (context) => const AddVehicle(),
           ));
         },
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
 }
 
-class vehicle extends StatelessWidget {
-  const vehicle({
+class Vehicle extends StatelessWidget {
+  const Vehicle({
     Key? key,
   }) : super(key: key);
 
@@ -86,17 +86,17 @@ class vehicle extends StatelessWidget {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Image.asset(
                   'assets/images/Redcar.png',
                   width: 120,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 0,
                 ),
-                Text(
+                const Text(
                   'Available',
                   style: TextStyle(
                       fontSize: 10,
@@ -111,10 +111,10 @@ class vehicle extends StatelessWidget {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Text(
+                const Text(
                   'TOYOTA',
                   style: TextStyle(
                       fontSize: 15,
@@ -122,7 +122,7 @@ class vehicle extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -132,7 +132,7 @@ class vehicle extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       color: Colors.grey[500]),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -142,7 +142,7 @@ class vehicle extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       color: Colors.grey[500]),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -152,7 +152,7 @@ class vehicle extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       color: Colors.grey[500]),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(

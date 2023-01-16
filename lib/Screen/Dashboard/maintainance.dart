@@ -3,7 +3,6 @@ import 'package:garage_repair/Screen/Components/g_button.dart';
 import '../Components/Previous/previous.dart';
 import '../Components/Previous/previous_details.dart';
 import '../Components/maintenace/add_maintaince.dart';
-import '../Components/maintenace/maintenance_history.dart';
 
 class Maintenance extends StatefulWidget {
   const Maintenance({Key? key}) : super(key: key);
@@ -31,7 +30,7 @@ class _MaintenanceState extends State<Maintenance> {
           centerTitle: true,
           elevation: 0.1,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             'Maintance',
             style: TextStyle(color: Colors.black),
           ),
@@ -80,7 +79,7 @@ class _MaintenanceState extends State<Maintenance> {
                                 return Container(
                                     padding: const EdgeInsets.only(
                                         top: 0, right: 24, left: 24),
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       color: Color(0xfff4f4f2),
                                         borderRadius: BorderRadius.vertical(
                                             top: Radius.circular(25))),
@@ -88,10 +87,10 @@ class _MaintenanceState extends State<Maintenance> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 30,
                                         ),
-                                        Center(
+                                        const Center(
                                           child: Text(
                                             'Advance Search',
                                             textAlign: TextAlign.center,
@@ -103,7 +102,7 @@ class _MaintenanceState extends State<Maintenance> {
                                                 color: Colors.black),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 25,
                                         ),
                                         Row(
@@ -292,10 +291,9 @@ class _MaintenanceState extends State<Maintenance> {
                         },
                         child: Container(
                           width: 30,
-                          child: const Padding(
-                              padding: EdgeInsets.only(left: 10.0),
-                              child: Icon(Icons.filter_alt,
-                                  size: 20, color: Colors.green)),
+                          padding : const EdgeInsets.only(left: 10.0),
+                              child: const Icon(Icons.filter_alt,
+                                  size: 20, color: Colors.green),
                         ),
                       ),
                     ],
@@ -310,6 +308,61 @@ class _MaintenanceState extends State<Maintenance> {
                         fontSize: 13,
                         fontStyle: FontStyle.normal),
                   ),
+
+                  const SizedBox(
+                    height: 20,
+                  ),
+
+                  Container(
+                    height: 125,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 17.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                'TOYOTA',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Image.asset(
+                                'assets/images/Redcar.png',
+                                width: 90,
+                              ),
+                            ],
+                          )),
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                          ))
+                        ],
+                      ),
+                    ),
+                  ),
+
                   const SizedBox(
                     height: 16,
                   ),
@@ -327,7 +380,7 @@ class _MaintenanceState extends State<Maintenance> {
           backgroundColor: Colors.green,
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const AddMaintaincePlan(),
+              builder: (context) => AddMaintaincePlan(),
             ));
           },
           child: const Icon(

@@ -6,6 +6,7 @@ class Vehicle  {
   String? image;
   String? model;
   String? ownerId;
+  String? status;
 
   Vehicle(
       {this.vehicleNumber,
@@ -14,7 +15,7 @@ class Vehicle  {
       this.color,
       this.image,
       this.model,
-      this.ownerId});
+      this.ownerId, this.status});
 
   toSaveVehicle() => {
     "vehicleNumber" : vehicleNumber,
@@ -35,7 +36,12 @@ class Vehicle  {
       model: vehicle['model'],
       image: vehicle['image'],
       ownerId: vehicle['ownerId'],
+      status: vehicle['status'],
     );
   }
 
+  @override
+  String toString() {
+    return 'Vehicle{vehicleNumber: $vehicleNumber, company: $company, regNumber: $regNumber, color: $color, image: $image, model: $model, ownerId: $ownerId, status: $status}';
+  }
 }

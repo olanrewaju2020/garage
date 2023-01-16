@@ -29,6 +29,12 @@ class AuthBloc with Validations{
   Stream<bool> get isForgotFormValid =>
       Rx.combineLatest([email], (values) => true);
 
+  Stream<bool> get isLoginFormValid =>
+      Rx.combineLatest([email, password], (values) => true);
+
+  Stream<bool> get isCreateAccountValid =>
+      Rx.combineLatest([email, password, firstName, lastName, phone], (values) => true);
+
   @mustCallSuper
   void dispose() {
     Helper.reset([_email, _firstName, _lastName, _email,

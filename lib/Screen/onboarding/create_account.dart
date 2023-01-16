@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/Components/g_button.dart';
 import 'package:garage_repair/Screen/g_loader.dart';
 import 'package:garage_repair/Screen/onboarding/login.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,7 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
-  final authBloc = AuthBloc();
+  final _authBloc = AuthBloc();
   final TextEditingController _firstNameCtrl = TextEditingController();
   final TextEditingController _lastNameCtrl = TextEditingController();
   final TextEditingController _emailCtrl = TextEditingController();
@@ -53,16 +54,16 @@ class _CreateAccountState extends State<CreateAccount> {
                 children: [
                   Expanded(
                     child: GTextField(
-                        stream: authBloc.firstName,
+                        stream: _authBloc.firstName,
                         controller: _firstNameCtrl,
-                        onChanged: authBloc.firstNameOnChange,
+                        onChanged: _authBloc.firstNameOnChange,
                         hintText: 'First name'),
                   ),
                   const SizedBox(width: 20),
                   Expanded(
                     child: GTextField(
-                        stream: authBloc.lastName,
-                        onChanged: authBloc.lastNameOnChange,
+                        stream: _authBloc.lastName,
+                        onChanged: _authBloc.lastNameOnChange,
                         controller: _lastNameCtrl,
                         hintText: 'Last name'),
                   ),
@@ -76,18 +77,18 @@ class _CreateAccountState extends State<CreateAccount> {
                 children: [
                   Expanded(
                     child: GTextField(
-                        stream: authBloc.email,
-                        onChanged: authBloc.emailOnChange,
+                        stream: _authBloc.email,
+                        onChanged: _authBloc.emailOnChange,
                         controller: _emailCtrl,
                         hintText: 'Email address'),
                   ),
                   const SizedBox(width: 20),
                   Expanded(
                     child: GTextField(
-                        stream: authBloc.phone,
+                        stream: _authBloc.phone,
                         controller: _phoneCtrl,
                         hintText: 'Phone number',
-                        onChanged: authBloc.phoneOnChange),
+                        onChanged: _authBloc.phoneOnChange),
                   ),
                 ],
               ),
@@ -99,15 +100,17 @@ class _CreateAccountState extends State<CreateAccount> {
                 children: [
                   Expanded(
                     child: GTextField(
-                        stream: authBloc.password,
-                        onChanged: authBloc.passwordOnChange,
+                        isSecret: true,
+                        stream: _authBloc.password,
+                        onChanged: _authBloc.passwordOnChange,
                         controller: _passwordCtrl,
                         hintText: 'Password'),
                   ),
                   const SizedBox(width: 20),
                   Expanded(
                       child: GTextField(
-                          stream: authBloc.password,
+                          isSecret: true,
+                          stream: _authBloc.password,
                           controller: _confirmPasswordCtrl,
                           hintText: 'Confirm Password')),
                 ],
@@ -116,24 +119,20 @@ class _CreateAccountState extends State<CreateAccount> {
                 height: 25,
               ),
               GTextField(
-                  stream: authBloc.aboutUs,
-                  onChanged: authBloc.aboutUsOnChange,
+                  stream: _authBloc.aboutUs,
+                  onChanged: _authBloc.aboutUsOnChange,
                   controller: _aboutUsCtrl,
                   hintText: 'How do you hear about us?'),
               const SizedBox(
                 height: 25,
               ),
-              Consumer<AuthProvider>(
-                builder: (context, provider, child) {
-                  return Padding(
+              Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 2.0),
                     child: SizedBox(
                       height: 50,
                       width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
-                        ),
+                      child: GButton(
+                        isValid: _authBloc.isCreateAccountValid,
                         onPressed: () {
                           if (_passwordCtrl.text == _confirmPasswordCtrl.text) {
                             provider
@@ -146,31 +145,30 @@ class _CreateAccountState extends State<CreateAccount> {
                                     aboutUs: _aboutUsCtrl.text)
                                 .then((isSuccessful) {
                               if (isSuccessful) {
-                                Navigator.push(
-                                    context,
+                                _emailCtrl.clear();
+                                _phoneCtrl.clear();
+                                _passwordCtrl.clear();
+                                _firstNameCtrl.clear();
+                                _lastNameCtrl.clear();
+                                _confirmPasswordCtrl.clear();
+                                _aboutUsCtrl.clear();
+                                Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             CodeActivation()));
                               }
                             });
+
                           } else {
                             ShowToast(
                                 msg: 'Password fields do not match',
                                 type: ErrorType.error);
                           }
                         },
-                        child: const Text(
-                          'Create account',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 13),
-                        ),
+                        label: 'Create account',
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
               const SizedBox(
                 height: 8,
               ),
