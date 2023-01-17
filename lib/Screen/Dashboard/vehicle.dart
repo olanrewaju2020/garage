@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/g_loader.dart';
+import 'package:provider/provider.dart';
+import '../../Models/vehicle.dart';
+import '../../provider/vehicle_provider.dart';
+import '../../service_locator.dart';
 import '../Components/add_vehicle.dart';
 import '../Components/details/car_details.dart';
 
@@ -10,6 +15,18 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final provider = Provider.of<VehicleProvider>(context, listen: false);
+      if (provider.vehiclesOwn.isEmpty) {
+        provider.vehiclesOwnList(ownerId: app.user?.uuid ?? "");
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,24 +44,10 @@ class _ProfileState extends State<Profile> {
         elevation: 0.3,
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13.0),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const CarDetails()));
-                  },
-                  child: const Vehicle(),
-                )
-              ]),
-        ),
+      body: Consumer<VehicleProvider>(
+        builder: (context, provider, child) {
+          return provider.isLoading ? const GLoader() : ListOfVehicles(route: CarDetails());
+        },
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
@@ -63,9 +66,39 @@ class _ProfileState extends State<Profile> {
   }
 }
 
-class Vehicle extends StatelessWidget {
-  const Vehicle({
-    Key? key,
+class ListOfVehicles extends StatelessWidget {
+  final Widget route;
+  const ListOfVehicles({
+    Key? key, required this.route,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 13.0),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(app.vehiclesOwn.length, (index){
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (
+                          context) => route));
+                },
+                child: VehicleDetails(vehicle: app.vehiclesOwn[index],),
+              );
+            }),
+         ),
+      ),
+    );
+  }
+}
+
+class VehicleDetails extends StatelessWidget {
+  final Vehicle vehicle;
+  const VehicleDetails({
+    Key? key, required this.vehicle,
   }) : super(key: key);
 
   @override
@@ -73,6 +106,7 @@ class Vehicle extends StatelessWidget {
     return Container(
       height: 135,
       width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -84,86 +118,86 @@ class Vehicle extends StatelessWidget {
           children: [
             Expanded(
                 child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                Image.asset(
-                  'assets/images/Redcar.png',
-                  width: 120,
-                ),
-                const SizedBox(
-                  height: 0,
-                ),
-                const Text(
-                  'Available',
-                  style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 0.4,
-                      fontStyle: FontStyle.normal,
-                      color: Colors.green),
-                )
-              ],
-            )),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Image.asset(
+                      'assets/images/Redcar.png',
+                      width: 120,
+                    ),
+                    const SizedBox(
+                      height: 0,
+                    ),
+                    const Text(
+                      'Available',
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.4,
+                          fontStyle: FontStyle.normal,
+                          color: Colors.green),
+                    )
+                  ],
+                )),
             Expanded(
                 child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                const Text(
-                  'TOYOTA',
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Camry',
-                  style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey[500]),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'AB and Sons',
-                  style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey[500]),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'AJ11AH',
-                  style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey[500]),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Silver',
-                  style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey[500]),
-                ),
-              ],
-            ))
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      '${vehicle.company}',
+                      style: const TextStyle(
+                          fontSize: 15,
+                          fontStyle: FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '${vehicle.regNumber}',
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey[500]),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '${vehicle.company}',
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey[500]),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '${vehicle.vehicleNumber}',
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey[500]),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '${vehicle.color}',
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey[500]),
+                    ),
+                  ],
+                ))
           ],
         ),
       ),

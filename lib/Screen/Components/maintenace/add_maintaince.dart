@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../service_locator.dart';
 import '../../Dashboard/vehicle.dart';
 import 'add_maintainance_2.dart';
 
@@ -18,7 +19,7 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
         builder: (BuildContext context) {
           return Container(
               height: 315,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
@@ -30,7 +31,7 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -41,10 +42,10 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                         color: Colors.black12,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    Center(
+                    const Center(
                       child: Text(
                         'Add New Vehicle',
                         textAlign: TextAlign.center,
@@ -181,12 +182,13 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                 SizedBox(
                   height: 15,
                 ),
+                const ListOfVehicles(route: AddMaintainance2(),),
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => AddMaintainance2()));
                   },
-                  child: Vehicle(),
+                  child: VehicleDetails(vehicle: app.vehiclesOwn[0],),
                 )
               ]),
         ),

@@ -8,6 +8,7 @@ import '../Screen/onboarding/login.dart';
 import '../Screen/onboarding/new_password.dart';
 import '../Service/rest_service.dart';
 import '../misc/validations.dart';
+import '../service_locator.dart';
 
 class AuthProvider extends ChangeNotifier with Validations {
   bool isLoading = false;
@@ -59,6 +60,7 @@ class AuthProvider extends ChangeNotifier with Validations {
     ).toLogin()).then((response){
       if(response.isSuccessful) {
         _user = User.fromAuthJson(response.data);
+        app.user = _user;
         Navigator.push(context, MaterialPageRoute(
             builder: (context) => Dashboard()));
       } else {
@@ -118,16 +120,19 @@ class AuthProvider extends ChangeNotifier with Validations {
     notifyListeners();
   }
 
-  resetPassword({required String email}) {
+  resetPassword({required String email, required String newPassword, required String otp}) {
     isLoading = true;
+    notifyListeners();
     RestService().method(
         method: 'POST',
         url: "entrance/password/forgot",
        body: {
-         "newPassword": "busayo@23",
-         "otp" : "zqbapy",
-         "email": "femisola@gmail.com"
+         "newPassword": newPassword,
+         "otp" : otp,
+         "email": email
        }
     );
+    isLoading = false;
+    notifyListeners();
   }
 }

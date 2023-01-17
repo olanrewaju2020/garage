@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import '../Screen/misc/constants.dart';
 import '../Screen/misc/enum.dart';
 import '../Screen/misc/utils.dart';
+import '../service_locator.dart';
 import 'api_response.dart';
 
 class RestService {
@@ -24,8 +25,7 @@ class RestService {
     try {
       switch (method) {
         case 'delete':
-          response = await client
-              .delete(
+          response = await client.delete(
             Uri.parse('$baseUrl$url'),
             headers: _headers,
             body: json.encode(body),
@@ -100,9 +100,8 @@ class RestService {
           }
         default:
           response = await client
-              .get(Uri.parse(url), headers: _headers)
+              .get(Uri.parse('$baseUrl$url'), headers: _headers)
               .timeout(const Duration(seconds: timeOutSeconds));
-
           final decode = json.decode(response.body);
           if (response.statusCode == 200) {
             return ApiResponse.fromJson(decode);

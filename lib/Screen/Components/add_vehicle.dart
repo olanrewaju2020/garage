@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/provider/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../Models/vehicle.dart';
 import '../../bloc/vehicle_bloc.dart';
 import '../../provider/vehicle_provider.dart';
 import 'g_button.dart';
-import 'g_text_field.dart';
 
 class AddVehicle extends StatefulWidget {
   const AddVehicle({Key? key}) : super(key: key);
@@ -20,10 +18,6 @@ class _AddVehicleState extends State<AddVehicle> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider
-        .of<AuthProvider>(context)
-        .user;
-
     return Scaffold(
       backgroundColor: const Color(0xfff4f4f2),
       appBar: AppBar(
@@ -86,7 +80,7 @@ class _AddVehicleState extends State<AddVehicle> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 30),
+                            const SizedBox(height: 30),
                             SizedBox(
                               height: 50,
                               width: double.infinity,
@@ -94,6 +88,7 @@ class _AddVehicleState extends State<AddVehicle> {
                                 builder: (context, provider, child) {
                                   return GButton(
                                     isValid: Stream.value(provider.vehicle == null ? false : true),
+                                    isLoading: provider.isLoading,
                                     label: 'Add Vehicle',
                                     onPressed: () async {
                                       provider.vehicleStore(
@@ -201,13 +196,6 @@ class _SearchVehicleState extends State<SearchVehicle> {
                   ),
                 ),
               );
-
-              // GTextField(
-              //   hintText: 'Vehicle Identification Number',
-              //   onChanged: bloc.vehicleOnChanged,
-              //   controller: fieldTextEditingController,
-              //   stream: bloc.vehicleNumber,
-              //   suffixIconData: Icons.search);
             });
       },
     );

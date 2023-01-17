@@ -4,8 +4,7 @@ class User {
   String? phone;
   String? email;
   String? tellUsWhereYouFoundUs;
-  String? password, token, otp;
-  var uuid;
+  String? password, token, otp, uuid;
 
   User(
       {this.firstName,
@@ -28,14 +27,23 @@ class User {
     };
   }
 
+  factory User.fromOwnerJson(Map<String, dynamic> json) {
+    return User(
+        uuid: json['uuid'],
+        firstName: json["firstName"],
+        lastName:  json["lastName"],
+        phone: json["07069239814"]
+    );
+  }
+
   factory User.fromAuthJson(Map<String, dynamic> json) {
     return User(
-        token: "token",
-        firstName: "firstName",
-        lastName: "lastName",
-        uuid: "uuid",
-        email: "email",
-        phone: "phone");
+        token: json["token"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        uuid: json["uuid"],
+        email: json["email"],
+        phone: json["phone"]);
   }
 
   @override

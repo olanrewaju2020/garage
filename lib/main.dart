@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/onboarding/landing.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/auth_provider.dart';
 import 'provider/vehicle_provider.dart';
+import 'service_locator.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),

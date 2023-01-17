@@ -9,7 +9,8 @@ class ApiResponse<T> {
   DateTime? timestamp;
   String? path;
 
-  ApiResponse({required this.data, this.message, this.timestamp, this.isSuccessful=false, this.hasError=false, this.error,  this.status, this.path});
+  ApiResponse({required this.data, this.message, this.timestamp,
+    this.isSuccessful=false, this.hasError=false, this.error,  this.status, this.path});
 
   factory ApiResponse.fromJson(Map<String, dynamic> json){
     if(json['status'] == "failed"){
