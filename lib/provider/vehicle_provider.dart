@@ -152,5 +152,17 @@ class VehicleProvider extends ChangeNotifier with Validations {
     notifyListeners();
   }
 
-  void getVehiclesByOwner() {}
+  void getServiceByOwner({required BuildContext context}) {
+    isLoading = false;
+    notifyListeners();
+    RestService().method(method: 'GET', url: 'vehicle/remove').then((response) {
+      if (response.isSuccessful) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Dashboard()));
+        ShowToast(msg: response.message, type: ErrorType.success);
+      } else {
+        ShowToast(msg: response.message, type: ErrorType.error);
+      }
+    });
+  }
 }

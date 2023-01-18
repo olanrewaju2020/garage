@@ -1,13 +1,12 @@
 import 'user.dart';
 
-class Vehicle  {
+class Vehicle {
   String? vehicleNumber;
   String? company;
   String? regNumber;
   String? color;
-  String? image, model,uuid, userUuid, status;
+  String? image, model, uuid, userUuid, status;
   User? owner;
-
 
   Vehicle(
       {this.vehicleNumber,
@@ -16,30 +15,37 @@ class Vehicle  {
       this.color,
       this.image,
       this.model,
-      this.owner, this.status});
+      this.uuid,
+      this.userUuid,
+      this.owner,
+      this.status});
 
   toSaveVehicle() => {
-    "vehicleNumber" : vehicleNumber,
-    "company" : company,
-    "regNumber" : regNumber,
-    "color" : color,
-    "model" : model,
-    "image" : image,
-    "status": status,
-    "userUuid" : owner?.uuid ?? ''
-  };
+        "vehicleNumber": vehicleNumber,
+        "company": company,
+        "regNumber": regNumber,
+        "color": color,
+        "model": model,
+        "image": image,
+        "status": status,
+        "userUuid": owner?.uuid ?? ''
+      };
 
   factory Vehicle.fromJson(Map<String, dynamic> vehicle) {
     return Vehicle(
-      vehicleNumber: vehicle['vehicleNumber'],
-      company: vehicle['company'],
-      regNumber: vehicle['regNumber'],
-      color: vehicle['color'],
-      model: vehicle['model'],
-      image: vehicle['image'],
-      owner: User.fromOwnerJson(vehicle["owner"])
-    );
+        vehicleNumber: vehicle['vehicleNumber'],
+        company: vehicle['company'],
+        regNumber: vehicle['regNumber'],
+        color: vehicle['color'],
+        model: vehicle['model'],
+        image: vehicle['image'],
+        owner: User.fromOwnerJson(vehicle["owner"]));
   }
+
+  factory Vehicle.fromServiceJson(Map<String, dynamic> vehicle) => Vehicle(
+      uuid: vehicle["uuid"],
+      vehicleNumber: vehicle["vehicleNumber"],
+      company: vehicle["company"]);
 
   @override
   String toString() {
