@@ -11,12 +11,16 @@ class AuthBloc with Validations{
   final _phone = BehaviorSubject<String>();
   final _aboutUs = BehaviorSubject<String>();
 
+  final categoryCtrl = TextEditingController();
+
   //validations
   Stream<String> get firstName => _firstName.stream.transform(validateName);
   Stream<String> get lastName => _lastName.stream.transform(validateName);
   Stream<String> get email => _email.stream.transform(validateEmail);
   Stream<String> get password => _password.stream.transform(validatePassword);
   Stream<String> get phone => _phone.stream.transform(validatePhone);
+  Stream<String> get category => _phone.stream.transform(validatePhone);
+  Stream<String> get serviceList => _phone.stream.transform(validatePhone);
   Stream<String> get aboutUs => _aboutUs.stream;
 
   firstNameOnChange(String name) => _firstName.sink.add(name);
@@ -33,7 +37,7 @@ class AuthBloc with Validations{
       Rx.combineLatest([email, password], (values) => true);
 
   Stream<bool> get isCreateAccountValid =>
-      Rx.combineLatest([email, password, firstName, lastName, phone], (values) => true);
+      Rx.combineLatest([email, password, firstName, lastName, phone, category, serviceList], (values) => true);
 
   @mustCallSuper
   void dispose() {

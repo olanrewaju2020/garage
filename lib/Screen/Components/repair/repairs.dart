@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/repair/sub_repair.dart';
+import 'package:garage_repair/service_locator.dart';
 
 import '../../Dashboard/vehicle.dart';
 import '../Previous/previous.dart';
@@ -40,32 +41,25 @@ class _FirstVehicleRepairStageState extends State<FirstVehicleRepairStage> {
         backgroundColor: Colors.white,
       ),
       body: Column(
-        children: [
+        children: const [
           SizedBox(
             height: 20,
           ),
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PreviousDetails()));
-                  },
-                  child: Previous()))
+          ListOfVehicles(route: PreviousDetails()),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => VehicleRepair(),
           ));
         },
+        child:  const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }

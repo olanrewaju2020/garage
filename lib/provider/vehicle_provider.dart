@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import '../Models/service.dart';
 import '../Models/vehicle.dart';
 import '../Screen/Dashboard/dashboard.dart';
 import '../Screen/misc/enum.dart';
@@ -141,6 +143,8 @@ class VehicleProvider extends ChangeNotifier with Validations {
     notifyListeners();
     RestService().method(method: 'PUT', url: 'vehicle/remove').then((response) {
       if (response.isSuccessful) {
+        isLoading = false;
+        notifyListeners();
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Dashboard()));
         ShowToast(msg: response.message, type: ErrorType.success);
@@ -153,14 +157,21 @@ class VehicleProvider extends ChangeNotifier with Validations {
   }
 
   void getServiceByOwner({required BuildContext context}) {
-    isLoading = false;
+    isLoading = true;
     notifyListeners();
-    RestService().method(method: 'GET', url: 'vehicle/remove').then((response) {
+    RestService().method(method: 'GET', url: 'service/fetch/:owner${app.user?.uuid ?? ""}').then((response) {
       if (response.isSuccessful) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Dashboard()));
-        ShowToast(msg: response.message, type: ErrorType.success);
+        isLoading = false;
+        notifyListeners();
+        app.servicesByOwner = List<GService>.from(response.data.map((service) => GService.fromJson(service)));
+        print("=================================response");
+        print(response);
+        // Navigator.push(
+        //     context, MaterialPageRoute(builder: (context) => Dashboard()));
+        // ShowToast(msg: response.message, type: ErrorType.success);
       } else {
+        isLoading = false;
+        notifyListeners();
         ShowToast(msg: response.message, type: ErrorType.error);
       }
     });

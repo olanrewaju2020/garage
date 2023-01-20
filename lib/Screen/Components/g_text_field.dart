@@ -7,6 +7,7 @@ class GTextField extends StatefulWidget {
   final Stream<String> stream;
   final Function(String name)? onChanged;
   final bool isSecret;
+  final bool isReadOnly;
   final IconData? suffixIconData;
   const GTextField({
     Key? key,
@@ -15,7 +16,7 @@ class GTextField extends StatefulWidget {
     required this.stream,
     this.isSecret = false,
     this.onChanged,
-    this.suffixIconData,
+    this.suffixIconData, this.isReadOnly = false,
   }) : super(key: key);
 
   @override
@@ -67,6 +68,7 @@ class _GTextFieldState extends State<GTextField> {
                 ? null
                 : (val) => widget.onChanged!(val),
             obscureText: widget.isSecret,
+            readOnly: widget.isReadOnly
           );
         });
   }

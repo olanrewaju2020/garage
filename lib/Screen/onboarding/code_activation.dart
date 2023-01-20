@@ -63,7 +63,7 @@ class _CodeActivation extends State<CodeActivation> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Center(
+                  const Center(
                       child: Image(
                     image: AssetImage('assets/images/inbox.png'),
                     width: 300,
@@ -72,7 +72,7 @@ class _CodeActivation extends State<CodeActivation> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Please enter the six digit code sent to \nyour registered email address.',
                       textAlign: TextAlign.center,
@@ -114,7 +114,7 @@ class _CodeActivation extends State<CodeActivation> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Resend code',
                       textAlign: TextAlign.center,

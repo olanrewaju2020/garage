@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/servicing/sub_servicing.dart';
+import 'package:garage_repair/service_locator.dart';
 
 import '../../Dashboard/vehicle.dart';
 import '../Previous/previous.dart';
@@ -39,18 +40,11 @@ class _FirstVehicleServicesState extends State<FirstVehicleServices> {
         backgroundColor: Colors.white,
       ),
       body: Column(
-        children: [
+        children: const [
           SizedBox(
             height: 20,
           ),
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PreviousDetails()));
-                  },
-                  child: Previous()))
+          ListOfVehicles(route: PreviousDetails())
         ],
       ),
       floatingActionButton: FloatingActionButton(

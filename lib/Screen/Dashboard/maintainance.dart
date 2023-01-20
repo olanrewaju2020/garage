@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Models/service.dart';
 import 'package:garage_repair/Screen/Components/g_button.dart';
+import 'package:garage_repair/Screen/g_loader.dart';
+import 'package:provider/provider.dart';
+import '../../provider/vehicle_provider.dart';
+import '../../service_locator.dart';
 import '../Components/Previous/previous.dart';
 import '../Components/Previous/previous_details.dart';
 import '../Components/maintenace/add_maintaince.dart';
@@ -25,7 +30,10 @@ class _MaintenanceState extends State<Maintenance> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-
+      if(app.servicesByOwner.isEmpty) {
+        Provider.of<VehicleProvider>(context, listen: false)
+            .getServiceByOwner(context: context);
+      }
     });
   }
 
@@ -306,7 +314,7 @@ class _MaintenanceState extends State<Maintenance> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   const Text(
@@ -374,12 +382,7 @@ class _MaintenanceState extends State<Maintenance> {
                   const SizedBox(
                     height: 16,
                   ),
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const PreviousDetails()));
-                      },
-                      child: const Previous())
+                  ListOfServices(services: app.servicesByOwner)
                 ]),
           ),
         ),
@@ -398,5 +401,23 @@ class _MaintenanceState extends State<Maintenance> {
         ),
       ),
     );
+  }
+}
+
+class ListOfServices extends StatelessWidget {
+  List<GService> services;
+  ListOfServices({
+    Key? key, required this.services,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<VehicleProvider>(
+  builder: (context, provider, child) {
+  return provider.isLoading == true ? const GLoader() : Column(
+      children: List.generate(app.servicesByOwner.length, (index) =>
+          Previous(service: app.servicesByOwner[index], route: const PreviousDetails())));
+  },
+);
   }
 }

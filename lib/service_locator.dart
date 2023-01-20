@@ -1,6 +1,7 @@
 
 import 'package:get_it/get_it.dart';
 
+import 'Models/service.dart';
 import 'Models/user.dart';
 import 'Models/vehicle.dart';
 
@@ -19,4 +20,6 @@ class App {
   User? user;
   List<Vehicle> vehicles = [];
   List<Vehicle> vehiclesOwn = [];
+  List<GService> servicesByOwner = [];
+
 }
