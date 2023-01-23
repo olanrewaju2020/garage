@@ -159,7 +159,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void getServiceByOwner({required BuildContext context}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(method: 'GET', url: 'service/fetch/:owner${app.user?.uuid ?? ""}').then((response) {
+    RestService().method(method: 'GET', url: 'service/fetch/owner/${app.user?.uuid ?? ""}').then((response) {
       if (response.isSuccessful) {
         isLoading = false;
         notifyListeners();

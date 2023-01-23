@@ -9,6 +9,8 @@ class GTextField extends StatefulWidget {
   final bool isSecret;
   final bool isReadOnly;
   final IconData? suffixIconData;
+  final VoidCallback? onTap;
+
   const GTextField({
     Key? key,
     this.controller,
@@ -16,6 +18,7 @@ class GTextField extends StatefulWidget {
     required this.stream,
     this.isSecret = false,
     this.onChanged,
+    this.onTap,
     this.suffixIconData, this.isReadOnly = false,
   }) : super(key: key);
 
@@ -67,6 +70,7 @@ class _GTextFieldState extends State<GTextField> {
             onChanged: widget.onChanged == null
                 ? null
                 : (val) => widget.onChanged!(val),
+            onTap: widget.onTap ?? null,
             obscureText: widget.isSecret,
             readOnly: widget.isReadOnly
           );

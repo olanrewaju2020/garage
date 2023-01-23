@@ -27,7 +27,7 @@ class AuthProvider extends ChangeNotifier with Validations {
       required String email,
       required String phone,
       required String password,
-      required String aboutUs}) async {
+      required String aboutUs, required String category, required String serviceType}) async {
     isLoading = true;
     notifyListeners();
     Map<String, dynamic> request = User(
@@ -35,7 +35,11 @@ class AuthProvider extends ChangeNotifier with Validations {
         lastName: lastName,
         email: email,
         phone: phone,
-        password: password)
+        password: password,
+        aboutUs: aboutUs,
+        category: category,
+        serviceType: serviceType,
+    )
         .toRegister();
     final response = await RestService().method(
         method: 'POST',
@@ -53,7 +57,7 @@ class AuthProvider extends ChangeNotifier with Validations {
   void login({required String email, required String password, required BuildContext context}) async {
     isLoading = true;
     notifyListeners();
-    RestService().method(
+    await RestService().method(
         method: 'POST', url: 'entrance/login', body: User(
       email: email,
       password: password
@@ -70,8 +74,6 @@ class AuthProvider extends ChangeNotifier with Validations {
 
     isLoading = false;
     notifyListeners();
-    Navigator.push(context, MaterialPageRoute(
-        builder: (context) => Dashboard()));
   }
 
   activateUser({required String otp,required BuildContext context}) {

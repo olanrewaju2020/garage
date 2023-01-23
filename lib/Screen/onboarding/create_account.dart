@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../bloc/auth_bloc.dart';
 import '../../provider/auth_provider.dart';
+import '../Components/g_drop_down.dart';
 import '../Components/g_text_field.dart';
 import '../misc/enum.dart';
 import '../misc/utils.dart';
@@ -27,6 +28,11 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _passwordCtrl = TextEditingController();
   final TextEditingController _confirmPasswordCtrl = TextEditingController();
   final TextEditingController _aboutUsCtrl = TextEditingController();
+
+  List<String> serviceTypes = [  "Repair", "Tolling", "Maintenance", "Others"];
+  List<String> categories = [  "Toyota", "Honda", "Nissan", "BMW"];
+  List<String> socials = [ "Facebook", "Twitter", "Instagram", "Other"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,33 +134,31 @@ class _CreateAccountState extends State<CreateAccount> {
                                 stream: _authBloc.category,
                                 hint: 'Select Category',
                                 controller: _authBloc.categoryCtrl,
-                                onTap:() {
-                                  print("========================");
-                                  print("Select Category");
-                                }
+                                options: categories,
+                                onChange: _authBloc.categoryOnChange
                               ),
                             ),
                             const SizedBox(width: 20),
                             Expanded(
                                 child: GDropDown(
-                              stream: _authBloc.category,
+                              stream: _authBloc.serviceType,
                               hint: 'Select Service Type',
-                              controller: _authBloc.categoryCtrl,
-                                  onTap: () {
-                                print("=======================");
-                                print("Select Service Type");
-                                  }
+                              options: serviceTypes,
+                              controller: _authBloc.serviceTypeCtrl,
+                              onChange: _authBloc.serviceOnChange
                             )),
                           ],
                         ),
                         const SizedBox(
                           height: 25,
                         ),
-                        GTextField(
+                        GDropDown(
                             stream: _authBloc.aboutUs,
-                            onChanged: _authBloc.aboutUsOnChange,
+                            hint: 'How do you hear about us?',
+                            options: socials,
                             controller: _aboutUsCtrl,
-                            hintText: 'How do you hear about us?'),
+                            onChange: _authBloc.aboutUsOnChange
+                        ),
                         const SizedBox(
                           height: 25,
                         ),
@@ -175,8 +179,10 @@ class _CreateAccountState extends State<CreateAccount> {
                                           email: _emailCtrl.text,
                                           phone: _phoneCtrl.text,
                                           password: _passwordCtrl.text,
-                                          aboutUs: _aboutUsCtrl.text)
-                                      .then((isSuccessful) {
+                                          aboutUs: _aboutUsCtrl.text,
+                                          category: _authBloc.categoryCtrl.text,
+                                          serviceType: _authBloc.serviceTypeCtrl.text,
+                                  ).then((isSuccessful) {
                                     if (isSuccessful) {
                                       _emailCtrl.clear();
                                       _phoneCtrl.clear();
@@ -243,39 +249,3 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 }
 
-class GDropDown extends StatelessWidget {
-  final TextEditingController controller;
-  final Stream<String> stream;
-  final String hint;
-  final VoidCallback onTap;
-
-  GDropDown({
-    Key? key,
-    required this.stream,
-    required this.controller,
-    this.hint = '', required this.onTap
-  }) : super(key: key);
-
-  List<String> options = ['Toyota', 'Honda', 'Nissan'];
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return Column(
-                children: List.generate(options.length,
-                        (index) => ListTile(title: Text(options[index]))),
-              );
-            });
-      },
-      child: GTextField(
-          isReadOnly: true,
-          stream: stream,
-          controller: controller,
-          hintText: hint),
-    );
-  }
-}

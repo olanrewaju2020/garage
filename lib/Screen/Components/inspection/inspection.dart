@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/inspection/sub_inspection.dart';
+import 'package:garage_repair/Screen/Dashboard/maintainance.dart';
+import 'package:garage_repair/service_locator.dart';
 import '../map.dart'
     '';
 import '../../Dashboard/vehicle.dart';
@@ -44,28 +46,21 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
           SizedBox(
             height: 20,
           ),
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PreviousDetails()));
-                  },
-                  child: Previous()))
+          ListOfServices(services: app.servicesByOwner)
         ],
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => Inspection(),
           ));
         },
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }

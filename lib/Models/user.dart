@@ -4,7 +4,7 @@ class User {
   String? phone;
   String? email;
   String? tellUsWhereYouFoundUs;
-  String? password, token, otp, uuid;
+  String? password, token, otp, uuid, aboutUs, category, serviceType;
 
   User(
       {this.firstName,
@@ -15,7 +15,7 @@ class User {
       this.password,
       this.token,
       this.otp,
-      this.uuid});
+      this.uuid, this.aboutUs, this.category, this.serviceType});
 
   toRegister() {
     return {
@@ -23,7 +23,10 @@ class User {
       "lastName": lastName,
       "email": email,
       "password": password,
-      "phone": phone
+      "phone": phone,
+      "aboutUs": aboutUs,
+      "category": category,
+      "serviceList": serviceType,
     };
   }
 
