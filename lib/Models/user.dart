@@ -1,10 +1,12 @@
+import '../service_locator.dart';
+
 class User {
   String? firstName;
   String? lastName;
   String? phone;
   String? email;
   String? tellUsWhereYouFoundUs;
-  String? password, token, otp, uuid, aboutUs, category, serviceType;
+  String? password, oldPassword, token, otp, uuid, aboutUs, category, serviceType;
 
   User(
       {this.firstName,
@@ -15,7 +17,7 @@ class User {
       this.password,
       this.token,
       this.otp,
-      this.uuid, this.aboutUs, this.category, this.serviceType});
+      this.uuid, this.aboutUs, this.category, this.serviceType, this.oldPassword});
 
   toRegister() {
     return {
@@ -63,4 +65,10 @@ class User {
   }
 
   toEmail()  => {"email": email};
+
+  toChangePasswordJson() => {
+      " newPassword": password,
+      "oldPassword" :oldPassword,
+      "email": app.user?.email ?? ''
+  };
 }

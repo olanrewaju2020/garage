@@ -137,4 +137,28 @@ class AuthProvider extends ChangeNotifier with Validations {
     isLoading = false;
     notifyListeners();
   }
+
+  void changePassword({required User userPassword,required BuildContext context}) {
+    isLoading = true;
+    notifyListeners();
+    RestService().method(
+        method: 'POST',
+        url: "entrance/password/change",
+        body: User().toChangePasswordJson()
+    ).then((response) {
+      if(response.isSuccessful) {
+        isLoading = false;
+        notifyListeners();
+        ShowToast(msg: response.data);
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => Dashboard())
+        );
+      }else {
+        isLoading = false;
+        notifyListeners();
+        ShowToast(msg:response.error, type: ErrorType.error);
+      }
+    });
+
+  }
 }

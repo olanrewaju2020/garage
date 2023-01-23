@@ -132,7 +132,7 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                             //     new MaterialPageRoute(
                             //         builder: (context) => new Dashboard()));
                           },
-                          child: Text(
+                          child: const Text(
                             'Add Vehicle',
                             style: TextStyle(
                                 color: Colors.white,
@@ -151,17 +151,17 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
             size: 15,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Select vehicle',
           style: TextStyle(
               color: Colors.black,
@@ -179,7 +179,7 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 const ListOfVehicles(route: AddMaintainance2(),),

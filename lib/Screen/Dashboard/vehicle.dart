@@ -46,7 +46,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: Consumer<VehicleProvider>(
         builder: (context, provider, child) {
-          return provider.isLoading ? const GLoader() : ListOfVehicles(route: CarDetails());
+          return provider.isLoading ? const GLoader() : const ListOfVehicles(route: CarDetails());
         },
       ),
       floatingActionButton: FloatingActionButton(

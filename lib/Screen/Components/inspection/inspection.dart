@@ -43,7 +43,7 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           ListOfServices(services: app.servicesByOwner)
@@ -54,7 +54,7 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
         backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Inspection(),
+            builder: (context) => const Inspection(),
           ));
         },
         child: const Icon(

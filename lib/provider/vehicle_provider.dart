@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../Models/service.dart';
@@ -67,11 +66,11 @@ class VehicleProvider extends ChangeNotifier with Validations {
         .method(method: 'GET', url: 'vehicle/list/by-owner/$ownerId')
         .then((response) {
       if (response.isSuccessful) {
-        app.vehiclesOwn = response.data == null
-            ? []
-            : List<Vehicle>.from(
+        app.vehiclesOwn = List<Vehicle>.from(
                     response.data.map((vehicle) => Vehicle.fromJson(vehicle)))
                 .toList();
+      } else {
+        app.vehiclesOwn = [];
       }
     });
     isLoading = false;
@@ -166,10 +165,8 @@ class VehicleProvider extends ChangeNotifier with Validations {
         app.servicesByOwner = List<GService>.from(response.data.map((service) => GService.fromJson(service)));
         print("=================================response");
         print(response);
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => Dashboard()));
-        // ShowToast(msg: response.message, type: ErrorType.success);
       } else {
+        app.servicesByOwner = [];
         isLoading = false;
         notifyListeners();
         ShowToast(msg: response.message, type: ErrorType.error);
