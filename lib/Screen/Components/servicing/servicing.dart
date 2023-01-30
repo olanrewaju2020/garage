@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Components/servicing/sub_servicing.dart';
 import 'package:garage_repair/service_locator.dart';
+import 'package:provider/provider.dart';
 
-import '../../Dashboard/vehicle.dart';
-import '../Previous/previous.dart';
-import '../Previous/previous_details.dart';
+import '../../../provider/vehicle_provider.dart';
+import '../../Dashboard/maintenance.dart';
+import '../maintenace/add_maintenance_2.dart';
 
 class FirstVehicleServices extends StatefulWidget {
   const FirstVehicleServices({Key? key}) : super(key: key);
@@ -14,20 +14,31 @@ class FirstVehicleServices extends StatefulWidget {
 }
 
 class _FirstVehicleServicesState extends State<FirstVehicleServices> {
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if(app.servicesByOwner.isEmpty) {
+        Provider.of<VehicleProvider>(context, listen: false)
+            .getServiceByOwner(context: context);
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
             size: 15,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Previous Servicing',
           style: TextStyle(
               color: Colors.black,
@@ -39,26 +50,26 @@ class _FirstVehicleServicesState extends State<FirstVehicleServices> {
         elevation: 0.3,
         backgroundColor: Colors.white,
       ),
-      body: Column(
-        children: const [
-          SizedBox(
-            height: 20,
-          ),
-          ListOfVehicles(route: PreviousDetails())
-        ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListOfServices(services: app.servicesByOwner),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        child: Icon(
+        backgroundColor: Colors.green,
+        onPressed: () {
+          app.serviceType = 'Tolling';
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) =>  AddMaintenance2(serviceType:
+                app.serviceType ?? 'Tolling'),
+          ));
+        },
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: Colors.green,
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Servicing(),
-          ));
-        },
       ),
     );
   }

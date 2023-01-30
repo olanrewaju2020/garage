@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../service_locator.dart';
 import '../../Dashboard/vehicle.dart';
-import 'add_maintainance_2.dart';
+import 'add_maintenance_2.dart';
 
 class AddMaintaincePlan extends StatefulWidget {
   const AddMaintaincePlan({Key? key}) : super(key: key);
@@ -182,11 +182,11 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                 const SizedBox(
                   height: 15,
                 ),
-                const ListOfVehicles(route: AddMaintainance2(),),
+                const ListOfVehicles(),
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => AddMaintainance2()));
+                        MaterialPageRoute(builder: (context) => AddMaintenance2(serviceType: app.serviceType ?? 'Tolling',)));
                   },
                   child: VehicleDetails(vehicle: app.vehiclesOwn[0],),
                 )

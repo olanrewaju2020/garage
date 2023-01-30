@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/misc/utils.dart';
+import 'package:garage_repair/misc/utils.dart';
 
 import '../Models/user.dart';
 import '../Screen/Dashboard/dashboard.dart';
-import '../Screen/misc/enum.dart';
 import '../Screen/onboarding/login.dart';
 import '../Screen/onboarding/new_password.dart';
 import '../Service/rest_service.dart';
+import '../misc/enum.dart';
 import '../misc/validations.dart';
 import '../service_locator.dart';
 
@@ -64,7 +64,7 @@ class AuthProvider extends ChangeNotifier with Validations {
     ).toLogin()).then((response){
       if(response.isSuccessful) {
         _user = User.fromAuthJson(response.data);
-        app.user = _user;
+        app.user = _user ?? User();
         Navigator.push(context, MaterialPageRoute(
             builder: (context) => Dashboard()));
       } else {
@@ -160,5 +160,27 @@ class AuthProvider extends ChangeNotifier with Validations {
       }
     });
 
+  }
+
+  updateProfile({required BuildContext context, required User user}) {
+    isLoading = true;
+    notifyListeners();
+    RestService().method(
+      method: 'PUT',
+      url: 'user/update/${app.user.uuid}',
+      body: user.toUpdateDetailJson()
+    ).then((response) {
+      if(response.isSuccessful) {
+        isLoading = false;
+        notifyListeners();
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => Dashboard())
+        );
+      } else {
+        isLoading = false;
+        notifyListeners();
+        ShowToast(msg: response.error, type: ErrorType.error);
+      }
+    });
   }
 }

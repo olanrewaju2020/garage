@@ -20,7 +20,7 @@ class GService {
   factory GService.fromJson(Map<String, dynamic> json) => GService(
     uuid: json["uuid"],
     serviceType: json["serviceType"],
-    cost: json["2000"],
+    cost: double.parse('${json["cost"] ?? "0"}'),
     rate: json["rate"],
     status: json["status"],
     description: json["description"],

@@ -61,7 +61,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                   ),
                 ),
                 Text(
-                  'Good morning \n${user.firstName ?? "John"}.',
+                  'Good morning \n${user.firstName ?? ""},',
                   style: const TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 20,

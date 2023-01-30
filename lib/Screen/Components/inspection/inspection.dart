@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/inspection/sub_inspection.dart';
-import 'package:garage_repair/Screen/Dashboard/maintainance.dart';
+import 'package:garage_repair/Screen/Dashboard/maintenance.dart';
 import 'package:garage_repair/service_locator.dart';
 import '../map.dart'
     '';

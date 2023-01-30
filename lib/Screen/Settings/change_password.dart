@@ -4,10 +4,10 @@ import 'package:garage_repair/bloc/auth_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../Models/user.dart';
+import '../../misc/enum.dart';
 import '../../provider/auth_provider.dart';
 import '../Components/g_text_field.dart';
-import '../misc/enum.dart';
-import '../misc/utils.dart';
+import '../../misc/utils.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({Key? key}) : super(key: key);

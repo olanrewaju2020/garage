@@ -3,16 +3,15 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import '../Screen/misc/constants.dart';
-import '../Screen/misc/enum.dart';
-import '../Screen/misc/utils.dart';
-import '../service_locator.dart';
+import '../misc/constants.dart';
+import '../misc/enum.dart';
+import '../misc/utils.dart';
 import 'api_response.dart';
 
 class RestService {
   // String baseUrl = 'https://garag.pmcsolutions.co/';
-  String baseUrl = 'http://208.87.133.54:4000/';
-  // String baseUrl = 'http://10.0.2.2:3003/';
+  // String baseUrl = 'http://208.87.133.54:4000/';
+  String baseUrl = 'http://10.0.2.2:3003/';
   final _headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
