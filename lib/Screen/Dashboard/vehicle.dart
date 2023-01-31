@@ -86,7 +86,7 @@ class ListOfVehicles extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (
-                          context) => const CarDetails()));
+                          context) => CarDetails(vehicle: app.vehiclesOwn[index])));
                 },
                 child: VehicleDetails(vehicle: app.vehiclesOwn[index],),
               );

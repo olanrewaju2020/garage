@@ -72,6 +72,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                       hintText: "Select Engineer",
                       stream: bloc.mechanicsName,
                       controller: searchTermCtrl,
+                      suffixIconData: Icons.arrow_drop_down,
                       isReadOnly: true,
                       onTap: () async {
                         final mechanic = await showSearchableBottomSheet(
@@ -85,17 +86,17 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                       height: 20,
                     ),
                     GTextField(
-                      stream: Stream.value(app.vendor.address ?? ''),
+                      stream: Stream.value(app.vendor?.address ?? ''),
                       isReadOnly: true,
-                      hintText: app.vendor.address ?? 'Address',
+                      hintText: app.vendor?.address ?? 'Address',
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     GTextField(
-                      stream: Stream.value(app.vendor.phone ?? ''),
+                      stream: Stream.value(app.vendor?.phone ?? ''),
                       isReadOnly: true,
-                      hintText: app.vendor.phone ?? 'Phone number',
+                      hintText: app.vendor?.phone ?? 'Phone number',
                     ),
                     const SizedBox(
                       height: 20,
@@ -105,6 +106,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                         stream: bloc.serviceType,
                         isReadOnly: true,
                         controller: bloc.serviceTypeCtrl,
+                        suffixIconData: Icons.arrow_drop_down,
                         onTap: () {
                           showBottomSheetDDown(
                             context: context,
@@ -120,6 +122,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                         stream: bloc.regNumber,
                         isReadOnly: true,
                         controller: bloc.vehicleCtrl,
+                        suffixIconData: Icons.arrow_drop_down,
                         onTap: () {
                           showVehicleOwnBottomSheetDDown(
                             context: context,
@@ -145,7 +148,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                           provider.requestNewService(
                             context: context,
                             request: VehicleService(
-                                serviceProviderUuid: app.vendor.uuid ?? '',
+                                serviceProviderUuid: app.vendor?.uuid ?? '',
                                 serviceOwnerUuid: app.user.uuid ?? '',
                                 vehicleUuid: app.vehicleSelected.uuid ?? '',
                                 serviceType: bloc.serviceTypeCtrl.text,
@@ -155,7 +158,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                         },
                         isLoading: provider.isLoading,
                         isValid: Stream.value(true),
-                        label: 'Add maintenance',
+                        label: 'Request',
                       ),
                     ),
                   ],
@@ -165,35 +168,4 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
           },
         ));
   }
-}
-
-Future<dynamic> showVehicleOwnBottomSheetDDown(
-    {required BuildContext context,
-    required TextEditingController controller}) {
-  return showModalBottomSheet(
-      isDismissible: true,
-      context: context,
-      builder: (context) {
-        return Container(
-            height: 400,
-            child: Column(children: [
-              Expanded(
-                child: ListView.builder(
-                    itemCount: app.vehiclesOwn.length,
-                    itemBuilder: (context, index) => Container(
-                        child: ListTile(
-                            onTap: () {
-                              final bloc = VehicleBloc();
-                              bloc.regNumberOnChanged(app.vehiclesOwn[index].regNumber ?? '');
-                              controller.text =
-                                  app.vehiclesOwn[index].regNumber ?? '';
-                              app.vehicleSelected = app.vehiclesOwn[index];
-
-                              Navigator.of(context).pop();
-                            },
-                            title: Text(
-                                app.vehiclesOwn[index].regNumber ?? '')))),
-              )
-            ]));
-      });
 }

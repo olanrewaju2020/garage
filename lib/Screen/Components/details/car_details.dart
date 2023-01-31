@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Models/vehicle.dart';
 import 'package:garage_repair/Screen/Components/details/details.dart';
 import 'package:garage_repair/Screen/Components/details/vic_history.dart';
 
 class CarDetails extends StatefulWidget {
-  const CarDetails({Key? key}) : super(key: key);
+  final Vehicle vehicle;
+  const CarDetails({Key? key, required this.vehicle}) : super(key: key);
 
   @override
   State<CarDetails> createState() => _CarDetailsState();
@@ -27,11 +29,11 @@ class _CarDetailsState extends State<CarDetails>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
             size: 15,
@@ -45,20 +47,20 @@ class _CarDetailsState extends State<CarDetails>
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Material(
               elevation: 0,
-              child: Container(
+              child:  Container(
                 child: TabBar(
                   controller: tabController,
-                  labelColor: Color(0xff180352),
+                  labelColor: const Color(0xff180352),
                   indicatorColor: Colors.white,
                   indicatorWeight: 2,
-                  indicator: BoxDecoration(
+                  indicator: const BoxDecoration(
                       color: Color.fromRGBO(146, 146, 210, 0.1),),
-                  tabs: [
+                  tabs: const [
                     Tab(
                       text: 'History',
                     ),
@@ -70,12 +72,15 @@ class _CarDetailsState extends State<CarDetails>
               ),
             ),
             Expanded(
-              child: TabBarView(
-                controller: tabController,
-                children: [
-                  History(),
-                  SubDetails(),
-                ],
+              child: Container(
+                margin: const EdgeInsets.only(top: 24),
+                child: TabBarView(
+                  controller: tabController,
+                  children: [
+                    History(vehicleId: widget.vehicle.uuid ?? ''),
+                    SubDetails(vehicle: widget.vehicle),
+                  ],
+                ),
               ),
             )
           ],

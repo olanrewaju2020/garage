@@ -45,7 +45,7 @@ class _GTextFieldState extends State<GTextField> {
                       ),
                       width: 15,
                       child: Icon(widget.suffixIconData,
-                          color: Colors.black, size: 15))),
+                          color: Colors.black, size: 30))),
               border: InputBorder.none,
               errorBorder: OutlineInputBorder(
                   borderSide: const BorderSide(

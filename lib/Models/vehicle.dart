@@ -21,6 +21,7 @@ class Vehicle {
       this.status});
 
   toSaveVehicle() => {
+        "uuid": uuid,
         "vehicleNumber": vehicleNumber,
         "company": company,
         "regNumber": regNumber,
@@ -33,6 +34,7 @@ class Vehicle {
 
   factory Vehicle.fromJson(Map<String, dynamic> vehicle) {
     return Vehicle(
+        uuid: vehicle['uuid'],
         vehicleNumber: vehicle['vehicleNumber'],
         company: vehicle['company'],
         regNumber: vehicle['regNumber'],

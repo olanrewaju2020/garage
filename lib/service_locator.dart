@@ -22,8 +22,9 @@ class App {
   List<Vehicle> vehicles = [];
   List<Vehicle> vehiclesOwn = [];
   List<GService> servicesByOwner = [];
+  List<GService> servicesByCar = [];
   List<User> serviceVendors = [];
-  User vendor = User();
+  User? vendor = User();
   Vehicle vehicleSelected = Vehicle();
 
 }

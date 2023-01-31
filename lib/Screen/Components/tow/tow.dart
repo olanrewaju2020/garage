@@ -20,7 +20,7 @@ class _TowingState extends State<Towing> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if(app.servicesByOwner.isEmpty) {
+      if (app.servicesByOwner.isEmpty) {
         Provider.of<VehicleProvider>(context, listen: false)
             .getServiceByOwner(context: context);
       }
@@ -52,11 +52,15 @@ class _TowingState extends State<Towing> {
         elevation: 0.3,
         backgroundColor: Colors.white,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: ListOfServices(services: app.servicesByOwner),
-        ),
+      body: Consumer<VehicleProvider>(
+        builder: (context, provider, child) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ListOfServices(services: app.servicesByOwner),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
@@ -64,7 +68,8 @@ class _TowingState extends State<Towing> {
         onPressed: () {
           app.serviceType = 'Tolling';
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => AddMaintenance2(serviceType: app.serviceType ?? 'Tolling'),
+            builder: (context) =>
+                AddMaintenance2(serviceType: app.serviceType ?? 'Tolling'),
           ));
         },
         child: const Icon(

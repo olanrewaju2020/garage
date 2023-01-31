@@ -169,14 +169,14 @@ class VehicleProvider extends ChangeNotifier with Validations {
         isLoading = false;
         app.servicesByOwner = List<GService>.from(
             response.data.map((service) => GService.fromJson(service)));
-        notifyListeners();
 
       } else {
         app.servicesByOwner = [];
         isLoading = false;
-        notifyListeners();
         ShowToast(msg: response.message, type: ErrorType.error);
       }
+
+      notifyListeners();
     });
   }
 
@@ -229,6 +229,26 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void setVendor(vendor) {
     app.vendor = vendor;
     notifyListeners();
+  }
+
+  void fetchServiceByCar({required String vehicleId}) {
+    isLoading = true;
+    notifyListeners();
+    RestService().method(
+      method: 'GET',
+      url: 'service/fetch/car/$vehicleId'
+    ).then((response) {
+      if(response.isSuccessful) {
+        isLoading = false;
+        app.servicesByCar = List<GService>.from(response.data.map((service) => GService.fromJson(service)));
+        notifyListeners();
+        // Navigator.of(context)
+      } else {
+        isLoading = false;
+        notifyListeners();
+        ShowToast(msg: response.error, type: ErrorType.error);
+      }
+    });
   }
 
 
