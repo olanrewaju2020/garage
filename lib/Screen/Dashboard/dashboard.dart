@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Dashboard/maintainance.dart';
+import 'package:garage_repair/Screen/Dashboard/maintenance.dart';
 import 'package:garage_repair/Screen/Dashboard/vehicle.dart';
 import 'package:garage_repair/Screen/Dashboard/setting.dart';
 import './dashboard_home.dart';

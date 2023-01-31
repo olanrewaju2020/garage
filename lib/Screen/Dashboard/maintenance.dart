@@ -8,6 +8,7 @@ import '../../service_locator.dart';
 import '../Components/Previous/previous.dart';
 import '../Components/Previous/previous_details.dart';
 import '../Components/maintenace/add_maintaince.dart';
+import '../Components/maintenace/add_maintenance_2.dart';
 
 class Maintenance extends StatefulWidget {
   const Maintenance({Key? key}) : super(key: key);
@@ -328,57 +329,6 @@ class _MaintenanceState extends State<Maintenance> {
                   const SizedBox(
                     height: 20,
                   ),
-
-                  Container(
-                    height: 125,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 17.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                'TOYOTA',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontStyle: FontStyle.normal,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.black),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Image.asset(
-                                'assets/images/Redcar.png',
-                                width: 90,
-                              ),
-                            ],
-                          )),
-                          Expanded(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 15,
-                              ),
-                            ],
-                          ))
-                        ],
-                      ),
-                    ),
-                  ),
-
                   const SizedBox(
                     height: 16,
                   ),
@@ -390,8 +340,10 @@ class _MaintenanceState extends State<Maintenance> {
           elevation: 0,
           backgroundColor: Colors.green,
           onPressed: () {
+            app.serviceType = 'Repair';
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => AddMaintaincePlan(),
+              builder: (context) => AddMaintenance2(serviceType:
+              app.serviceType ?? 'Repair'),
             ));
           },
           child: const Icon(

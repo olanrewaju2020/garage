@@ -26,7 +26,7 @@ class _DashboardHomeState extends State<DashboardHome> {
       body: Stack(
         children: [
           Container(
-            height: size.height * .45,
+            height: size.height * .47,
             decoration: const BoxDecoration(color: Colors.green),
           ),
           SafeArea(
@@ -75,9 +75,8 @@ class _DashboardHomeState extends State<DashboardHome> {
                     Icon(
                       Icons.notifications_outlined,
                       color: Colors.white,
-                      size: 30,
-                    )
-                  ],
+                  ),
+      ]
                 ),
 
                 SizedBox(

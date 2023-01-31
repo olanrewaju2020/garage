@@ -1,4 +1,4 @@
-import '../Screen/misc/utils.dart';
+import '../misc/utils.dart';
 
 class ApiResponse<T> {
   T? data;

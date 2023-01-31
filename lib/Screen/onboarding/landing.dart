@@ -2,11 +2,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import '../Components/review_mechanic.dart';
 import '../Dashboard/dashboard.dart';
 import '../Dashboard/dashboard_home.dart';
-import '../Dashboard/maintainance.dart';
-import '../Spare part/spare_part.dart';
 import 'onboarding_steps.dart';
 
 class LandingPage extends StatefulWidget {

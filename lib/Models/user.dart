@@ -1,21 +1,22 @@
+import '../service_locator.dart';
+
 class User {
-  String? firstName;
-  String? lastName;
-  String? phone;
-  String? email;
-  String? tellUsWhereYouFoundUs;
-  String? password, token, otp, uuid, aboutUs, category, serviceType;
+  String? firstName, lastName, phone, email, tellUsWhereYouFoundUs,
+      address, createdAt, password, oldPassword, token, otp, uuid, aboutUs,
+      category, serviceType;
+  bool accountStatus;
 
   User(
       {this.firstName,
       this.lastName,
       this.phone,
+        this.address,
       this.email,
       this.tellUsWhereYouFoundUs,
       this.password,
       this.token,
-      this.otp,
-      this.uuid, this.aboutUs, this.category, this.serviceType});
+      this.otp, this.accountStatus = false, this.createdAt,
+      this.uuid, this.aboutUs, this.category, this.serviceType, this.oldPassword});
 
   toRegister() {
     return {
@@ -35,7 +36,7 @@ class User {
         uuid: json['uuid'],
         firstName: json["firstName"],
         lastName:  json["lastName"],
-        phone: json["07069239814"]
+        phone: json["phone"]
     );
   }
 
@@ -63,4 +64,36 @@ class User {
   }
 
   toEmail()  => {"email": email};
+
+  factory User.fromJson(Map<String, dynamic>service) => User(
+      uuid: service["uuid"],
+      accountStatus: service["accountStatus"],
+      firstName: service["firstName"],
+      lastName: service["lastName"],
+      email:service["email"],
+       phone: service["phone"],
+       category: service["category"],
+       serviceType: service["serviceList"],
+       createdAt: service["createdAt"],
+       address: service["address"]
+  );
+
+  toChangePasswordJson() => {
+      " newPassword": password,
+      "oldPassword" :oldPassword,
+      "email": app.user?.email ?? ''
+  };
+
+  toUpdateDetailJson() => {
+    "firstName" : firstName,
+    "lastName": lastName,
+    "name": firstName,
+    "email": email,
+    // "password" : "sola@12",
+    // "phone" : phone,
+    // "category": "Toyota",
+    // "contact": "No 2, somarin obantoko",
+    // "account_type": "Current Account",
+    // "account_disable": "Active"
+  };
 }

@@ -46,7 +46,7 @@ class _ProfileState extends State<Profile> {
       ),
       body: Consumer<VehicleProvider>(
         builder: (context, provider, child) {
-          return provider.isLoading ? const GLoader() : ListOfVehicles(route: CarDetails());
+          return provider.isLoading ? const GLoader() : const ListOfVehicles();
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -67,14 +67,16 @@ class _ProfileState extends State<Profile> {
 }
 
 class ListOfVehicles extends StatelessWidget {
-  final Widget route;
   const ListOfVehicles({
-    Key? key, required this.route,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Consumer<VehicleProvider>(
+  builder: (context, provider, child) {
+
+  return provider.isLoading ? const GLoader() :SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 13.0),
         child: Column(
@@ -84,7 +86,7 @@ class ListOfVehicles extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (
-                          context) => route));
+                          context) => const CarDetails()));
                 },
                 child: VehicleDetails(vehicle: app.vehiclesOwn[index],),
               );
@@ -92,6 +94,8 @@ class ListOfVehicles extends StatelessWidget {
          ),
       ),
     );
+  },
+);
   }
 }
 

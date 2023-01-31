@@ -17,9 +17,13 @@ void setupLocator() {
 }
 
 class App {
-  User? user;
+  User user = User();
+  String? serviceType;
   List<Vehicle> vehicles = [];
   List<Vehicle> vehiclesOwn = [];
   List<GService> servicesByOwner = [];
+  List<User> serviceVendors = [];
+  User vendor = User();
+  Vehicle vehicleSelected = Vehicle();
 
 }

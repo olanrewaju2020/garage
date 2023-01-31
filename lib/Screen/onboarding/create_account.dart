@@ -5,11 +5,11 @@ import 'package:garage_repair/Screen/onboarding/login.dart';
 import 'package:provider/provider.dart';
 
 import '../../bloc/auth_bloc.dart';
+import '../../misc/enum.dart';
 import '../../provider/auth_provider.dart';
 import '../Components/g_drop_down.dart';
 import '../Components/g_text_field.dart';
-import '../misc/enum.dart';
-import '../misc/utils.dart';
+import '../../misc/utils.dart';
 import 'code_activation.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -29,7 +29,7 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _confirmPasswordCtrl = TextEditingController();
   final TextEditingController _aboutUsCtrl = TextEditingController();
 
-  List<String> serviceTypes = [  "Repair", "Tolling", "Maintenance", "Others"];
+  List<String> serviceTypes = ["Repair", "Tolling", "Maintenance", "Others"];
   List<String> categories = [  "Toyota", "Honda", "Nissan", "BMW"];
   List<String> socials = [ "Facebook", "Twitter", "Instagram", "Other"];
 

@@ -1,12 +1,13 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import '../Models/service.dart';
+import '../Models/user.dart';
 import '../Models/vehicle.dart';
+import '../Models/vehicle_service.dart';
 import '../Screen/Dashboard/dashboard.dart';
-import '../Screen/misc/enum.dart';
-import '../Screen/misc/utils.dart';
+import '../misc/enum.dart';
+import '../misc/utils.dart';
 import '../Service/rest_service.dart';
 import '../misc/validations.dart';
 import '../service_locator.dart';
@@ -14,6 +15,7 @@ import '../service_locator.dart';
 class VehicleProvider extends ChangeNotifier with Validations {
   bool isLoading = false;
   Vehicle? _vehicle;
+  List<Vehicle> get vehicles => app.vehicles;
 
   Vehicle? get vehicle => _vehicle;
   List<Vehicle> get vehiclesOwn => app.vehiclesOwn;
@@ -42,7 +44,9 @@ class VehicleProvider extends ChangeNotifier with Validations {
         isLoading = false;
         notifyListeners();
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Dashboard(currentIndex: 2)));
+            context,
+            MaterialPageRoute(
+                builder: (context) => Dashboard(currentIndex: 2)));
       } else {
         isLoading = false;
         notifyListeners();
@@ -58,8 +62,6 @@ class VehicleProvider extends ChangeNotifier with Validations {
     app.vehicles.add(vehicle);
   }
 
-  List<Vehicle> get vehicles => app.vehicles;
-
   vehiclesOwnList({required String ownerId}) {
     isLoading = true;
     notifyListeners();
@@ -67,11 +69,11 @@ class VehicleProvider extends ChangeNotifier with Validations {
         .method(method: 'GET', url: 'vehicle/list/by-owner/$ownerId')
         .then((response) {
       if (response.isSuccessful) {
-        app.vehiclesOwn = response.data == null
-            ? []
-            : List<Vehicle>.from(
-                    response.data.map((vehicle) => Vehicle.fromJson(vehicle)))
-                .toList();
+        app.vehiclesOwn = List<Vehicle>.from(
+            response.data.map((vehicle) => Vehicle.fromJson(vehicle))).toList();
+        notifyListeners();
+      } else {
+        app.vehiclesOwn = [];
       }
     });
     isLoading = false;
@@ -159,21 +161,77 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void getServiceByOwner({required BuildContext context}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(method: 'GET', url: 'service/fetch/owner/${app.user?.uuid ?? ""}').then((response) {
+    RestService()
+        .method(
+            method: 'GET', url: 'service/fetch/owner/${app.user?.uuid ?? ""}')
+        .then((response) {
       if (response.isSuccessful) {
         isLoading = false;
+        app.servicesByOwner = List<GService>.from(
+            response.data.map((service) => GService.fromJson(service)));
         notifyListeners();
-        app.servicesByOwner = List<GService>.from(response.data.map((service) => GService.fromJson(service)));
-        print("=================================response");
-        print(response);
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => Dashboard()));
-        // ShowToast(msg: response.message, type: ErrorType.success);
+
       } else {
+        app.servicesByOwner = [];
         isLoading = false;
         notifyListeners();
         ShowToast(msg: response.message, type: ErrorType.error);
       }
     });
   }
+
+  serviceCompanies(String serviceType){
+    isLoading = true;
+    notifyListeners();
+    RestService()
+        .method(
+        method: 'GET', url: '/user/fetch/$serviceType')
+        .then((response) {
+      if (response.isSuccessful) {
+        isLoading = false;
+        app.serviceVendors = List<User>.from(
+            response.data.map((user) => User.fromJson(user)));
+        notifyListeners();
+
+      } else {
+        app.serviceVendors = [];
+        isLoading = false;
+        notifyListeners();
+        ShowToast(msg: response.message, type: ErrorType.error);
+      }
+    });
+  }
+
+  void requestNewService({required BuildContext context, required VehicleService request}) {
+    isLoading = true;
+    notifyListeners();
+    RestService().method(
+        method:'POST',
+        url: 'service/new',
+      body: request.toNewService()
+    ).then((response) {
+      if(response.isSuccessful) {
+        isLoading = false;
+        notifyListeners();
+        ShowToast(msg: response.data, type: ErrorType.success);
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => Dashboard())
+        );
+      } else {
+        isLoading = false;
+        notifyListeners();
+        ShowToast(msg: response.error, type: ErrorType.error);
+      }
+    });
+  }
+
+
+  void setVendor(vendor) {
+    app.vendor = vendor;
+    notifyListeners();
+  }
+
+
+
+
 }

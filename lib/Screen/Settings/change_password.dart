@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/Components/g_button.dart';
+import 'package:garage_repair/bloc/auth_bloc.dart';
+import 'package:provider/provider.dart';
+
+import '../../Models/user.dart';
+import '../../misc/enum.dart';
+import '../../provider/auth_provider.dart';
+import '../Components/g_text_field.dart';
+import '../../misc/utils.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({Key? key}) : super(key: key);
@@ -8,20 +17,23 @@ class ChangePassword extends StatefulWidget {
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
+  final bloc = AuthBloc();
+  final confirmPasswordCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
             size: 15,
           ),
         ),
-        title: Text(
+        title: const Text(
           'Change Password',
           style: TextStyle(
               color: Colors.black,
@@ -33,102 +45,61 @@ class _ChangePasswordState extends State<ChangePassword> {
         elevation: 0.3,
         backgroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 20,
+      body: Consumer<AuthProvider>(
+        builder: (context, provider, child) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                GTextField(
+                    hintText: 'Old Password',
+                    stream: bloc.password,
+                    isSecret: true,
+                    onChanged: bloc.passwordOnChange),
+                const SizedBox(
+                  height: 20,
+                ),
+                GTextField(
+                    hintText: 'New Password',
+                    stream: bloc.newPassword,
+                    isSecret: true,
+                    onChanged: bloc.newPasswordOnChange),
+                const SizedBox(
+                  height: 20,
+                ),
+                GTextField(
+                  hintText: 'Confirm Password',
+                  stream: Stream.value(confirmPasswordCtrl.text),
+                  controller: confirmPasswordCtrl,
+                  isSecret: true
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  child: GButton(
+                    isValid: bloc.isChangePasswordFormValid,
+                    onPressed: () async {
+                      if(await bloc.newPassword.first == confirmPasswordCtrl.text) {
+                       provider.changePassword(context: context, userPassword:
+                        User(oldPassword: await bloc.password.first, password: await bloc.newPassword.first));
+                      } else {
+                        ShowToast(msg: 'Password field do not match', type: ErrorType.error);
+                      }
+                    },
+                    label: 'Change Password',
+                  ),
+                )
+              ],
             ),
-            TextField(
-              autofocus: false,
-              style: TextStyle(fontSize: 15.0, color: Colors.black),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Old Password',
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding:
-                const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextField(
-              autofocus: false,
-              style: TextStyle(fontSize: 15.0, color: Colors.black),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'New Password',
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding:
-                const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextField(
-              autofocus: false,
-              style: TextStyle(fontSize: 15.0, color: Colors.black),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Confirm Password',
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding:
-                const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 35,
-            ),
-            Container(
-              height: 50,
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                ),
-                onPressed: () {},
-                child: Text(
-                  'Change Password',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 13),
-                ),
-              ),
-            )
-          ],
-        ),
+          );
+        },
       ),
     );
   }
