@@ -143,7 +143,7 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Rating',
+                            '',
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.black,

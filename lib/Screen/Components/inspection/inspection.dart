@@ -46,7 +46,7 @@ class _FirstVehicleInspectionState extends State<FirstVehicleInspection> {
           const SizedBox(
             height: 20,
           ),
-          ListOfServices(services: app.servicesByOwner)
+          // ListOfServices(services: app.servicesByOwner)
         ],
       ),
       floatingActionButton: FloatingActionButton(

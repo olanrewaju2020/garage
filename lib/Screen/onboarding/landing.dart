@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import '../Dashboard/dashboard.dart';
+import '../Dashboard/dashboard_home.dart';
 import 'onboarding_steps.dart';
 
 class LandingPage extends StatefulWidget {
@@ -32,13 +34,13 @@ class _LandingPageState extends State<LandingPage>
     Timer(
         const Duration(seconds: 5),
         () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const OnboardingSteps())));
+            MaterialPageRoute(builder: (context) => Dashboard())));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: Color(0xffEBEBEB),
       body: SafeArea(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
