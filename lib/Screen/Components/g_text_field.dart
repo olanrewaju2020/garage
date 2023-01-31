@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class GTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String? hintText;
+  final String? hintStyle;
   final Stream<String> stream;
   final Function(String name)? onChanged;
   final bool isSecret;
@@ -15,6 +16,7 @@ class GTextField extends StatefulWidget {
     Key? key,
     this.controller,
     this.hintText,
+    this.hintStyle,
     required this.stream,
     this.isSecret = false,
     this.onChanged,
@@ -40,7 +42,7 @@ class _GTextFieldState extends State<GTextField> {
               suffixIcon: GestureDetector(
                   child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(6),
                         // color: Colors.green
                       ),
                       width: 15,
@@ -55,16 +57,18 @@ class _GTextFieldState extends State<GTextField> {
               hintText: widget.hintText,
               errorText: snapshot.hasError ? '${snapshot.error}' : null,
               filled: true,
-              fillColor: Colors.white,
+              fillColor: Color.fromRGBO(255, 255, 255, 0.58),
               contentPadding:
               const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
+
               focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.white),
-                borderRadius: BorderRadius.circular(10.0),
+                borderSide: const BorderSide(color: Color(0xffDCDCDC)),
+                borderRadius: BorderRadius.circular(6.0),
               ),
+
               enabledBorder: UnderlineInputBorder(
                 borderSide: const BorderSide(color: Colors.white),
-                borderRadius: BorderRadius.circular(10.0),
+                borderRadius: BorderRadius.circular(6.0),
               ),
             ),
             onChanged: widget.onChanged == null

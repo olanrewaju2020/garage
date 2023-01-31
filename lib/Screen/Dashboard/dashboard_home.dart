@@ -36,43 +36,58 @@ class _DashboardHomeState extends State<DashboardHome> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 15,
+                  height: 35,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => Notification()));
-                  },
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 45,
-                      width: 45,
-                      decoration: BoxDecoration(
-                          color: Colors.green[300], shape: BoxShape.circle),
-                          child: const Icon(
-                            Icons.notifications,
-                            color: Colors.white,
-                          )
+
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Image(
+                          image: AssetImage('assets/images/ima.png'),
+                          width: 45,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text.rich(TextSpan(
+                          text: "Welcome, ",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 0.5,
+                              color: Color(0xffffffff)),
+                          children: [
+                            TextSpan(
+                              text: "${user.firstName ?? "Talaba"} !",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  letterSpacing: 0.5,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white),
+                            ),
+                          ],
+                        )),
+                      ],
                     ),
-                  ),
-                ),
-                Text(
-                  'Good morning \n${user.firstName ?? "John"}.',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 20,
+                    Icon(
+                      Icons.notifications_outlined,
                       color: Colors.white,
-                      fontStyle: FontStyle.normal),
+                      size: 30,
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: 12,
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 25),
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xffF7F7F7),
                       borderRadius: BorderRadius.circular(29.5)),
                   child: const TextField(
                     decoration: InputDecoration(
@@ -87,24 +102,24 @@ class _DashboardHomeState extends State<DashboardHome> {
                 Expanded(
                   child: GridView.count(
                     crossAxisCount: 2,
-                    childAspectRatio: .85,
+                    childAspectRatio: .73,
                     mainAxisSpacing: 20,
-                    crossAxisSpacing: 20,
+                    crossAxisSpacing: 15,
                     children: [
                       NewWidget(
-                          title: 'Vehicle Inspection',
+                          title: 'Vehicle \nInspection',
                           imageLog: 'assets/images/7.png',
                           route: Dashboard(currentIndex: 1)),
                       const NewWidget(
-                          title: 'Vehicle Servicing',
+                          title: 'Vehicle \nServicing',
                           imageLog: 'assets/images/6.png',
                           route: FirstVehicleServices()),
                       const NewWidget(
-                          title: 'Rescue Service',
+                          title: 'Rescue \nService',
                           imageLog: 'assets/images/tow2.png',
                           route: Towing()),
                       const NewWidget(
-                          title: 'Vehicle Repair',
+                          title: 'Vehicle \nRepair',
                           imageLog: 'assets/images/spanner.png',
                           route: FirstVehicleRepairStage()),
                     ],
@@ -132,205 +147,6 @@ class _DashboardHomeState extends State<DashboardHome> {
   }
 }
 
-void bottomsheet(context) {
-  showBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        height: MediaQuery.of(context).size.height * 0.70,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(32),
-                    topRight: Radius.circular(32))),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 5,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.black12,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 45,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/5a.png',
-                                height: 45,
-                                width: 45,
-                              ),
-                              const Text(
-                                'Vehicle Servicing',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/inspec.png',
-                                height: 45,
-                                width: 45,
-                              ),
-                              const Text(
-                                'Vehicle Inspection',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 55,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/carrr.png',
-                                height: 40,
-                                width: 50,
-                              ),
-                              const Text(
-                                'Rescue Service',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/par.png',
-                                height: 35,
-                                width: 35,
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              const Text(
-                                'Vehicle Repair',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 55,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                   MaterialPageRoute(
-                                      builder: (context) => const Insurance()));
-                            },
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [ Image.asset(
-                                    'assets/images/in.png',
-                                    height: 40,
-                                    width: 40,
-                                  ),
-
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                const Text(
-                                  'Vehicle Insurance',
-                                  style: TextStyle(
-                                      fontSize: 12, fontWeight: FontWeight.w300),
-                                )
-                              ],
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Image.asset(
-                                'assets/images/part.png',
-                                height: 40,
-                                width: 40,
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              const Text(
-                                'Vehicle Parts',
-                                style: TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.w300),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 55,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12.0),
-                            child: Column(
-                              children: [
-                                Image.asset(
-                                  'assets/images/cop.png',
-                                  height: 40,
-                                  width: 40,
-                                ),
-                                const Text(
-                                  'Cooperative',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 12, fontWeight: FontWeight.w300),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ));
-}
-
 class NewWidget extends StatelessWidget {
   final String imageLog;
   final String title;
@@ -345,12 +161,12 @@ class NewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(13),
+      borderRadius: BorderRadius.circular(28),
       child: Container(
         // padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(13),
+          borderRadius: BorderRadius.circular(28),
         ),
         child: Material(
           color: Colors.transparent,
@@ -360,20 +176,23 @@ class NewWidget extends StatelessWidget {
                   .push(MaterialPageRoute(builder: (context) => route));
             },
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(0.0),
               child: Column(
                 children: [
-                  const Spacer(),
+                  Spacer(),
                   Image.asset(
                     imageLog,
                     width: 100,
                   ),
-                  const Spacer(),
+                  SizedBox(
+                    height: 30
+                  ),
                   Text(
                     title,
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-                  )
+                  ),
+                  Spacer(),
                 ],
               ),
             ),

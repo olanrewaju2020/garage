@@ -28,7 +28,7 @@ class _OnboardingStepsState extends State<OnboardingSteps> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: Color(0xffEBEBEB),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -52,24 +52,37 @@ class _OnboardingStepsState extends State<OnboardingSteps> {
             ),
             Row(
               children: [
-                ...List.generate(
-                    demo_data.length,
-                    (index) => Padding(
-                          padding: const EdgeInsets.only(right: 4.0),
-                          child: DotIndicator(
-                            isActive: index == _pageIndex,
-                          ),
-                        )),
+
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 5.0),
+                  child: Text('Skip', style: TextStyle(
+                    color: Color(0xff21B24B
+                    ),
+                    fontWeight: FontWeight.w900,
+                    fontSize: 15,
+                    fontStyle: FontStyle.normal
+                  ),),
+                ),
+
+
+                // ...List.generate(
+                //     demo_data.length,
+                //     (index) => Padding(
+                //           padding: const EdgeInsets.only(right: 4.0),
+                //           child: DotIndicator(
+                //             isActive: index == _pageIndex,
+                //           ),
+                //         )),
                 const Spacer(),
                 SizedBox(
                   height: 60,
                   width: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      if(_pageController.page == 2) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => const Login())
-                        );
+                      if (_pageController.page == 3) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Login()));
                       } else {
                         _pageController.nextPage(
                             curve: Curves.decelerate,
@@ -93,26 +106,26 @@ class _OnboardingStepsState extends State<OnboardingSteps> {
   }
 }
 
-class DotIndicator extends StatelessWidget {
-  const DotIndicator({
-    Key? key,
-    this.isActive = false,
-  }) : super(key: key);
-
-  final bool isActive;
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
-      height: isActive ? 12 : 4,
-      width: 4,
-      decoration: BoxDecoration(
-          color: isActive ? Colors.green : Colors.green.withOpacity(0.4),
-          borderRadius: const BorderRadius.all(Radius.circular(12))),
-    );
-  }
-}
+// class DotIndicator extends StatelessWidget {
+//   const DotIndicator({
+//     Key? key,
+//     this.isActive = false,
+//   }) : super(key: key);
+//
+//   final bool isActive;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return AnimatedContainer(
+//       duration: Duration(milliseconds: 300),
+//       height: isActive ? 12 : 4,
+//       width: 4,
+//       decoration: BoxDecoration(
+//           color: isActive ? Colors.green : Colors.green.withOpacity(0.4),
+//           borderRadius: const BorderRadius.all(Radius.circular(12))),
+//     );
+//   }
+// }
 
 class Onboard {
   final String image, title, description;
@@ -123,22 +136,28 @@ class Onboard {
 
 final List<Onboard> demo_data = [
   Onboard(
-    image: "assets/images/repair.png",
+    image: "assets/images/splash1.png",
     title: "Car Repair",
     description:
-        "We provide you with services that enhances your car is perfectly working well and fine, we also save your time and work till the end your satisfaction is met.",
+        "We provide you with services that enhances your car is perfectly working well and fine,we also save your time and work till the end your satisfaction is met.",
   ),
   Onboard(
-    image: "assets/images/insure.png",
+    image: "assets/images/splash2.png",
     title: "Insurance",
     description:
         "We've got your back in this! We provide various types of insurance to ensure your car is secured from any damage",
   ),
   Onboard(
-    image: "assets/images/tow.png",
+    image: "assets/images/splash4.png",
     title: "Tow vehicle",
     description:
         "Name the location, we're always ready to help you tow your automobile, we offer fast services and also provide the fastest means of achieving this aim.",
+  ),
+  Onboard(
+    image: "assets/images/splash5.png",
+    title: "Vehicle Servicing",
+    description:
+        "Name the location, we’re always ready to help you tow your automobile, we offer fast services and also provide the fastest means of achieving this aim.",
   )
 ];
 
@@ -157,11 +176,11 @@ class OnboardContent extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: 30,
+          height: 10,
         ),
         Center(child: Image.asset(image)),
         const SizedBox(
-          height: 30,
+          height: 50,
         ),
         Text(title,
             textAlign: TextAlign.center,
