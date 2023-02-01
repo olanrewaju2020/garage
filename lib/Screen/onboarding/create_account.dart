@@ -115,6 +115,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             height: 5,
                           ),
                           GTextField(
+                              prefixIconData: Icons.person_outline,
                               stream: _authBloc.firstName,
                               controller: _firstNameCtrl,
                               onChanged: _authBloc.firstNameOnChange,
@@ -133,6 +134,7 @@ SizedBox(
                             height: 5,
                           ),
                           GTextField(
+                              prefixIconData: Icons.email,
                               stream: _authBloc.email,
                               onChanged: _authBloc.emailOnChange,
                               controller: _emailCtrl,
@@ -153,11 +155,11 @@ SizedBox(
                           ),
 
                           GTextField(
+                              prefixIconData: Icons.lock,
                               isSecret: true,
                               stream: _authBloc.password,
                               onChanged: _authBloc.passwordOnChange,
                               controller: _passwordCtrl,
-                              suffixIconData: Icons.visibility,
                               hintText: 'Password'),
 
 
@@ -175,6 +177,7 @@ SizedBox(
                           ),
 
                           GTextField(
+                              prefixIconData: Icons.lock,
                               isSecret: true,
                               stream: _authBloc.password,
                               controller: _confirmPasswordCtrl,
