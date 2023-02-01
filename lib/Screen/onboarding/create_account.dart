@@ -142,7 +142,7 @@ SizedBox(
                           SizedBox(
                             height: 20,
                           ),
-                          Text('Password', style: TextStyle(
+                          const Text('Password', style: TextStyle(
                               color: Color(0xff646464),
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.w600,
@@ -157,6 +157,7 @@ SizedBox(
                               stream: _authBloc.password,
                               onChanged: _authBloc.passwordOnChange,
                               controller: _passwordCtrl,
+                              suffixIconData: Icons.visibility,
                               hintText: 'Password'),
 
 

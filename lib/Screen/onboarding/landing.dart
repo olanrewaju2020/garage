@@ -34,7 +34,7 @@ class _LandingPageState extends State<LandingPage>
     Timer(
         const Duration(seconds: 5),
         () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Dashboard())));
+            MaterialPageRoute(builder: (context) => const OnboardingSteps())));
   }
 
   @override

@@ -144,16 +144,12 @@ class _LoginState extends State<Login> {
                               alignment: const Alignment(0, 0),
                               children: <Widget>[
                                 GTextField(
+                                   prefixIconData: Icons.lock,
                                     isSecret: true,
                                     stream: _authBloc.password,
                                     onChanged: _authBloc.passwordOnChange,
+                                    suffixIconData: Icons.visibility,
                                     hintText: 'Password'),
-                                const Positioned(
-                                    right: 10,
-                                    child: Icon(
-                                      Icons.remove_red_eye_outlined,
-                                      color: Color(0xffC5C4D7),
-                                    ))
                               ],
                             ),
                           ),

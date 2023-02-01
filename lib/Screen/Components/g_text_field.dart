@@ -10,6 +10,7 @@ class GTextField extends StatefulWidget {
   final bool isSecret;
   final bool isReadOnly;
   final IconData? suffixIconData;
+  final IconData? prefixIconData;
   final VoidCallback? onTap;
 
   const GTextField({
@@ -21,7 +22,7 @@ class GTextField extends StatefulWidget {
     this.isSecret = false,
     this.onChanged,
     this.onTap,
-    this.suffixIconData, this.isReadOnly = false,
+    this.suffixIconData, this.isReadOnly = false, this.prefixIconData,
   }) : super(key: key);
 
   @override
@@ -39,6 +40,7 @@ class _GTextFieldState extends State<GTextField> {
             controller: widget.controller,
             style: const TextStyle(fontSize: 12.0, height: 2.1, color: Colors.black),
             decoration: InputDecoration(
+              prefixIcon: Icon(widget.prefixIconData),
               suffixIcon: GestureDetector(
                   child: Container(
                       decoration: BoxDecoration(
