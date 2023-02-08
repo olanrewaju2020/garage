@@ -3,6 +3,7 @@ import 'package:garage_repair/Screen/Components/details/quick.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/auth_provider.dart';
+import '../Components/New Screens/New Services screen/service_list.dart';
 import '../Components/repair/repairs.dart';
 import '../Components/servicing/servicing.dart';
 import '../Components/tow/tow.dart';
@@ -38,53 +39,50 @@ class _DashboardHomeState extends State<DashboardHome> {
                 const SizedBox(
                   height: 35,
                 ),
-
-
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Image(
-                          image: AssetImage('assets/images/ima.png'),
-                          width: 45,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text.rich(TextSpan(
-                          text: "Welcome, ",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 0.5,
-                              color: Color(0xffffffff)),
-                          children: [
-                            TextSpan(
-                              text: "${user.firstName ?? "Talaba"} !",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  letterSpacing: 0.5,
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        )),
-                      ],
-                    ),
-                    Icon(
-                      Icons.notifications_outlined,
-                      color: Colors.white,
-                  ),
-      ]
-                ),
-
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Image(
+                            image: AssetImage('assets/images/ima.png'),
+                            width: 45,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text.rich(TextSpan(
+                            text: "Welcome, ",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 0.5,
+                                color: Color(0xffffffff)),
+                            children: [
+                              TextSpan(
+                                text: "${user.firstName ?? "Talaba"} !",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    letterSpacing: 0.5,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white),
+                              ),
+                            ],
+                          )),
+                        ],
+                      ),
+                      Icon(
+                        Icons.notifications_outlined,
+                        color: Colors.white,
+                      ),
+                    ]),
                 SizedBox(
                   height: 12,
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 25),
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   decoration: BoxDecoration(
                       color: Color(0xffF7F7F7),
                       borderRadius: BorderRadius.circular(29.5)),
@@ -108,7 +106,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                       NewWidget(
                           title: 'Vehicle \nInspection',
                           imageLog: 'assets/images/7.png',
-                          route: Dashboard(currentIndex: 1)),
+                          route: ServicesOne()),
                       const NewWidget(
                           title: 'Vehicle \nServicing',
                           imageLog: 'assets/images/6.png',
@@ -133,12 +131,12 @@ class _DashboardHomeState extends State<DashboardHome> {
         elevation: 0,
         backgroundColor: Colors.green,
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const Quick(),
-          ));
+          // Navigator.of(context).push(MaterialPageRoute(
+          //   builder: (context) => const Quick(),
+          // ));
         },
         child: const Icon(
-          Icons.headset_mic_rounded,
+          Icons.cable_outlined,
           color: Colors.white,
         ),
       ),
@@ -183,13 +181,12 @@ class NewWidget extends StatelessWidget {
                     imageLog,
                     width: 100,
                   ),
-                  SizedBox(
-                    height: 30
-                  ),
+                  SizedBox(height: 30),
                   Text(
                     title,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w500),
                   ),
                   Spacer(),
                 ],
