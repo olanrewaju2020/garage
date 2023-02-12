@@ -3,7 +3,11 @@ import 'package:garage_repair/Screen/Components/details/quick.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/auth_provider.dart';
+import '../Components/New Screens/New Services screen/repair_vehicle_new.dart';
+import '../Components/New Screens/New Services screen/rescue_new.dart';
 import '../Components/New Screens/New Services screen/service_list.dart';
+import '../Components/New Screens/New Services screen/vehicle_inspection_new.dart';
+import '../Components/New Screens/New Services screen/vehicle_servicing_new.dart';
 import '../Components/repair/repairs.dart';
 import '../Components/servicing/servicing.dart';
 import '../Components/tow/tow.dart';
@@ -106,19 +110,19 @@ class _DashboardHomeState extends State<DashboardHome> {
                       NewWidget(
                           title: 'Vehicle \nInspection',
                           imageLog: 'assets/images/7.png',
-                          route: ServicesOne()),
+                          route: NewVehicleInspection()),
                       const NewWidget(
                           title: 'Vehicle \nServicing',
                           imageLog: 'assets/images/6.png',
-                          route: FirstVehicleServices()),
+                          route: VehicleServicingNew()),
                       const NewWidget(
                           title: 'Rescue \nService',
                           imageLog: 'assets/images/tow2.png',
-                          route: Towing()),
+                          route: RescusNew()),
                       const NewWidget(
                           title: 'Vehicle \nRepair',
                           imageLog: 'assets/images/spanner.png',
-                          route: FirstVehicleRepairStage()),
+                          route: RepairVehicleNew()),
                     ],
                   ),
                 ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/Settings/box_digit.dart';
 
 import '../Components/g_text_field.dart';
+import '../Components/g_text_field_two.dart';
 
 class SettingChangePassword extends StatefulWidget {
   const SettingChangePassword({Key? key}) : super(key: key);
@@ -16,9 +18,9 @@ class _SettingChangePasswordState extends State<SettingChangePassword> {
       backgroundColor: Color(0xffEBEBEB),
       appBar: AppBar(
         leading: Icon(
-          Icons.arrow_back_outlined,
-          color: Colors.black,
-          size: 28,
+          Icons.arrow_back_ios,
+          color: Color(0xff464646),
+          size: 20,
         ),
         backgroundColor: Color(0xffEBEBEB),
         elevation: 0,
@@ -41,20 +43,22 @@ class _SettingChangePasswordState extends State<SettingChangePassword> {
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'Your new password must be different from previous passwords',
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5,
-
-                    color: Color(0xff646464)),
+              Center(
+                child: Text(
+                  'Enter your account name and registered email to receive a verification code',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                      height: 1.5,
+                      color: Color(0xff646464)),
+                  textAlign: TextAlign.center,
+                ),
               ),
               SizedBox(
-                height: 20,
+                height: 40,
               ),
               Text(
-                'Password ',
+                'Email',
                 style: TextStyle(
                     color: Color(0xff646464),
                     fontStyle: FontStyle.normal,
@@ -70,8 +74,15 @@ class _SettingChangePasswordState extends State<SettingChangePassword> {
                     autofocus: false,
                     style: TextStyle(fontSize: 15.0, color: Colors.black),
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.email_outlined),
                       border: InputBorder.none,
-                      hintText: 'Address',
+                      hintText: 'Email address here',
+                      hintStyle: TextStyle(
+                        height: 1.8,
+                        color: Color(0xffAAAAAA),
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400
+                      ),
                       filled: true,
                       fillColor: Color.fromRGBO(255, 255, 255, 0.58),
                       contentPadding: const EdgeInsets.only(
@@ -89,60 +100,30 @@ class _SettingChangePasswordState extends State<SettingChangePassword> {
                 ],
               ),
               SizedBox(
-                height: 25,
-              ),
-              Text(
-                'Confirm Password',
-                style: TextStyle(
-                    color: Color(0xff646464),
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 15),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Stack(
-                children: [
-                  TextField(
-                    autofocus: false,
-                    style: TextStyle(fontSize: 15.0, color: Colors.black),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Address',
-                      filled: true,
-                      fillColor: Color.fromRGBO(255, 255, 255, 0.58),
-                      contentPadding: const EdgeInsets.only(
-                          left: 14.0, bottom: 6.0, top: 8.0),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xffDCDCDC)),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xffDCDCDC)),
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
+                height: 80,
               ),
               Container(
                 height: 50,
                 width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    'Reset Password ',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 13),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new Digit()));
+                  },
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      'Send',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13),
+                    ),
                   ),
                 ),
               ),

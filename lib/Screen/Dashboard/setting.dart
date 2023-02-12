@@ -6,6 +6,7 @@ import '../Settings/history.dart';
 import '../Settings/logout.dart';
 import '../Settings/settings_change_password.dart';
 import '../Settings/support.dart';
+import '../Settings/support1.dart';
 import '../Settings/user_profile.dart';
 
 class Settings extends StatefulWidget {
@@ -270,7 +271,7 @@ class _SettingsState extends State<Settings> {
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
-                        builder: (context) => new ChangePassword()));
+                        builder: (context) => new SupportOne()));
               },
               child: Container(
                 height: 50,

@@ -80,7 +80,7 @@ class _CreateAccountState extends State<CreateAccount> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                      const CreateAccount()));
+                                      const Login()));
                             },
                               child: Text.rich(TextSpan(
                                 text: "Already have an account ?",
