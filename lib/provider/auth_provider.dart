@@ -183,4 +183,11 @@ class AuthProvider extends ChangeNotifier with Validations {
       }
     });
   }
+
+  void updateUserAddress({required String city, required String homeAddress, required String workAddress}) {
+    print("============================");
+    print(city);
+    print(homeAddress);
+    print(workAddress);
+  }
 }

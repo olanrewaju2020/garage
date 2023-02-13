@@ -6,6 +6,7 @@ class GTextFieldTwo extends StatefulWidget {
   final String? hintText;
   final String? hintStyle;
   final Function(String name)? onChanged;
+  final Stream<String> stream;
   final bool isSecret;
   final bool isReadOnly;
   final IconData? suffixIconData;
@@ -18,6 +19,7 @@ class GTextFieldTwo extends StatefulWidget {
     this.hintStyle,
     this.isSecret = false,
     this.onChanged,
+    required this.stream,
     this.onTap,
     this.suffixIconData, this.isReadOnly = false,
   }) : super(key: key);
@@ -30,6 +32,7 @@ class _GTextFieldState extends State<GTextFieldTwo> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<String>(
+        stream: widget.stream,
         builder: (context, snapshot) {
           return TextField(
               autofocus: false,
@@ -54,7 +57,7 @@ class _GTextFieldState extends State<GTextFieldTwo> {
                 hintText: widget.hintText,
                 errorText: snapshot.hasError ? '${snapshot.error}' : null,
                 filled: true,
-                fillColor: Color.fromRGBO(255, 255, 255, 0.58),
+                fillColor: const Color.fromRGBO(255, 255, 255, 0.58),
                 contentPadding:
                 const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
 

@@ -148,7 +148,7 @@ SizedBox(
                               fontWeight: FontWeight.w600,
                               fontSize: 15
                           ),),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
 

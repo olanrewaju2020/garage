@@ -13,6 +13,9 @@ class AuthBloc with Validations{
   final _category = BehaviorSubject<String>();
   final _serviceType= BehaviorSubject<String>();
   final _aboutUs = BehaviorSubject<String>();
+  final _city = BehaviorSubject<String>();
+  final _homeAddress = BehaviorSubject<String>();
+  final _workAddress = BehaviorSubject<String>();
 
   final categoryCtrl = TextEditingController();
   final serviceTypeCtrl = TextEditingController();
@@ -27,6 +30,9 @@ class AuthBloc with Validations{
   Stream<String> get category => _category.stream;
   Stream<String> get serviceType => _serviceType.stream;
   Stream<String> get aboutUs => _aboutUs.stream;
+  Stream<String> get city => _city.stream;
+  Stream<String> get homeAddress => _homeAddress.stream;
+  Stream<String> get workAddress => _workAddress.stream;
 
   firstNameOnChange(String name) => _firstName.sink.add(name);
   lastNameOnChange(String name) => _lastName.sink.add(name);
@@ -37,6 +43,9 @@ class AuthBloc with Validations{
   aboutUsOnChange(String word) => _aboutUs.sink.add(word);
   categoryOnChange(String word) => _category.sink.add(word);
   serviceOnChange(String word) => _serviceType.sink.add(word);
+  cityOnChange(String word) => _city.sink.add(word);
+  homeAddressOnChange(String word) => _homeAddress.sink.add(word);
+  workAddressOnChange(String word) => _workAddress.sink.add(word);
 
   Stream<bool> get isForgotFormValid =>
       Rx.combineLatest([email], (values) => true);
@@ -50,9 +59,12 @@ class AuthBloc with Validations{
   Stream<bool> get isCreateAccountValid =>
       Rx.combineLatest([email, password, firstName, lastName, phone, category, serviceType], (values) => true);
 
-
   Stream<bool>get contactFormValid =>
     Rx.combineLatest([firstName, lastName, email, phone], (values) => true);
+
+  Stream<bool>get isProfileUpdateValid =>
+      Rx.combineLatest([city, homeAddress, workAddress], (values) => true);
+
   @mustCallSuper
   void dispose() {
     Helper.reset([_email, _firstName, _lastName, _email,

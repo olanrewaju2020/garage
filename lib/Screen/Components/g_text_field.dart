@@ -59,10 +59,9 @@ class _GTextFieldState extends State<GTextField> {
               hintText: widget.hintText,
               errorText: snapshot.hasError ? '${snapshot.error}' : null,
               filled: true,
-              fillColor: Color.fromRGBO(255, 255, 255, 0.58),
+              fillColor: const Color.fromRGBO(255, 255, 255, 0.58),
               contentPadding:
               const EdgeInsets.only(left: 14.0, bottom: 6.0, top: 8.0),
-
               focusedBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Color(0xffDCDCDC)),
                 borderRadius: BorderRadius.circular(6.0),

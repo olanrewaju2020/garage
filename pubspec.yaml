@@ -50,6 +50,7 @@ dependencies:
   pinput: ^2.2.21
   get_it: ^7.2.0
   jiffy: ^5.0.0
+  image_picker: ^0.8.6+1
 
 dev_dependencies:
   flutter_test:
