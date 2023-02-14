@@ -67,6 +67,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                     height: 8,
                   ),
                   GTextField(
+                    label: 'First Name',
                     hintText: 'First name',
                     stream: bloc.firstName,
                     onChanged: bloc.firstNameOnChange,
@@ -88,6 +89,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                     height: 8,
                   ),
                   GTextField(
+                    label: 'Last Name',
                     hintText: 'Last name',
                     stream: bloc.lastName,
                     onChanged: bloc.lastNameOnChange,
@@ -109,6 +111,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                     height: 8,
                   ),
                   GTextField(
+                    label: 'Email',
                     hintText: 'Email',
                     stream: bloc.email,
                     onChanged: bloc.emailOnChange,
@@ -130,6 +133,7 @@ class _ContactDetailsState extends State<ContactDetails> {
                     height: 8,
                   ),
                   GTextField(
+                    label: 'Phone Number',
                     hintText: 'Phone number',
                     stream: bloc.phone,
                     onChanged: bloc.phoneOnChange,

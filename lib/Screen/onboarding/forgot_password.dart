@@ -67,6 +67,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         SizedBox(
                           width: double.infinity,
                           child: GTextField(
+                            label: 'Enter Email',
                             hintText: 'Enter Email',
                             stream: bloc.email,
                             onChanged: bloc.emailOnChange,

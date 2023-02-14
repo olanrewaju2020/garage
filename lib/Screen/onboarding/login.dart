@@ -119,6 +119,8 @@ class _LoginState extends State<Login> {
                               children: [
 
                                 GTextField(
+                                  prefixIconData: Icons.email,
+                                  label: 'Email Address',
                                   stream: _authBloc.email,
                                   hintText: 'Email address',
                                   onChanged: _authBloc.emailOnChange,
@@ -144,6 +146,7 @@ class _LoginState extends State<Login> {
                               alignment: const Alignment(0, 0),
                               children: <Widget>[
                                 GTextField(
+                                  label: 'Password',
                                    prefixIconData: Icons.lock,
                                     isSecret: true,
                                     stream: _authBloc.password,

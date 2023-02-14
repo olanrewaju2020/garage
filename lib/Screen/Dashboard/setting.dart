@@ -19,12 +19,17 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_outlined,
-          color: Colors.black,
-          size: 32,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.black,
+            size: 32,
+          ),
         ),
         title: Text(
           'Settings ',
@@ -76,7 +81,7 @@ class _SettingsState extends State<Settings> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
-                        children: [
+                        children: const [
                           Icon(
                             Icons.account_circle,
                             size: 30,
@@ -102,12 +107,11 @@ class _SettingsState extends State<Settings> {
               ),
             ),
 
-            Padding(
+            const Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Divider(color: Color(0xff7E808A),),
             ),
-
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
 

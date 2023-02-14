@@ -59,6 +59,8 @@ class AuthBloc with Validations{
   Stream<bool> get isCreateAccountValid =>
       Rx.combineLatest([email, password, firstName, lastName, phone, category, serviceType], (values) => true);
 
+  Stream<bool> get isCreateAccountValid2 =>
+      Rx.combineLatest([email, password, firstName, lastName, phone], (values) => true);
   Stream<bool>get contactFormValid =>
     Rx.combineLatest([firstName, lastName, email, phone], (values) => true);
 

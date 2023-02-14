@@ -56,6 +56,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   height: 20,
                 ),
                 GTextField(
+                  label: 'Old Email',
                     hintText: 'Old Password',
                     stream: bloc.password,
                     isSecret: true,
@@ -64,6 +65,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   height: 20,
                 ),
                 GTextField(
+                  label: 'New Password',
                     hintText: 'New Password',
                     stream: bloc.newPassword,
                     isSecret: true,
@@ -72,6 +74,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                   height: 20,
                 ),
                 GTextField(
+                  label: 'Confirm Password',
                   hintText: 'Confirm Password',
                   stream: Stream.value(confirmPasswordCtrl.text),
                   controller: confirmPasswordCtrl,

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/g_button.dart';
 import 'package:garage_repair/Screen/g_loader.dart';
-import 'package:garage_repair/Screen/onboarding/login.dart';
 import 'package:provider/provider.dart';
 
 import '../../bloc/auth_bloc.dart';
 import '../../misc/enum.dart';
 import '../../provider/auth_provider.dart';
-import '../Components/g_drop_down.dart';
 import '../Components/g_text_field.dart';
 import '../../misc/utils.dart';
 import 'code_activation.dart';
@@ -30,8 +28,8 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _aboutUsCtrl = TextEditingController();
 
   List<String> serviceTypes = ["Repair", "Tolling", "Maintenance", "Others"];
-  List<String> categories = [  "Toyota", "Honda", "Nissan", "BMW"];
-  List<String> socials = [ "Facebook", "Twitter", "Instagram", "Other"];
+  List<String> categories = ["Toyota", "Honda", "Nissan", "BMW"];
+  List<String> socials = ["Facebook", "Twitter", "Instagram", "Other"];
 
   @override
   Widget build(BuildContext context) {
@@ -50,28 +48,26 @@ class _CreateAccountState extends State<CreateAccount> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-
-                          SizedBox(
+                          const SizedBox(
                             height: 60,
                           ),
-                          Image(
-                              image: AssetImage('assets/images/logo.png'),
-                              width: 150,
-                            ),
+                          const Image(
+                            image: AssetImage('assets/images/logo.png'),
+                            width: 150,
+                          ),
 
                           const SizedBox(
                             height: 25,
                           ),
-
-
-                            Text('Sign up', style: TextStyle(
+                          const Text(
+                            'Sign up',
+                            style: TextStyle(
                                 color: Color(0xff757676),
                                 fontStyle: FontStyle.normal,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 25
-                            ),),
-
-                          SizedBox(
+                                fontSize: 25),
+                          ),
+                          const SizedBox(
                             height: 4,
                           ),
                           GestureDetector(
@@ -80,79 +76,78 @@ class _CreateAccountState extends State<CreateAccount> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                      const CreateAccount()));
+                                          const CreateAccount()));
                             },
-                              child: Text.rich(TextSpan(
-                                text: "Already have an account ?",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff6A6F73)),
-                                children: [
-                                  TextSpan(
-                                    text: " Log in",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.green),
-                                  ),
-                                ],
-                              )),
-
+                            child: const Text.rich(TextSpan(
+                              text: "Already have an account ?",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff6A6F73)),
+                              children: [
+                                TextSpan(
+                                  text: " Log in",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.green),
+                                ),
+                              ],
+                            )),
                           ),
 
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
-
-                          Text('Name', style: TextStyle(
-                              color: Color(0xff646464),
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15
-                          ),),
-                          SizedBox(
-                            height: 5,
-                          ),
                           GTextField(
+                            label: 'First Name',
+                              prefixIconData: Icons.person,
                               stream: _authBloc.firstName,
                               controller: _firstNameCtrl,
                               onChanged: _authBloc.firstNameOnChange,
-                              hintText: 'First name'),
+                              hintText: 'First Name'),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          GTextField(
+                            label: 'Last Name',
+                              prefixIconData: Icons.person,
+                              stream: _authBloc.lastName,
+                              controller: _lastNameCtrl,
+                              onChanged: _authBloc.lastNameOnChange,
+                              hintText: 'Last Name'),
 
-SizedBox(
-  height: 20,
-),
-                          Text('Email', style: TextStyle(
-                              color: Color(0xff646464),
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15
-                          ),),
-                          SizedBox(
+                         const SizedBox(
+                            height: 20,
+                          ),
+                          const SizedBox(
                             height: 5,
                           ),
                           GTextField(
+                            label: 'Email Address',
+                              prefixIconData: Icons.email,
                               stream: _authBloc.email,
                               onChanged: _authBloc.emailOnChange,
                               controller: _emailCtrl,
                               hintText: 'Email address'),
 
-
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          const Text('Password', style: TextStyle(
-                              color: Color(0xff646464),
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15
-                          ),),
-                          const SizedBox(
-                            height: 5,
-                          ),
-
                           GTextField(
+                            label: 'Phone Number',
+                              prefixIconData: Icons.phone,
+                              stream: _authBloc.phone,
+                              onChanged: _authBloc.phoneOnChange,
+                              controller: _phoneCtrl,
+                              hintText: 'Phone Number'),
+
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          GTextField(
+                            label: 'Password',
+                              prefixIconData: Icons.lock,
                               isSecret: true,
                               stream: _authBloc.password,
                               onChanged: _authBloc.passwordOnChange,
@@ -160,154 +155,43 @@ SizedBox(
                               suffixIconData: Icons.visibility,
                               hintText: 'Password'),
 
-
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
-                          Text('Confirm Password', style: TextStyle(
-                              color: Color(0xff646464),
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 15
-                          ),),
-                          SizedBox(
-                            height: 5,
-                          ),
-
                           GTextField(
+                            label: 'Confirm Password',
+                              prefixIconData: Icons.lock,
                               isSecret: true,
                               stream: _authBloc.password,
                               controller: _confirmPasswordCtrl,
                               hintText: 'Confirm Password'),
-
-
-
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     Expanded(
-                          //       child: GTextField(
-                          //           stream: _authBloc.firstName,
-                          //           controller: _firstNameCtrl,
-                          //           onChanged: _authBloc.firstNameOnChange,
-                          //           hintText: 'First name'),
-                          //     ),
-                          //     const SizedBox(width: 20),
-                          //     Expanded(
-                          //       child: GTextField(
-                          //           stream: _authBloc.lastName,
-                          //           onChanged: _authBloc.lastNameOnChange,
-                          //           controller: _lastNameCtrl,
-                          //           hintText: 'Last name'),
-                          //     ),
-                          //   ],
-                          // ),
-                          // const SizedBox(
-                          //   height: 25,
-                          // ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     Expanded(
-                          //       child: GTextField(
-                          //           stream: _authBloc.email,
-                          //           onChanged: _authBloc.emailOnChange,
-                          //           controller: _emailCtrl,
-                          //           hintText: 'Email address'),
-                          //     ),
-                          //     const SizedBox(width: 20),
-                          //     Expanded(
-                          //       child: GTextField(
-                          //           stream: _authBloc.phone,
-                          //           controller: _phoneCtrl,
-                          //           hintText: 'Phone number',
-                          //           onChanged: _authBloc.phoneOnChange),
-                          //     ),
-                          //   ],
-                          // ),
-                          // const SizedBox(
-                          //   height: 25,
-                          // ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     Expanded(
-                          //       child: GTextField(
-                          //           isSecret: true,
-                          //           stream: _authBloc.password,
-                          //           onChanged: _authBloc.passwordOnChange,
-                          //           controller: _passwordCtrl,
-                          //           hintText: 'Password'),
-                          //     ),
-                          //     const SizedBox(width: 20),
-                          //     Expanded(
-                          //         child: GTextField(
-                          //             isSecret: true,
-                          //             stream: _authBloc.password,
-                          //             controller: _confirmPasswordCtrl,
-                          //             hintText: 'Confirm Password')),
-                          //   ],
-                          // ),
-                          // const SizedBox(
-                          //   height: 25,
-                          // ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          //   children: [
-                          //     Expanded(
-                          //       child: GDropDown(
-                          //         stream: _authBloc.category,
-                          //         hint: 'Select Category',
-                          //         controller: _authBloc.categoryCtrl,
-                          //         options: categories,
-                          //         onChange: _authBloc.categoryOnChange
-                          //       ),
-                          //     ),
-                          //     const SizedBox(width: 20),
-                          //     Expanded(
-                          //         child: GDropDown(
-                          //       stream: _authBloc.serviceType,
-                          //       hint: 'Select Service Type',
-                          //       options: serviceTypes,
-                          //       controller: _authBloc.serviceTypeCtrl,
-                          //       onChange: _authBloc.serviceOnChange
-                          //     )),
-                          //   ],
-                          // ),
-                          // const SizedBox(
-                          //   height: 25,
-                          // ),
-                          // GDropDown(
-                          //     stream: _authBloc.aboutUs,
-                          //     hint: 'How do you hear about us?',
-                          //     options: socials,
-                          //     controller: _aboutUsCtrl,
-                          //     onChange: _authBloc.aboutUsOnChange
-                          // ),
                           const SizedBox(
                             height: 32,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 2.0),
                             child: SizedBox(
                               height: 60,
                               width: double.infinity,
                               child: GButton(
-                                isValid: _authBloc.isCreateAccountValid,
+                                isValid: _authBloc.isCreateAccountValid2,
                                 onPressed: () {
                                   if (_passwordCtrl.text ==
                                       _confirmPasswordCtrl.text) {
                                     provider
                                         .register(
-                                            firstName: _firstNameCtrl.text,
-                                            lastName: _lastNameCtrl.text,
-                                            email: _emailCtrl.text,
-                                            phone: _phoneCtrl.text,
-                                            password: _passwordCtrl.text,
-                                            aboutUs: _aboutUsCtrl.text,
-                                            category: _authBloc.categoryCtrl.text,
-                                            serviceType: _authBloc.serviceTypeCtrl.text,
-                                    ).then((isSuccessful) {
+                                      firstName: _firstNameCtrl.text,
+                                      lastName: _lastNameCtrl.text,
+                                      email: _emailCtrl.text,
+                                      phone: _phoneCtrl.text,
+                                      password: _passwordCtrl.text,
+                                      aboutUs: _aboutUsCtrl.text,
+                                      category: _authBloc.categoryCtrl.text,
+                                      serviceType:
+                                          _authBloc.serviceTypeCtrl.text,
+                                    )
+                                        .then((isSuccessful) {
                                       if (isSuccessful) {
                                         _emailCtrl.clear();
                                         _phoneCtrl.clear();
@@ -343,4 +227,3 @@ SizedBox(
     );
   }
 }
-

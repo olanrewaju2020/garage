@@ -11,14 +11,19 @@ class _HistorysState extends State<Historys> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_outlined,
-          color: Colors.black,
-          size: 32,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Icon(
+            Icons.arrow_back_outlined,
+            color: Colors.black,
+            size: 32,
+          ),
         ),
-        title: Text(
+        title: const Text(
           'History',
           style: TextStyle(
               color: Color(0xff21B24B),
@@ -35,7 +40,7 @@ class _HistorysState extends State<Historys> {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             GestureDetector(

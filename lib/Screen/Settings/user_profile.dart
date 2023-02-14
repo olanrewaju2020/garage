@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/g_loader.dart';
 import 'package:garage_repair/bloc/auth_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -53,17 +54,17 @@ class _ProfileState extends State<Profile> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          provider.isLoading ? const GLoader() :
                           GestureDetector(
-                            onTap: () {
-
-                            },
+                            onTap: () => provider.pickProfileImage(),
                             child: Column(
-                              children: [
+                              children:  [
                                 const SizedBox(
                                   height: 15,
                                 ),
                                 const Center(
-                                  child: Text( 'Tap Image to update Photo',
+                                  child: Text(
+                                    'Tap Image to update Photo',
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w400,
@@ -72,9 +73,9 @@ class _ProfileState extends State<Profile> {
                                 ),
                                 const SizedBox(height: 5),
                                 Center(
-                                  child: Image.asset(
+                                  child: provider.pickedFile == null ? Image.asset(
                                     'assets/images/avata.png',
-                                  ),
+                                  ) : Image.file(provider.pickedFile!, width:100, height: 100,)
                                 ),
                               ],
                             ),

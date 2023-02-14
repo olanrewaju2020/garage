@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Models/service.dart';
 
 class PreviousDetails extends StatefulWidget {
-  const PreviousDetails({Key? key}) : super(key: key);
+  final GService service;
+  const PreviousDetails({Key? key, required this.service}) : super(key: key);
 
   @override
   State<PreviousDetails> createState() => _PreviousDetailsState();
@@ -11,11 +13,11 @@ class _PreviousDetailsState extends State<PreviousDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.of(context).pop(),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.green,
             size: 15,
@@ -53,8 +55,8 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
+                        children: [
+                         const  Text(
                             'Name of inspector',
                             style: TextStyle(
                               fontSize: 14,
@@ -62,21 +64,21 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                             ),
                           ),
                           Text(
-                            'Ajede Olanrewaju',
-                            style: TextStyle(
+                            widget.service.serviceProvider?.fullName ?? '',
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.black87,
                             ),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Vehicle no',
                             style: TextStyle(
                               fontSize: 14,
@@ -84,21 +86,21 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                             ),
                           ),
                           Text(
-                            'A1HJ77',
-                            style: TextStyle(
+                            widget.service.vehicle?.vehicleNumber ?? '',
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.black87,
                             ),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Amount paid',
                             style: TextStyle(
                               fontSize: 14,
@@ -106,21 +108,21 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                             ),
                           ),
                           Text(
-                            'N20,000.00',
-                            style: TextStyle(
+                            '${widget.service.cost?? ""} ',
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.black87,
                             ),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Status',
                             style: TextStyle(
                               fontSize: 14,
@@ -128,20 +130,20 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                             ),
                           ),
                           Text(
-                            'Pending',
-                            style: TextStyle(
+                            widget.service.status ?? '',
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.red,
                             ),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                        children: const [
                           Text(
                             '',
                             style: TextStyle(
@@ -158,13 +160,13 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Inspection date',
                             style: TextStyle(
                               fontSize: 14,
@@ -172,21 +174,21 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                             ),
                           ),
                           Text(
-                            '20-05-2000',
-                            style: TextStyle(
+                            widget.service.datePosted ?? '',
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.black87,
                             ),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Location',
                             style: TextStyle(
                               fontSize: 14,
@@ -194,34 +196,34 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                             ),
                           ),
                           Text(
-                            '10,Somorin,Abeokuta,Ogun-State',
-                            style: TextStyle(
+                            widget.service.serviceOwner?.address ?? '',
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.black87,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             'Description',
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.black,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
                           Text(
-                            'Description on the previous inspection goes as follows',
-                            style: TextStyle(
+                            widget.service.description ?? '',
+                            style: const TextStyle(
                               fontSize: 12,
                               color: Colors.black87,
                             ),
@@ -230,6 +232,22 @@ class _PreviousDetailsState extends State<PreviousDetails> {
                       ),
                     ],
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 24.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('View Item'),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(builder: (context) => )
+                        // );
+                      },
+                      child: const Text('Service logs'))
+                  ]
                 ),
               )
             ],

@@ -27,9 +27,9 @@ class User {
       "email": email,
       "password": password,
       "phone": phone,
-      "aboutUs": aboutUs,
-      "category": category,
-      "serviceList": serviceType,
+      // "aboutUs": aboutUs,
+      // "category": category,
+      // "serviceList": serviceType,
     };
   }
 
