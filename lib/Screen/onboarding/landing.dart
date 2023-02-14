@@ -2,8 +2,19 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import '../Components/New Screens/New Services screen/book_machanic.dart';
+import '../Components/New Screens/New Services screen/list_of_mechanic.dart';
+import '../Components/New Screens/New Services screen/nearby_mechanic.dart';
+import '../Components/New Screens/New Services screen/search_new.dart';
+import '../Components/New Screens/Vehicles/new_vehicles.dart';
+import '../Components/New Screens/maintenance_history_new.dart';
+import '../Components/New Screens/maintenance_history_new_two.dart';
+import '../Components/New Screens/services_new.dart';
 import '../Dashboard/dashboard.dart';
 import '../Dashboard/dashboard_home.dart';
+import '../Dashboard/setting.dart';
+import '../Settings/box_digit.dart';
+import '../Settings/change_password_final.dart';
 import 'onboarding_steps.dart';
 
 class LandingPage extends StatefulWidget {
@@ -33,7 +44,7 @@ class _LandingPageState extends State<LandingPage>
     Timer(
         const Duration(seconds: 5),
         () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const OnboardingSteps())));
+            MaterialPageRoute(builder: (context) =>  OnboardingSteps())));
   }
 
   @override

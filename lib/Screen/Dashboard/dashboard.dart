@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/Components/New%20Screens/Vehicles/new_vehicles.dart';
 import 'package:garage_repair/Screen/Dashboard/maintenance.dart';
 import 'package:garage_repair/Screen/Dashboard/vehicle.dart';
 import 'package:garage_repair/Screen/Dashboard/setting.dart';
+import '../Components/New Screens/New Services screen/service_list.dart';
+import '../Components/New Screens/Vehicles/new_register_vehicle_screen.dart';
 import './dashboard_home.dart';
 
 class Dashboard extends StatefulWidget {
@@ -15,8 +18,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   List pages = [
     const DashboardHome(),
-    const Maintenance(),
-    const Profile(),
+    const ServicesOne(),
+    const NewVehicleScreen(),
     const Settings(),
   ];
 
@@ -53,15 +56,15 @@ class _DashboardState extends State<Dashboard> {
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         showSelectedLabels: true,
-        iconSize: 18,
+        iconSize: 25,
         elevation: 0,
         items: const [
           BottomNavigationBarItem(
-              label: "Home", icon: Icon(Icons.home_outlined)),
+              label: "Home", icon: Icon(Icons.festival)),
           BottomNavigationBarItem(
-              label: "Services", icon: Icon(Icons.car_repair)),
+              label: "Services", icon: Icon(Icons.medical_services_outlined)),
           BottomNavigationBarItem(
-              label: "Vehicle", icon: Icon(Icons.car_crash_outlined)),
+              label: "Vehicle", icon: Icon(Icons.car_rental_outlined)),
           BottomNavigationBarItem(
               label: "Settings", icon: Icon(Icons.settings)),
         ],
