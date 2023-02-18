@@ -15,14 +15,14 @@ class _NewVehicleScreenState extends State<NewVehicleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
+        leading: const Icon(
           Icons.arrow_back_ios_new_rounded,
           color: Colors.black,
           size: 20,
         ),
-        title: Text(
+        title: const Text(
           'Vehicle',
           style: TextStyle(
               color: Color(0xff21B24B),
@@ -31,7 +31,7 @@ class _NewVehicleScreenState extends State<NewVehicleScreen> {
               fontStyle: FontStyle.normal),
         ),
         elevation: 0,
-        backgroundColor: Color(0xffEBEBEB),
+        backgroundColor: const Color(0xffEBEBEB),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -42,10 +42,10 @@ class _NewVehicleScreenState extends State<NewVehicleScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image(
+                  const Image(
                     image: AssetImage('assets/images/arroww.png'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 13,
                   ),
                   Padding(
@@ -54,11 +54,11 @@ class _NewVehicleScreenState extends State<NewVehicleScreen> {
                       onTap: () {
                         Navigator.push(
                             context,
-                            new MaterialPageRoute(
+                            MaterialPageRoute(
                                 builder: (context) =>
-                                    new NewRegisterVehicleScreen()));
+                                    const NewRegisterVehicleScreen()));
                       },
-                      child: Text(
+                      child: const Text(
                         'Register Vehicle',
                         style: TextStyle(
                             color: Color(0xff646464),
@@ -69,29 +69,29 @@ class _NewVehicleScreenState extends State<NewVehicleScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image(
+                  const Image(
                     image: AssetImage('assets/images/arroww.png'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 13,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 3.0),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
+                    Navigator.push(
                             context,
-                            new MaterialPageRoute(
+                            MaterialPageRoute(
                                 builder: (context) =>
-                                new ListOfRegisteredVehicle()));
+                                const ListOfRegisteredVehicle()));
                       },
-                      child: Text(
+                      child: const Text(
                         'Registered Vehicles ',
                         style: TextStyle(
                             color: Color(0xff646464),
@@ -102,16 +102,16 @@ class _NewVehicleScreenState extends State<NewVehicleScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image(
+                  const Image(
                     image: AssetImage('assets/images/arroww.png'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 13,
                   ),
                   Padding(
@@ -120,11 +120,11 @@ class _NewVehicleScreenState extends State<NewVehicleScreen> {
                       onTap: () {
                         Navigator.push(
                             context,
-                            new MaterialPageRoute(
+                            MaterialPageRoute(
                                 builder: (context) =>
-                                new AddNewVehicleScreen()));
+                                const AddNewVehicleScreen()));
                       },
-                      child: Text(
+                      child: const Text(
                         'Add to Vehicle(s)',
                         style: TextStyle(
                             color: Color(0xff646464),

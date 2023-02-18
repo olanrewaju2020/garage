@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/bloc/vehicle_bloc.dart';
+import 'package:provider/provider.dart';
 
-import '../../g_button.dart';
+import '../../../../provider/vehicle_provider.dart';
+import '../../autocomplete_vehicle_field.dart';
 import '../../g_text_field_two.dart';
 
 class NewRegisterVehicleScreen extends StatefulWidget {
@@ -12,17 +15,24 @@ class NewRegisterVehicleScreen extends StatefulWidget {
 }
 
 class _NewRegisterVehicleScreenState extends State<NewRegisterVehicleScreen> {
+  final bloc = VehicleBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.black,
-          size: 20,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+            size: 20,
+          ),
         ),
-        title: Text(
+        title: const Text(
           'Register Vehicle',
           style: TextStyle(
               color: Color(0xff21B24B),
@@ -31,87 +41,95 @@ class _NewRegisterVehicleScreenState extends State<NewRegisterVehicleScreen> {
               fontStyle: FontStyle.normal),
         ),
         elevation: 0,
-        backgroundColor: Color(0xffEBEBEB),
+        backgroundColor: const Color(0xffEBEBEB),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-               Text(
-                  'Enter your Vehicle identification Number to register your vehicles ',
-                  style: TextStyle(
-                      fontSize: 14,
-                      height: 1.5,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xff282828)),
-                ),
-
-              SizedBox(
-                height: 50,
-              ),
-              Text(
-                'Vehicle Type',
-                style: TextStyle(
-                    color: Color(0xff646464),
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Stack(
-                alignment: const Alignment(0, 0),
-                children: <Widget>[
-                  GTextFieldTwo(
-                    hintText: '- - - - - - - - - - - - - - - - - - -',
+      body: Consumer<VehicleProvider>(
+        builder: (context, provider, child) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 18.0, vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Enter your Vehicle identification Number to register your vehicles ',
+                    style: TextStyle(
+                        fontSize: 14,
+                        height: 1.5,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff282828)),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Vehicle Identification Number',
-                style: TextStyle(
-                    color: Color(0xff646464),
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17),
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Stack(
-                alignment: const Alignment(0, 0),
-                children: <Widget>[
-                  GTextFieldTwo(
-                    hintText: '- - - - - - - - - - - - - - - - - - -',
+                  const SizedBox(
+                    height: 50,
                   ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 60.0),
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
+                  const Text(
+                    'Vehicle Type',
+                    style: TextStyle(
+                        color: Color(0xff646464),
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Stack(
+                    alignment: const Alignment(0, 0),
+                    children: <Widget>[
+                      GTextFieldTwo(
+                        stream: bloc.vehicleType,
+                        hintText: '- - - - - - - - - - - - - - - - - - -',
                       ),
-                      onPressed: () {},
-                      child: Text(
-                        'Complete  Registration',
-                        style:
-                            TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                      )),
-                ),
-              )
-            ],
-          ),
-        ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    'Vehicle Identification Number',
+                    style: TextStyle(
+                        color: Color(0xff646464),
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 17),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  const AutoCompleteVehicleField(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 60.0),
+                    child: Container(
+                      height: 50,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
+                          ),
+                          onPressed: () {
+                            provider.vehicleStore(
+                                vehicleNumber: provider.vehicle?.vehicleNumber ?? '',
+                                company: provider.vehicle?.company ?? '',
+                                color: provider.vehicle?.color ?? '',
+                                model: provider.vehicle?.color ?? '',
+                                image: provider.vehicle?.image ?? '',
+                                ownerId: provider.vehicle?.userUuid ?? '',
+                                context: context);
+                          },
+                          child: const Text(
+                            'Complete  Registration',
+                            style:
+                            TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w600),
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

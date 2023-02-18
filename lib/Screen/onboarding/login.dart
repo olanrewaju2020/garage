@@ -128,17 +128,8 @@ class _LoginState extends State<Login> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text('Password', style: TextStyle(
-                                color: Color(0xff646464),
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15
-                            ),),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),

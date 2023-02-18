@@ -1,3 +1,5 @@
+import 'package:jiffy/jiffy.dart';
+
 import 'user.dart';
 
 class Vehicle {
@@ -5,7 +7,7 @@ class Vehicle {
   String? company;
   String? regNumber;
   String? color;
-  String? image, model, uuid, userUuid, status;
+  String? image, model, uuid, userUuid, status, createdAt;
   User? owner;
 
   Vehicle(
@@ -18,7 +20,7 @@ class Vehicle {
       this.uuid,
       this.userUuid,
       this.owner,
-      this.status});
+      this.status, this.createdAt});
 
   toSaveVehicle() => {
         "uuid": uuid,
@@ -41,6 +43,7 @@ class Vehicle {
         color: vehicle['color'],
         model: vehicle['model'],
         image: vehicle['image'],
+        createdAt: Jiffy(vehicle['createdAt']).yMMMEd,
         owner: User.fromOwnerJson(vehicle["owner"]));
   }
 
