@@ -17,10 +17,13 @@ class _NewVehicleScreenState extends State<NewVehicleScreen> {
     return Scaffold(
       backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: const Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.black,
-          size: 20,
+        leading: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+            size: 20,
+          ),
         ),
         title: const Text(
           'Vehicle',

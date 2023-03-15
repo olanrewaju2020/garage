@@ -8,7 +8,7 @@ import '../../misc/enum.dart';
 import '../../provider/auth_provider.dart';
 import '../Components/g_text_field.dart';
 import '../../misc/utils.dart';
-import 'code_activation.dart';
+import 'login.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
@@ -38,8 +38,7 @@ class _CreateAccountState extends State<CreateAccount> {
       body: Consumer<AuthProvider>(
         builder: (context, provider, child) {
           return provider.isLoading
-              ? const GLoader()
-              : SingleChildScrollView(
+              ? const GLoader() : SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Padding(
@@ -100,7 +99,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             height: 40,
                           ),
                           GTextField(
-                            label: 'First Name',
+                              label: 'First Name',
                               prefixIconData: Icons.person,
                               stream: _authBloc.firstName,
                               controller: _firstNameCtrl,
@@ -110,21 +109,21 @@ class _CreateAccountState extends State<CreateAccount> {
                             height: 20,
                           ),
                           GTextField(
-                            label: 'Last Name',
+                              label: 'Last Name',
                               prefixIconData: Icons.person,
                               stream: _authBloc.lastName,
                               controller: _lastNameCtrl,
                               onChanged: _authBloc.lastNameOnChange,
                               hintText: 'Last Name'),
 
-                         const SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           const SizedBox(
                             height: 5,
                           ),
                           GTextField(
-                            label: 'Email Address',
+                              label: 'Email Address',
                               prefixIconData: Icons.email,
                               stream: _authBloc.email,
                               onChanged: _authBloc.emailOnChange,
@@ -135,7 +134,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             height: 20,
                           ),
                           GTextField(
-                            label: 'Phone Number',
+                              label: 'Phone Number',
                               prefixIconData: Icons.phone,
                               stream: _authBloc.phone,
                               onChanged: _authBloc.phoneOnChange,
@@ -146,7 +145,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             height: 20,
                           ),
                           GTextField(
-                            label: 'Password',
+                              label: 'Password',
                               prefixIconData: Icons.lock,
                               isSecret: true,
                               stream: _authBloc.password,
@@ -159,7 +158,7 @@ class _CreateAccountState extends State<CreateAccount> {
                             height: 20,
                           ),
                           GTextField(
-                            label: 'Confirm Password',
+                              label: 'Confirm Password',
                               prefixIconData: Icons.lock,
                               isSecret: true,
                               stream: _authBloc.password,
@@ -203,7 +202,11 @@ class _CreateAccountState extends State<CreateAccount> {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    CodeActivation()));
+                                                    const Login()));
+                                        // Navigator.of(context).push(
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) =>
+                                        //             CodeActivation()));
                                       }
                                     });
                                   } else {

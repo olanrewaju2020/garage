@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/search_new.dart';
 
 class NewVehicleInspection extends StatefulWidget {
   const NewVehicleInspection({Key? key}) : super(key: key);
@@ -11,14 +12,17 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.black,
-          size: 20,
+        leading: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+            size: 20,
+          ),
         ),
-        title: Text(
+        title: const Text(
           'Vehicle Inspection',
           style: TextStyle(
               color: Color(0xff21B24B),
@@ -27,7 +31,7 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
               fontStyle: FontStyle.normal),
         ),
         elevation: 0,
-        backgroundColor: Color(0xffEBEBEB),
+        backgroundColor: const Color(0xffEBEBEB),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -35,54 +39,30 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
-              Center(
+              const Center(
                 child: Image(
                   image: AssetImage('assets/images/box4.png'),
                   width: 150,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image(
-                    image: AssetImage('assets/images/cal.png'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
-                    child: Text('Book an appointment', style: TextStyle(
-                      color: Color(0xff646464),
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18
-                    ),),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
-                    child: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Color(0xff7E808A),
-                      size: 16,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
+              const BookAppointment(),
+              const SizedBox(
                 height: 25,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Image(
                     image: AssetImage('assets/images/message.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
+                    padding: EdgeInsets.only(top: 15.0, left: 15),
                     child: Text('Chat with Mechanic', style: TextStyle(
                         color: Color(0xff646464),
                         fontWeight: FontWeight.w600,
@@ -91,7 +71,7 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
                   ),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
+                    padding: EdgeInsets.only(top: 18.0),
                     child: Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: Color(0xff7E808A),
@@ -100,17 +80,17 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Image(
                     image: AssetImage('assets/images/calls.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
+                    padding: EdgeInsets.only(top: 15.0, left: 15),
                     child: Text('Call Mechanic ', style: TextStyle(
                         color: Color(0xff646464),
                         fontWeight: FontWeight.w600,
@@ -119,7 +99,7 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
                   ),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
+                    padding: EdgeInsets.only(top: 18.0),
                     child: Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: Color(0xff7E808A),
@@ -131,6 +111,44 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class BookAppointment extends StatelessWidget {
+  const BookAppointment({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchMechanic())),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Image(
+            image: AssetImage('assets/images/cal.png'),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 15.0, left: 15),
+            child: Text('Book an appointment', style: TextStyle(
+              color: Color(0xff646464),
+              fontWeight: FontWeight.w600,
+              fontSize: 18
+            ),),
+          ),
+          Spacer(),
+          Padding(
+            padding: EdgeInsets.only(top: 18.0),
+            child: Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: Color(0xff7E808A),
+              size: 16,
+            ),
+          ),
+        ],
       ),
     );
   }

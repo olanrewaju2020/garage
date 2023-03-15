@@ -14,6 +14,7 @@ import '../service_locator.dart';
 
 class VehicleProvider extends ChangeNotifier with Validations {
   bool isLoading = false;
+  final List<String> _searchLocations = [];
   Vehicle? _vehicle;
   List<Vehicle> get vehicles => app.vehicles;
 
@@ -251,7 +252,10 @@ class VehicleProvider extends ChangeNotifier with Validations {
     });
   }
 
-
-
+  set recentSearchLocation(String text) {
+    _searchLocations.add(text);
+    notifyListeners();
+  }
+  List<String> get recentSearchedLocations => _searchLocations;
 
 }

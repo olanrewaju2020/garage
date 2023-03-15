@@ -71,7 +71,7 @@ class _AddNewVehicleScreenState extends State<AddNewVehicleScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Text(
@@ -88,7 +88,7 @@ class _AddNewVehicleScreenState extends State<AddNewVehicleScreen> {
                   const AutoCompleteVehicleField(),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 60.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       width: double.infinity,
                       child: ElevatedButton(

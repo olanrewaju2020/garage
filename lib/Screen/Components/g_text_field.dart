@@ -33,6 +33,12 @@ class GTextField extends StatefulWidget {
 
 class _GTextFieldState extends State<GTextField> {
   bool isVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isVisible = widget.isSecret;
+  }
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<String>(

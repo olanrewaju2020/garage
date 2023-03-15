@@ -17,7 +17,6 @@ class RestService {
     "Content-Type": "application/json",
   };
 
-
   Future<ApiResponse> httpMethod(
       {required String method, required String url, Map? body}) async {
     final client = http.Client();

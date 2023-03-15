@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class RepairVehicleNew extends StatefulWidget {
-  const RepairVehicleNew({Key? key}) : super(key: key);
+  final bool canBookMechanic;
+  const RepairVehicleNew({Key? key,  this.canBookMechanic = false}) : super(key: key);
 
   @override
   State<RepairVehicleNew> createState() => _RepairVehicleNewState();
@@ -11,14 +12,17 @@ class _RepairVehicleNewState extends State<RepairVehicleNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.black,
-          size: 20,
+        leading: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+            size: 20,
+          ),
         ),
-        title: Text(
+        title: const Text(
           'Repair Vehicle',
           style: TextStyle(
               color: Color(0xff21B24B),
@@ -27,34 +31,34 @@ class _RepairVehicleNewState extends State<RepairVehicleNew> {
               fontStyle: FontStyle.normal),
         ),
         elevation: 0,
-        backgroundColor: Color(0xffEBEBEB),
+        backgroundColor: const Color(0xffEBEBEB),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
-          child: Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+               const SizedBox(
                 height: 25,
               ),
-              Center(
+               const Center(
                 child: Image(
                   image: AssetImage('assets/images/box1.png'),
                   width: 150,
                 ),
               ),
-              SizedBox(
+               const SizedBox(
                 height: 30,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Image(
                     image: AssetImage('assets/images/cal.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
+                    padding: EdgeInsets.only(top: 15.0, left: 15),
                     child: Text(
                       'Book a nearby mechanic',
                       style: TextStyle(
@@ -74,17 +78,17 @@ class _RepairVehicleNewState extends State<RepairVehicleNew> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Image(
                     image: AssetImage('assets/images/message.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
+                    padding: EdgeInsets.only(top: 15.0, left: 15),
                     child: Text(
                       'Chat with Mechanic',
                       style: TextStyle(
@@ -109,42 +113,12 @@ class _RepairVehicleNewState extends State<RepairVehicleNew> {
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image(
-                    image: AssetImage('assets/images/message.png'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
-                    child: Text(
-                      'Chat with Mechanic',
-                      style: TextStyle(
-                          color: Color(0xff646464),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
-                    child: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Color(0xff7E808A),
-                      size: 16,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Image(
                     image: AssetImage('assets/images/calls.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
+                    padding: EdgeInsets.only(top: 15.0, left: 15),
                     child: Text(
                       'Call Mechanic ',
                       style: TextStyle(
@@ -155,7 +129,7 @@ class _RepairVehicleNewState extends State<RepairVehicleNew> {
                   ),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
+                    padding: EdgeInsets.only(top: 18.0),
                     child: Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: Color(0xff7E808A),
