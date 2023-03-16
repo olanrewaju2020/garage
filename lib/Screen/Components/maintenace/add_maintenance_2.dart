@@ -69,6 +69,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                       height: 20,
                     ),
                     GTextField(
+                      label: 'Select Engineer',
                       hintText: "Select Engineer",
                       stream: bloc.mechanicsName,
                       controller: searchTermCtrl,
@@ -86,6 +87,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                       height: 20,
                     ),
                     GTextField(
+                      label: 'Address',
                       stream: Stream.value(app.vendor?.address ?? ''),
                       isReadOnly: true,
                       hintText: app.vendor?.address ?? 'Address',
@@ -94,6 +96,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                       height: 20,
                     ),
                     GTextField(
+                      label: 'Phone Number',
                       stream: Stream.value(app.vendor?.phone ?? ''),
                       isReadOnly: true,
                       hintText: app.vendor?.phone ?? 'Phone number',
@@ -102,6 +105,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                       height: 20,
                     ),
                     GTextField(
+                      label: 'Maintenance Category',
                         hintText: 'Maintenance Category',
                         stream: bloc.serviceType,
                         isReadOnly: true,
@@ -118,6 +122,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                       height: 20,
                     ),
                     GTextField(
+                      label: 'Select Vehicle',
                         hintText: 'Select Vehicle',
                         stream: bloc.regNumber,
                         isReadOnly: true,
@@ -133,6 +138,7 @@ class _AddMaintenance2State extends State<AddMaintenance2> {
                       height: 20,
                     ),
                     GTextField(
+                      label: 'Service Description',
                         hintText: 'Service Description',
                         stream: bloc.serviceDescription,
                         controller: bloc.complainCtrl,

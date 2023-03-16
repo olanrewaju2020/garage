@@ -6,6 +6,8 @@ class User {
       category, serviceType;
   bool accountStatus;
 
+  get fullName => '$firstName $lastName';
+
   User(
       {this.firstName,
       this.lastName,
@@ -25,9 +27,9 @@ class User {
       "email": email,
       "password": password,
       "phone": phone,
-      "aboutUs": aboutUs,
-      "category": category,
-      "serviceList": serviceType,
+      // "aboutUs": aboutUs,
+      // "category": category,
+      // "serviceList": serviceType,
     };
   }
 

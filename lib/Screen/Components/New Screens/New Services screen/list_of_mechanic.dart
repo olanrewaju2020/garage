@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ListOfMechanic extends StatefulWidget {
-  const ListOfMechanic({Key? key}) : super(key: key);
+  final String location;
+  const ListOfMechanic({Key? key, required this.location}) : super(key: key);
 
   @override
   State<ListOfMechanic> createState() => _ListOfMechanicState();
@@ -12,14 +13,17 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.black,
-          size: 20,
+        leading: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+            size: 20,
+          ),
         ),
-        title: Text(
+        title: const Text(
           'Available Mechanics',
           style: TextStyle(
               color: Color(0xff21B24B),
@@ -28,7 +32,7 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
               fontStyle: FontStyle.normal),
         ),
         elevation: 0,
-        backgroundColor: Color(0xffEBEBEB),
+        backgroundColor: const Color(0xffEBEBEB),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -53,17 +57,17 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image(
+                      const Image(
                         image: AssetImage('assets/images/person1.png'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 18.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text(
                               'Dimeji Akintola',
                               style: TextStyle(

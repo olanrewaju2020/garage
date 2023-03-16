@@ -14,6 +14,7 @@ import '../service_locator.dart';
 
 class VehicleProvider extends ChangeNotifier with Validations {
   bool isLoading = false;
+  final List<String> _searchLocations = [];
   Vehicle? _vehicle;
   List<Vehicle> get vehicles => app.vehicles;
 
@@ -36,11 +37,11 @@ class VehicleProvider extends ChangeNotifier with Validations {
     isLoading = true;
     notifyListeners();
     RestService()
-        .method(
+        .httpMethod(
             method: 'POST', url: 'vehicle/add', body: Vehicle().toSaveVehicle())
         .then((response) {
       if (response.isSuccessful) {
-        vehiclesOwnList(ownerId: app.user?.uuid ?? '');
+        vehiclesOwnList(ownerId: app.user.uuid ?? '');
         isLoading = false;
         notifyListeners();
         Navigator.push(
@@ -66,7 +67,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
     isLoading = true;
     notifyListeners();
     RestService()
-        .method(method: 'GET', url: 'vehicle/list/by-owner/$ownerId')
+        .httpMethod(method: 'GET', url: 'vehicle/list/by-owner/$ownerId')
         .then((response) {
       if (response.isSuccessful) {
         app.vehiclesOwn = List<Vehicle>.from(
@@ -83,7 +84,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
   Future<List<Vehicle>> vehicleList() async {
     isLoading = true;
     notifyListeners();
-    RestService().method(method: "GET", url: 'vehicle/list').then((response) {
+    RestService().httpMethod(method: "GET", url: 'vehicle/list').then((response) {
       if (response.isSuccessful) {
         app.vehicles = List<Vehicle>.from(
             response.data.map((vehicle) => Vehicle.fromJson(vehicle))).toList();
@@ -103,7 +104,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
     notifyListeners();
     //add ownerId to url
     RestService()
-        .method(method: 'GET', url: 'vehicle/retrieve')
+        .httpMethod(method: 'GET', url: 'vehicle/retrieve')
         .then((response) {
       if (response.isSuccessful) {
         return Vehicle.fromJson(response.data);
@@ -127,7 +128,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
       required BuildContext context}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(method: 'PUT', url: 'vehicle/update').then((response) {
+    RestService().httpMethod(method: 'PUT', url: 'vehicle/update').then((response) {
       if (response.isSuccessful) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Dashboard()));
@@ -143,7 +144,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void deleteVehicle({required BuildContext context, required String number}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(method: 'PUT', url: 'vehicle/remove').then((response) {
+    RestService().httpMethod(method: 'PUT', url: 'vehicle/remove').then((response) {
       if (response.isSuccessful) {
         isLoading = false;
         notifyListeners();
@@ -162,8 +163,8 @@ class VehicleProvider extends ChangeNotifier with Validations {
     isLoading = true;
     notifyListeners();
     RestService()
-        .method(
-            method: 'GET', url: 'service/fetch/owner/${app.user?.uuid ?? ""}')
+        .httpMethod(
+            method: 'GET', url: 'service/fetch/owner/${app.user.uuid ?? ""}')
         .then((response) {
       if (response.isSuccessful) {
         isLoading = false;
@@ -184,7 +185,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
     isLoading = true;
     notifyListeners();
     RestService()
-        .method(
+        .httpMethod(
         method: 'GET', url: '/user/fetch/$serviceType')
         .then((response) {
       if (response.isSuccessful) {
@@ -205,7 +206,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void requestNewService({required BuildContext context, required VehicleService request}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(
+    RestService().httpMethod(
         method:'POST',
         url: 'service/new',
       body: request.toNewService()
@@ -234,7 +235,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void fetchServiceByCar({required String vehicleId}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(
+    RestService().httpMethod(
       method: 'GET',
       url: 'service/fetch/car/$vehicleId'
     ).then((response) {
@@ -251,7 +252,10 @@ class VehicleProvider extends ChangeNotifier with Validations {
     });
   }
 
-
-
+  set recentSearchLocation(String text) {
+    _searchLocations.add(text);
+    notifyListeners();
+  }
+  List<String> get recentSearchedLocations => _searchLocations;
 
 }

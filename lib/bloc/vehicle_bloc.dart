@@ -10,6 +10,7 @@ class VehicleBloc with Validations {
   final complainCtrl = TextEditingController();
 
   final _vehicleNumber = BehaviorSubject<String>();
+  final _vehicleType = BehaviorSubject<String>();
   final _company = BehaviorSubject<String>();
   final _regNumber = BehaviorSubject<String>();
   final _color = BehaviorSubject<String>();
@@ -32,6 +33,7 @@ class VehicleBloc with Validations {
   Stream<String> get mechanicsName => _mechanicsName.stream.transform(validateName);
   Stream<String> get serviceType => _serviceType.stream;
   Stream<String> get serviceDescription => _serviceDescription.stream;
+  Stream<String> get vehicleType => _vehicleType.stream;
 
   vehicleNumberOnChanged(String number) => _vehicleNumber.sink.add(number);
   companyOnChanged(String name) => _company.sink.add(name);
@@ -41,5 +43,6 @@ class VehicleBloc with Validations {
   modelOnChanged(String value) => _model.sink.add(value);
   ownerIdOnChanged(String value) => _ownerId.sink.add(value);
   serviceDescriptionOnChanged(String value) => _serviceDescription.sink.add(value);
+  vehicleTypeOnChanged(String value) => _vehicleType.sink.add(value);
 
 }

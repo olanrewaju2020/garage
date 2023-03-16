@@ -49,23 +49,23 @@ class _LoginState extends State<Login> {
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Image(
-                              image: AssetImage('assets/images/logo.png'),
-                              width: 150,
-                            ),
+                                image: AssetImage('assets/images/logo.png'),
+                                width: 150,
+                              ),
                           ),
                           const SizedBox(
                             height: 40,
                           ),
+
+
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
-                            child: Text(
-                              'Log in',
-                              style: TextStyle(
-                                  color: Color(0xff757676),
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 25),
-                            ),
+                            child: Text('Log in', style: TextStyle(
+                                color: Color(0xff757676),
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 25
+                            ),),
                           ),
                           SizedBox(
                             height: 4,
@@ -76,7 +76,7 @@ class _LoginState extends State<Login> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const CreateAccount()));
+                                      const CreateAccount()));
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8.0, top: 5),
@@ -98,27 +98,29 @@ class _LoginState extends State<Login> {
                               )),
                             ),
                           ),
+
                           SizedBox(
                             height: 40,
                           ),
+
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              'Username/Email',
-                              style: TextStyle(
-                                  color: Color(0xff646464),
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15),
-                            ),
+                            child: Text('Username/Email', style: TextStyle(
+                                color: Color(0xff646464),
+                                fontStyle: FontStyle.normal,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15
+                            ),),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
                             child: Stack(
                               alignment: const Alignment(0, 0),
                               children: [
+
                                 GTextField(
-                                  prefixIconData: Icons.email_outlined,
+                                  prefixIconData: Icons.email,
+                                  label: 'Email Address',
                                   stream: _authBloc.email,
                                   hintText: 'Email address',
                                   onChanged: _authBloc.emailOnChange,
@@ -126,19 +128,8 @@ class _LoginState extends State<Login> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              'Password',
-                              style: TextStyle(
-                                  color: Color(0xff646464),
-                                  fontStyle: FontStyle.normal,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15),
-                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10),
@@ -146,12 +137,12 @@ class _LoginState extends State<Login> {
                               alignment: const Alignment(0, 0),
                               children: <Widget>[
                                 GTextField(
-                                    prefixIconData: Icons.lock,
+                                  label: 'Password',
+                                   prefixIconData: Icons.lock,
                                     isSecret: true,
                                     stream: _authBloc.password,
                                     onChanged: _authBloc.passwordOnChange,
-                                    suffixIconData:
-                                        Icons.remove_red_eye_outlined,
+                                    suffixIconData: Icons.visibility,
                                     hintText: 'Password'),
                               ],
                             ),
@@ -171,8 +162,7 @@ class _LoginState extends State<Login> {
                                 padding: EdgeInsets.only(right: 15.0),
                                 child: Text(
                                   'Forgot password',
-                                  style: TextStyle(
-                                      color: Color(0xff21B24B),
+                                  style: TextStyle(color: Color(0xff21B24B),
                                       fontWeight: FontWeight.w600,
                                       fontSize: 11),
                                 ),

@@ -13,10 +13,13 @@ class _RescusNewState extends State<RescusNew> {
     return Scaffold(
       backgroundColor: Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.black,
-          size: 20,
+        leading: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+            size: 20,
+          ),
         ),
         title: Text(
           'Rescue Service',

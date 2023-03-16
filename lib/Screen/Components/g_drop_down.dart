@@ -19,6 +19,7 @@ class GDropDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  GTextField(
+      label: hint,
       stream: stream,
       controller: controller,
       isReadOnly: true,

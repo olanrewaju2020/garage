@@ -27,72 +27,54 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
-      appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios,
-          color: Color(0xff464646),
-          size: 20,
-        ),
-        backgroundColor: Color(0xffEBEBEB),
-        elevation: 0,
-      ),
+      backgroundColor: const Color(0xfff4f4f2),
       body: Consumer<AuthProvider>(
         builder: (context, provider, child) {
           return provider.isLoading
               ? const GLoader()
               : SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
+                        const SizedBox(
+                          height: 160,
+                        ),
+                        const Center(
+                            child: Image(
+                          image: AssetImage('assets/images/Fpassword.png'),
+                          width: 250,
+                        )),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        const Center(
                           child: Text(
-                            'Forgot Password?',
+                            'Please enter your registered email address to \nreceive a verification code.',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 20,
-                                color: Color(0xff21B24B)),
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5,
+                                letterSpacing: 0.4,
+                                color: Colors.black87),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Enter your account name and registered email to receive a verification code',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5,
-                              color: Color(0xff646464)),
-                          textAlign: TextAlign.left,
                         ),
                         const SizedBox(
                           height: 30,
                         ),
-                        Text(
-                            'Email',
-                            style: TextStyle(
-                                color: Color(0xff646464),
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15),
-                          ),
-                        SizedBox(
-                          height: 10,
-                        ),
                         SizedBox(
                           width: double.infinity,
                           child: GTextField(
-                            prefixIconData: Icons.email_outlined,
-                            hintText: 'Email address here',
+                            label: 'Enter Email',
+                            hintText: 'Enter Email',
                             stream: bloc.email,
                             onChanged: bloc.emailOnChange,
                           ),
                         ),
                         const SizedBox(
-                          height: 50,
+                          height: 15,
                         ),
                         SizedBox(
                           width: double.infinity,

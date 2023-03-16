@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:garage_repair/misc/utils.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../Models/user.dart';
 import '../Screen/Dashboard/dashboard.dart';
@@ -15,10 +19,12 @@ class AuthProvider extends ChangeNotifier with Validations {
   String? _email;
   bool _isActivated = false;
   User? _user;
+  File? _pickedFile;
 
   String get email => _email ?? '';
   bool get isActivated => _isActivated;
   User get user => _user ?? User();
+  File? get pickedFile => _pickedFile;
 
 
   Future<bool> register(
@@ -41,7 +47,7 @@ class AuthProvider extends ChangeNotifier with Validations {
         serviceType: serviceType,
     )
         .toRegister();
-    final response = await RestService().method(
+    final response = await RestService().httpMethod(
         method: 'POST',
         url: 'entrance/signup',
         body: request);
@@ -57,7 +63,7 @@ class AuthProvider extends ChangeNotifier with Validations {
   void login({required String email, required String password, required BuildContext context}) async {
     isLoading = true;
     notifyListeners();
-    await RestService().method(
+    await RestService().httpMethod(
         method: 'POST', url: 'entrance/login', body: User(
       email: email,
       password: password
@@ -79,7 +85,7 @@ class AuthProvider extends ChangeNotifier with Validations {
   activateUser({required String otp,required BuildContext context}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(
+    RestService().httpMethod(
         method: "POST", url: 'entrance/activate', body: User(
       email: _email, otp: otp
     ).toActivateJson()).then((response){
@@ -101,7 +107,7 @@ class AuthProvider extends ChangeNotifier with Validations {
   sendOtp({required String email, required BuildContext context}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(
+    RestService().httpMethod(
         method: 'POST',
         url: "entrance/send-otp",
         body: User(email: email).toEmail()
@@ -125,7 +131,7 @@ class AuthProvider extends ChangeNotifier with Validations {
   resetPassword({required String email, required String newPassword, required String otp}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(
+    RestService().httpMethod(
         method: 'POST',
         url: "entrance/password/forgot",
        body: {
@@ -141,7 +147,7 @@ class AuthProvider extends ChangeNotifier with Validations {
   void changePassword({required User userPassword,required BuildContext context}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(
+    RestService().httpMethod(
         method: 'POST',
         url: "entrance/password/change",
         body: User().toChangePasswordJson()
@@ -165,7 +171,7 @@ class AuthProvider extends ChangeNotifier with Validations {
   updateProfile({required BuildContext context, required User user}) {
     isLoading = true;
     notifyListeners();
-    RestService().method(
+    RestService().httpMethod(
       method: 'PUT',
       url: 'user/update/${app.user.uuid}',
       body: user.toUpdateDetailJson()
@@ -182,5 +188,37 @@ class AuthProvider extends ChangeNotifier with Validations {
         ShowToast(msg: response.error, type: ErrorType.error);
       }
     });
+  }
+
+  void updateUserAddress({required String city, required String homeAddress, required String workAddress}) {
+    print("============================");
+    print(city);
+    print(homeAddress);
+    print(workAddress);
+  }
+
+  void pickProfileImage() async {
+    final _picker = ImagePicker();
+    XFile? pickedXFile = await _picker.pickImage(source: ImageSource.camera);
+    _pickedFile = File(pickedXFile!.path ?? '');
+    isLoading = true;
+    notifyListeners();
+    String img64 = base64Encode(await pickedXFile!.readAsBytes());
+
+    RestService().httpMethod(
+        method: 'PUT',
+        url: 'user/photograph/upload/${app.user.uuid}',
+        body: {
+          "photo": img64
+        }
+    ).then((response){
+      if(response.isSuccessful) {
+        ShowToast(msg: response.data, type: ErrorType.success);
+      } else {
+        ShowToast(msg: response.error, type: ErrorType.error);
+      }
+    });
+    isLoading = false;
+    notifyListeners();
   }
 }

@@ -395,7 +395,7 @@ class ListOfServices extends StatelessWidget {
                         services.length,
                         (index) => Previous(
                             service: services[index],
-                            route: const PreviousDetails()))),
+                            route: PreviousDetails(service: services[index]),))),
               );
       },
     );
