@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../Models/service.dart';
 import '../Models/user.dart';
 import '../Models/vehicle.dart';
@@ -252,10 +253,34 @@ class VehicleProvider extends ChangeNotifier with Validations {
     });
   }
 
-  set recentSearchLocation(String text) {
+  set recentSearchLocations(String text) {
     _searchLocations.add(text);
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setStringList('recentSearch', _searchLocations);
+    });
     notifyListeners();
   }
+
   List<String> get recentSearchedLocations => _searchLocations;
+
+  void searchMechanic({required String location}) {
+    isLoading = true;
+    notifyListeners();
+    RestService().httpMethod(
+        method: 'GET',
+        url: 'user/fetch/Maintaince'
+    ).then((response) {
+      if(response.isSuccessful) {
+        isLoading = false;
+        app.serviceVendors = List<User>.from(response.data.map((mechanics) => User.fromJson(mechanics)));
+        notifyListeners();
+      } else {
+        isLoading = false;
+        notifyListeners();
+        ShowToast(msg: response.error, type: ErrorType.error);
+      }
+    });
+    print(location);
+  }
 
 }

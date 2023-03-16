@@ -82,12 +82,12 @@ class _RescusNewState extends State<RescusNew> {
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Image(
                     image: AssetImage('assets/images/message.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
+                    padding: EdgeInsets.only(top: 15.0, left: 15),
                     child: Text(
                       'Chat with Mechanic',
                       style: TextStyle(
@@ -98,7 +98,7 @@ class _RescusNewState extends State<RescusNew> {
                   ),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
+                    padding: EdgeInsets.only(top: 18.0),
                     child: Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: Color(0xff7E808A),
@@ -107,47 +107,17 @@ class _RescusNewState extends State<RescusNew> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image(
-                    image: AssetImage('assets/images/message.png'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
-                    child: Text(
-                      'Chat with Mechanic',
-                      style: TextStyle(
-                          color: Color(0xff646464),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 18.0),
-                    child: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Color(0xff7E808A),
-                      size: 16,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   Image(
                     image: AssetImage('assets/images/calls.png'),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15.0, left: 15),
+                    padding: EdgeInsets.only(top: 15.0, left: 15),
                     child: Text(
                       'Call Mechanic ',
                       style: TextStyle(

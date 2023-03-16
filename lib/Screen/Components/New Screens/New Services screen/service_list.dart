@@ -64,7 +64,8 @@ class _ServicesOneState extends State<ServicesOne> {
                 title: 'Vehicle Servicing',
                 imageUrl: 'assets/images/6s.png',
                 description: 'Lorem ipsum dolor sit amet, \nconsectetur adipiscing elit.',
-                route: VehicleServicingNew(),
+                route: VehicleServicingNew(
+                  title: 'Vehicle Servicing', imageUrl: 'assets/images/box2.png',),
               ),
               SizedBox(
                 height: 20,

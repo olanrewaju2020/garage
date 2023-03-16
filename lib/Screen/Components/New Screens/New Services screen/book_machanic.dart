@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Models/user.dart';
 
 class BookMechanic extends StatefulWidget {
-  const BookMechanic({Key? key}) : super(key: key);
+  final User mechanic;
+  const BookMechanic({Key? key, required this.mechanic}) : super(key: key);
 
   @override
   State<BookMechanic> createState() => _BookMechanicState();
@@ -11,14 +13,17 @@ class _BookMechanicState extends State<BookMechanic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: Colors.black,
-          size: 20,
+        leading: GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.black,
+            size: 20,
+          ),
         ),
-        title: Text(
+        title: const Text(
           'Mechanic’Profile',
           style: TextStyle(
               color: Color(0xff21B24B),
@@ -27,7 +32,7 @@ class _BookMechanicState extends State<BookMechanic> {
               fontStyle: FontStyle.normal),
         ),
         elevation: 0,
-        backgroundColor: Color(0xffEBEBEB),
+        backgroundColor: const Color(0xffEBEBEB),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -46,7 +51,7 @@ class _BookMechanicState extends State<BookMechanic> {
               ),
               Center(
                 child: Text(
-                  'Shola Fatoki',
+                  widget.mechanic.fullName,
                   style: TextStyle(
                       fontSize: 25,
                       color: Color(0xff282828),
@@ -58,7 +63,7 @@ class _BookMechanicState extends State<BookMechanic> {
               ),
               Center(
                 child: Text(
-                  'Somorin',
+                  widget.mechanic.address ?? '',
                   style: TextStyle(
                       fontSize: 20,
                       color: Color(0xff282828),
@@ -168,7 +173,7 @@ class _BookMechanicState extends State<BookMechanic> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   Text(
                     'Reviews',
                     style: TextStyle(

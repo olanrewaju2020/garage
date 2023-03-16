@@ -48,16 +48,16 @@ class _DashboardHomeState extends State<DashboardHome> {
                     children: [
                       Row(
                         children: [
-                          Image(
+                          const Image(
                             image: AssetImage('assets/images/ima.png'),
                             width: 45,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text.rich(TextSpan(
                             text: "Welcome, ",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: 0.5,
@@ -65,7 +65,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                             children: [
                               TextSpan(
                                 text: "${user.firstName ?? "Talaba"} !",
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 18,
                                     letterSpacing: 0.5,
                                     fontWeight: FontWeight.w900,
@@ -75,12 +75,12 @@ class _DashboardHomeState extends State<DashboardHome> {
                           )),
                         ],
                       ),
-                      Icon(
+                      const Icon(
                         Icons.notifications_outlined,
                         color: Colors.white,
                       ),
                     ]),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Container(
@@ -88,7 +88,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   decoration: BoxDecoration(
-                      color: Color(0xffF7F7F7),
+                      color: const Color(0xffF7F7F7),
                       borderRadius: BorderRadius.circular(29.5)),
                   child: const TextField(
                     decoration: InputDecoration(
@@ -106,23 +106,26 @@ class _DashboardHomeState extends State<DashboardHome> {
                     childAspectRatio: .73,
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 15,
-                    children: [
+                    children: const [
                       NewWidget(
                           title: 'Vehicle \nInspection',
                           imageLog: 'assets/images/7.png',
-                          route: NewVehicleInspection()),
-                      const NewWidget(
+                          route: VehicleServicingNew(title: 'Vehicle Inspection', imageUrl: 'assets/images/box4.png')),
+                          // route: NewVehicleInspection()),
+                      NewWidget(
                           title: 'Vehicle \nServicing',
                           imageLog: 'assets/images/6.png',
-                          route: VehicleServicingNew()),
-                      const NewWidget(
+                          route: VehicleServicingNew(title: 'Vehicle Servicing', imageUrl: 'assets/images/box2.png')),
+                      NewWidget(
                           title: 'Rescue \nService',
                           imageLog: 'assets/images/tow2.png',
-                          route: RescusNew()),
-                      const NewWidget(
+                          route: VehicleServicingNew(title: 'Rescue Service', imageUrl: 'assets/images/box3.png')),
+                          // route: RescusNew()),
+                      NewWidget(
                           title: 'Vehicle \nRepair',
                           imageLog: 'assets/images/spanner.png',
-                          route: RepairVehicleNew()),
+                          route: VehicleServicingNew(title: 'Repair Vehicle', imageUrl: 'assets/images/box1.png')),
+                          // route: RepairVehicleNew()),
                     ],
                   ),
                 ),
