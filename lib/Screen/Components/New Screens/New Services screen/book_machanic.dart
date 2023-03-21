@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BookMechanic extends StatefulWidget {
   const BookMechanic({Key? key}) : super(key: key);
@@ -188,6 +189,211 @@ class _BookMechanicState extends State<BookMechanic> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 200,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 180,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(33, 178, 75, 0.09),
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Image(
+                                    image: AssetImage('assets/images/tobi.png'),
+                                    width: 50,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'Shola Fatoki',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        color: Color(0xff0E0E0E)),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                'He is an outstanding \nmechanic with speed in \ndelivery of his quality \nservice. Kind and \nhardworking man.',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11,
+                                    letterSpacing: 1,
+                                    height: 1.5,
+                                    color: Color(0xff464646)),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              RatingBar.builder(
+                                initialRating: 3,
+                                minRating: 1,
+                                itemSize: 20.0,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 0.0),
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          width: 180,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(33, 178, 75, 0.09),
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Image(
+                                    image: AssetImage('assets/images/tobi.png'),
+                                    width: 50,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'Shola Fatoki',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        color: Color(0xff0E0E0E)),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                'He is an outstanding \nmechanic with speed in \ndelivery of his quality \nservice. Kind and \nhardworking man.',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11,
+                                    letterSpacing: 1,
+                                    height: 1.5,
+                                    color: Color(0xff464646)),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              RatingBar.builder(
+                                initialRating: 3,
+                                minRating: 1,
+                                itemSize: 20.0,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 0.0),
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          width: 180,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 15),
+                          decoration: BoxDecoration(
+                            color: Color.fromRGBO(33, 178, 75, 0.09),
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Image(
+                                    image: AssetImage('assets/images/tobi.png'),
+                                    width: 50,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'Shola Fatoki',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 13,
+                                        color: Color(0xff0E0E0E)),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                'He is an outstanding \nmechanic with speed in \ndelivery of his quality \nservice. Kind and \nhardworking man.',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 11,
+                                    letterSpacing: 1,
+                                    height: 1.5,
+                                    color: Color(0xff464646)),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              RatingBar.builder(
+                                initialRating: 3,
+                                minRating: 1,
+                                itemSize: 20.0,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemCount: 5,
+                                itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 0.0),
+                                itemBuilder: (context, _) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                onRatingUpdate: (rating) {
+                                  print(rating);
+                                },
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
