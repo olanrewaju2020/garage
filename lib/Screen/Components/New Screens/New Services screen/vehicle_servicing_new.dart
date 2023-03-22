@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/vehicle_inspection_new.dart';
 
+import '../../../../misc/enum.dart';
+
 class VehicleServicingNew extends StatefulWidget {
   final String imageUrl;
   final String title;
@@ -14,7 +16,7 @@ class _VehicleServicingNewState extends State<VehicleServicingNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
         leading: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
@@ -53,7 +55,7 @@ class _VehicleServicingNewState extends State<VehicleServicingNew> {
               const SizedBox(
                 height: 30,
               ),
-              const BookAppointment(),
+              const BookAppointment(serviceType: ServiceType.none,),
               const SizedBox(
                 height: 25,
               ),
@@ -79,12 +81,12 @@ class CallMechanic extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: const [
         Image(
           image: AssetImage('assets/images/calls.png'),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 15.0, left: 15),
+          padding: EdgeInsets.only(top: 15.0, left: 15),
           child: Text(
             'Call Mechanic ',
             style: TextStyle(
@@ -95,7 +97,7 @@ class CallMechanic extends StatelessWidget {
         ),
         Spacer(),
         Padding(
-          padding: const EdgeInsets.only(top: 18.0),
+          padding: EdgeInsets.only(top: 18.0),
           child: Icon(
             Icons.arrow_forward_ios_rounded,
             color: Color(0xff7E808A),
@@ -132,7 +134,7 @@ class ChatWithMechanic extends StatelessWidget {
         ),
         Spacer(),
         Padding(
-          padding: const EdgeInsets.only(top: 18.0),
+          padding: EdgeInsets.only(top: 18.0),
           child: Icon(
             Icons.arrow_forward_ios_rounded,
             color: Color(0xff7E808A),

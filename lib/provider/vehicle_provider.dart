@@ -263,12 +263,12 @@ class VehicleProvider extends ChangeNotifier with Validations {
 
   List<String> get recentSearchedLocations => _searchLocations;
 
-  void searchMechanic({required String location}) {
+  void searchMechanic({required String location, required String serviceType}) {
     isLoading = true;
     notifyListeners();
     RestService().httpMethod(
         method: 'GET',
-        url: 'user/fetch/Maintaince'
+        url: 'user/search?address=$location&serviceType=$serviceType'
     ).then((response) {
       if(response.isSuccessful) {
         isLoading = false;

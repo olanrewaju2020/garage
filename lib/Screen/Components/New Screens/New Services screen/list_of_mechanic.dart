@@ -50,7 +50,7 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 1,
-                      color: Color(0xff21B24B),
+                      color: const Color(0xff21B24B),
                     ),
                     borderRadius: BorderRadius.circular(23),
                   ),
@@ -86,7 +86,7 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
                           ],
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Padding(
                           padding: const EdgeInsets.only(top: 30.0),
                           child: RatingBar.builder(
@@ -96,19 +96,19 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
                             direction: Axis.horizontal,
                             allowHalfRating: true,
                             itemCount: 5,
-                            itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                            itemBuilder: (context, _) => Icon(
+                            itemPadding: const EdgeInsets.symmetric(horizontal: 0.0),
+                            itemBuilder: (context, _) => const Icon(
                               Icons.star,
                               color: Colors.amber,
                             ),
                             onRatingUpdate: (rating) {
-                              print(rating);
+                              //print(rating);
                             },
                           )),
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 25,
                 ),
                 Container(
@@ -119,24 +119,24 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 1,
-                      color: Color(0xff21B24B),
+                      color: const Color(0xff21B24B),
                     ),
                     borderRadius: BorderRadius.circular(23),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image(
+                      const Image(
                         image: AssetImage('assets/images/person2.png'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 18.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text(
                               'Dimeji Akintola',
                               style: TextStyle(

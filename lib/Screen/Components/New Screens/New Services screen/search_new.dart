@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../provider/vehicle_provider.dart';
-import 'list_of_mechanic.dart';
 import 'nearby_mechanic.dart';
 
 class SearchMechanic extends StatefulWidget {
-  const SearchMechanic({Key? key}) : super(key: key);
+  final String serviceType;
+  const SearchMechanic({Key? key, required this.serviceType}) : super(key: key);
 
   @override
   State<SearchMechanic> createState() => _SearchMechanicState();
@@ -76,7 +76,7 @@ class _SearchMechanicState extends State<SearchMechanic> {
                                         provider.recentSearchLocations = searchQueryCtrl.text;
                                       }
                                       Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-                                          NearbyMechanic(location: searchQueryCtrl.text)));
+                                          NearbyMechanic(location: searchQueryCtrl.text, serviceType: widget.serviceType,)));
                                     });
 
                                   },
@@ -107,7 +107,7 @@ class _SearchMechanicState extends State<SearchMechanic> {
                             onTap: () => Navigator.of(context).push(
                                 MaterialPageRoute(
                                     builder: (context) => NearbyMechanic(
-                                        location: recentSearch[index]))),
+                                        location: recentSearch[index], serviceType: widget.serviceType,))),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

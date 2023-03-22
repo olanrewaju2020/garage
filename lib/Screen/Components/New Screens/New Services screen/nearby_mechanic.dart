@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:garage_repair/Models/user.dart';
-import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/book_machanic.dart';
 import 'package:garage_repair/Screen/g_loader.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../provider/vehicle_provider.dart';
 import '../../../../service_locator.dart';
+import '../../details/profile_card_horizontal.dart';
 
 class NearbyMechanic extends StatefulWidget {
   final String location;
-  const NearbyMechanic({Key? key, required this.location}) : super(key: key);
+  final String serviceType;
+
+  const NearbyMechanic({Key? key, required this.location, required this.serviceType}) : super(key: key);
 
   @override
   State<NearbyMechanic> createState() => _NearbyMechanicState();
@@ -22,14 +23,14 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<VehicleProvider>(context, listen: false)
-          .searchMechanic(location: widget.location);
+          .searchMechanic(location: widget.location, serviceType: widget.serviceType);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       appBar: AppBar(
         leading: GestureDetector(
           onTap: () => Navigator.of(context).pop(),
@@ -40,7 +41,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
           ),
         ),
         elevation: 0,
-        backgroundColor: Color(0xffEBEBEB),
+        backgroundColor: const Color(0xffEBEBEB),
       ),
       body: Consumer<VehicleProvider>(
         builder: (context, provider, child) {
@@ -58,20 +59,20 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                         fontWeight: FontWeight.w600,
                         color: Color(0xff21B24B)),
                   ),
-                  SizedBox(
+                 const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     'Mechanics near you',
                     style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
                         color: Color(0xff282828)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Container(
+                  SizedBox(
                     height: 220,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
@@ -84,17 +85,17 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 18, vertical: 15),
                               decoration: BoxDecoration(
-                                color: Color(0xffE9F5F5),
+                                color: const Color(0xffE9F5F5),
                                 borderRadius: BorderRadius.circular(7),
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Image(
+                                  const Image(
                                     image: AssetImage('assets/images/hat1.png'),
                                     width: 150,
                                   ),
-                                  Center(
+                                 const  Center(
                                     child: Text(
                                       'Shola Fatoki',
                                       style: TextStyle(
@@ -103,7 +104,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                           color: Color(0xff282828)),
                                     ),
                                   ),
-                                  Center(
+                                  const Center(
                                     child: Text(
                                       'Somorin',
                                       style: TextStyle(
@@ -112,7 +113,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                           color: Color(0xff282828)),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   RatingBar.builder(
@@ -123,19 +124,19 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                     allowHalfRating: true,
                                     itemCount: 5,
                                     itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 0.0),
-                                    itemBuilder: (context, _) => Icon(
+                                        const EdgeInsets.symmetric(horizontal: 0.0),
+                                    itemBuilder: (context, _) => const Icon(
                                       Icons.star,
                                       color: Colors.amber,
                                     ),
                                     onRatingUpdate: (rating) {
-                                      print(rating);
+                                      //print(rating);
                                     },
                                   ),
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
@@ -143,17 +144,17 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 18, vertical: 15),
                               decoration: BoxDecoration(
-                                color: Color(0xffE9F5F5),
+                                color: const Color(0xffE9F5F5),
                                 borderRadius: BorderRadius.circular(7),
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Image(
+                                  const Image(
                                     image: AssetImage('assets/images/hat2.png'),
                                     width: 150,
                                   ),
-                                  Center(
+                                  const Center(
                                     child: Text(
                                       'Shola Fatoki',
                                       style: TextStyle(
@@ -162,7 +163,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                           color: Color(0xff282828)),
                                     ),
                                   ),
-                                  Center(
+                                  const Center(
                                     child: Text(
                                       'Somorin',
                                       style: TextStyle(
@@ -171,7 +172,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                           color: Color(0xff282828)),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   RatingBar.builder(
@@ -182,19 +183,19 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                     allowHalfRating: true,
                                     itemCount: 5,
                                     itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 0.0),
-                                    itemBuilder: (context, _) => Icon(
+                                        const EdgeInsets.symmetric(horizontal: 0.0),
+                                    itemBuilder: (context, _) => const Icon(
                                       Icons.star,
                                       color: Colors.amber,
                                     ),
                                     onRatingUpdate: (rating) {
-                                      print(rating);
+                                      // print(rating);
                                     },
                                   ),
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Container(
@@ -202,17 +203,17 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 18, vertical: 15),
                               decoration: BoxDecoration(
-                                color: Color(0xffE9F5F5),
+                                color: const Color(0xffE9F5F5),
                                 borderRadius: BorderRadius.circular(7),
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Image(
+                                  const Image(
                                     image: AssetImage('assets/images/hat1.png'),
                                     width: 150,
                                   ),
-                                  Center(
+                                  const Center(
                                     child: Text(
                                       'Shola Fatoki',
                                       style: TextStyle(
@@ -221,7 +222,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                           color: Color(0xff282828)),
                                     ),
                                   ),
-                                  Center(
+                                  const Center(
                                     child: Text(
                                       'Somorin',
                                       style: TextStyle(
@@ -230,7 +231,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                           color: Color(0xff282828)),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
                                   RatingBar.builder(
@@ -241,13 +242,13 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                                     allowHalfRating: true,
                                     itemCount: 5,
                                     itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 0.0),
-                                    itemBuilder: (context, _) => Icon(
+                                        const EdgeInsets.symmetric(horizontal: 0.0),
+                                    itemBuilder: (context, _) => const Icon(
                                       Icons.star,
                                       color: Colors.amber,
                                     ),
                                     onRatingUpdate: (rating) {
-                                      print(rating);
+                                      //print(rating);
                                     },
                                   ),
                                 ],
@@ -258,7 +259,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Text(
@@ -268,7 +269,7 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
                         fontWeight: FontWeight.w500,
                         fontSize: 15),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   SizedBox(
@@ -289,90 +290,4 @@ class _NearbyMechanicState extends State<NearbyMechanic> {
   }
 }
 
-class ProfileCardHorizontal extends StatelessWidget {
-  final User user;
-  const ProfileCardHorizontal({
-    super.key, required this.user,
-  });
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookMechanic(mechanic: user))),
-      child: Column(
-        children: [
-          Container(
-            height: 95,
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-                horizontal: 18, vertical: 15),
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1,
-                color: Color(0xff21B24B),
-              ),
-              borderRadius: BorderRadius.circular(23),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image(
-                  image: AssetImage('assets/images/woman.png'),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 13.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                       user.fullName,
-                        style: TextStyle(
-                            color: Color(0xff0D0221),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(height: 3),
-                      Text(
-                        user.address ?? '',
-                        style: TextStyle(
-                            color: Color(0xff282828),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ],
-                  ),
-                ),
-                Spacer(),
-                Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: RatingBar.builder(
-                      initialRating: 3,
-                      minRating: 1,
-                      itemSize: 20.0,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding:
-                          const EdgeInsets.symmetric(horizontal: 0.0),
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
-                    )),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-        ],
-      ),
-    );
-  }
-}

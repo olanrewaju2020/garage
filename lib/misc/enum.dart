@@ -5,3 +5,4 @@ enum ErrorType {
   warning,
   info
 }
+enum ServiceType {none}

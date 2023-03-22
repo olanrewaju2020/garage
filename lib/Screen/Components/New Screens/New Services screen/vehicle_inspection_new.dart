@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/search_new.dart';
 
+import '../../../../misc/enum.dart';
+
 class NewVehicleInspection extends StatefulWidget {
   const NewVehicleInspection({Key? key}) : super(key: key);
 
@@ -51,7 +53,7 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
               const SizedBox(
                 height: 30,
               ),
-              const BookAppointment(),
+              BookAppointment(serviceType: ServiceType.none,),
               const SizedBox(
                 height: 25,
               ),
@@ -117,14 +119,16 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
 }
 
 class BookAppointment extends StatelessWidget {
+  final ServiceType serviceType;
+
   const BookAppointment({
-    super.key,
+    super.key, required this.serviceType
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchMechanic())),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchMechanic(serviceType: "inspection"))),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
