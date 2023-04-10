@@ -50,7 +50,7 @@ class _VerifyAccountState extends State<VerifyAccount> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Center(
+            const Center(
               child: Text(
                 'Enter the six digits code sent to \nmechanic @gmail.com',
                 style: TextStyle(

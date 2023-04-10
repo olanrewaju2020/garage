@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../Screen/Components/g_button.dart';
 import '../Screen/Components/g_text_field.dart';
 import '../bloc/vehicle_bloc.dart';
 import '../provider/vehicle_provider.dart';
@@ -117,8 +118,8 @@ Future<dynamic> showSearchableBottomSheet(
                                         ),
                                         Row(
                                           children: [
-                                            Icon(Icons.phone),
-                                            SizedBox(width: 10),
+                                            const Icon(Icons.phone),
+                                            const SizedBox(width: 10),
                                             Text(
                                                 "${app.serviceVendors[index].phone}"),
                                           ],
@@ -219,4 +220,50 @@ Future<dynamic> showVehicleOwnBottomSheetDDown(
               )
             ]));
       });
+}
+
+Future<dynamic> showSuccess(
+    {required BuildContext context, String message = 'Request sent successfully', required Widget route}) {
+  return showDialog(context: context, builder: (context) {
+    return Dialog(
+        child: ClipRect(
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            height: MediaQuery.of(context).size.height * .4,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.green
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children:  [
+                    GestureDetector(
+                        onTap: () => Navigator.of(context).pop(false),
+                        child: const Icon(Icons.close, color: Colors.white,))
+                  ],
+                ),
+                const SizedBox(height: 100,),
+                Text(message, style:
+                const TextStyle(color: Colors.white, fontSize: 18),),
+                const SizedBox(height: 50,),
+                SizedBox(
+                  width: 100,
+                  child: GButton(
+                    backgroundColor: Colors.white,
+                    textColor: Colors.black,
+                    isValid: Stream.value(true),
+                    label: 'Okay',
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => route), (route) => false);
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
+  });
 }

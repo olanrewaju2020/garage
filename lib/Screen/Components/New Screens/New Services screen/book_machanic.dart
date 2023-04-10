@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Models/user.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:garage_repair/Screen/Components/g_button.dart';
+
+import 'select_book_date.dart';
 
 class BookMechanic extends StatefulWidget {
   final User mechanic;
@@ -11,6 +14,8 @@ class BookMechanic extends StatefulWidget {
 }
 
 class _BookMechanicState extends State<BookMechanic> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +30,7 @@ class _BookMechanicState extends State<BookMechanic> {
           ),
         ),
         title: const Text(
-          'Mechanic’Profile',
+          'Mechanic’ Profile',
           style: TextStyle(
               color: Color(0xff21B24B),
               fontSize: 22,
@@ -44,7 +49,7 @@ class _BookMechanicState extends State<BookMechanic> {
               Center(
                 child: Image(
                   image: AssetImage('assets/images/hatt.png'),
-                  width: 150,
+                  width: 100,
                 ),
               ),
               SizedBox(
@@ -65,19 +70,19 @@ class _BookMechanicState extends State<BookMechanic> {
               Center(
                 child: Text(
                   widget.mechanic.address ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20,
                       color: Color(0xff282828),
                       fontWeight: FontWeight.w400),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Image(
                     image: AssetImage('assets/images/circle.png'),
                   ),
@@ -105,7 +110,7 @@ class _BookMechanicState extends State<BookMechanic> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
-                      children: [
+                      children: const [
                         Text(
                           'A1E36Y2',
                           style: TextStyle(
@@ -113,7 +118,7 @@ class _BookMechanicState extends State<BookMechanic> {
                               color: Color(0xff282828),
                               fontWeight: FontWeight.w600),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
                           'REG NO',
                           style: TextStyle(
@@ -124,7 +129,7 @@ class _BookMechanicState extends State<BookMechanic> {
                       ],
                     ),
                     Column(
-                      children: [
+                      children: const [
                         Text(
                           '6 Years',
                           style: TextStyle(
@@ -143,7 +148,7 @@ class _BookMechanicState extends State<BookMechanic> {
                       ],
                     ),
                     Column(
-                      children: [
+                      children: const [
                         Text(
                           '4.9',
                           style: TextStyle(
@@ -164,11 +169,11 @@ class _BookMechanicState extends State<BookMechanic> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Divider(),
-              SizedBox(
+              const Divider(),
+              const SizedBox(
                 height: 25,
               ),
               Row(
@@ -194,214 +199,112 @@ class _BookMechanicState extends State<BookMechanic> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
                 height: 200,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 180,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 15),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(33, 178, 75, 0.09),
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Image(
-                                    image: AssetImage('assets/images/tobi.png'),
-                                    width: 50,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Shola Fatoki',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        color: Color(0xff0E0E0E)),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                'He is an outstanding \nmechanic with speed in \ndelivery of his quality \nservice. Kind and \nhardworking man.',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 11,
-                                    letterSpacing: 1,
-                                    height: 1.5,
-                                    color: Color(0xff464646)),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              RatingBar.builder(
-                                initialRating: 3,
-                                minRating: 1,
-                                itemSize: 20.0,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemPadding:
-                                    EdgeInsets.symmetric(horizontal: 0.0),
-                                itemBuilder: (context, _) => Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                onRatingUpdate: (rating) {
-                                  print(rating);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
+                  children: const [
+                        ReviewWidget(),
                         SizedBox(
                           width: 10,
                         ),
-                        Container(
-                          width: 180,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 15),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(33, 178, 75, 0.09),
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Image(
-                                    image: AssetImage('assets/images/tobi.png'),
-                                    width: 50,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Shola Fatoki',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        color: Color(0xff0E0E0E)),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                'He is an outstanding \nmechanic with speed in \ndelivery of his quality \nservice. Kind and \nhardworking man.',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 11,
-                                    letterSpacing: 1,
-                                    height: 1.5,
-                                    color: Color(0xff464646)),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              RatingBar.builder(
-                                initialRating: 3,
-                                minRating: 1,
-                                itemSize: 20.0,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemPadding:
-                                    EdgeInsets.symmetric(horizontal: 0.0),
-                                itemBuilder: (context, _) => Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                onRatingUpdate: (rating) {
-                                  print(rating);
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
+                        ReviewWidget(),
                         SizedBox(
                           width: 10,
                         ),
-                        Container(
-                          width: 180,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 15),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(33, 178, 75, 0.09),
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Image(
-                                    image: AssetImage('assets/images/tobi.png'),
-                                    width: 50,
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Shola Fatoki',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        color: Color(0xff0E0E0E)),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                'He is an outstanding \nmechanic with speed in \ndelivery of his quality \nservice. Kind and \nhardworking man.',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 11,
-                                    letterSpacing: 1,
-                                    height: 1.5,
-                                    color: Color(0xff464646)),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              RatingBar.builder(
-                                initialRating: 3,
-                                minRating: 1,
-                                itemSize: 20.0,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemPadding:
-                                    EdgeInsets.symmetric(horizontal: 0.0),
-                                itemBuilder: (context, _) => Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                onRatingUpdate: (rating) {
-                                  print(rating);
-                                },
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    )
+                        ReviewWidget(),
                   ],
                 ),
+              ),
+              SizedBox(height: 20,),
+              SizedBox(
+                width: double.infinity,
+                child: GButton(
+                  isValid: Stream.value(true),
+                  onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => SelectBookDate(mechanicId: widget.mechanic.uuid))
+                      );
+                  },
+                  label: 'Continue',),
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ReviewWidget extends StatelessWidget {
+  const ReviewWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 180,
+      padding: const EdgeInsets.symmetric(
+          horizontal: 18, vertical: 15),
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(33, 178, 75, 0.09),
+        borderRadius: BorderRadius.circular(7),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: const [
+              Image(
+                image: AssetImage('assets/images/tobi.png'),
+                width: 50,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Shola Fatoki',
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 13,
+                    color: Color(0xff0E0E0E)),
+              ),
+            ],
+          ),
+          const Text(
+            'He is an outstanding \nmechanic with speed in \ndelivery of his quality \nservice. Kind and \nhardworking man.',
+            style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 11,
+                letterSpacing: 1,
+                height: 1.5,
+                color: Color(0xff464646)),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          RatingBar.builder(
+            initialRating: 3,
+            minRating: 1,
+            itemSize: 20.0,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemPadding:
+                EdgeInsets.symmetric(horizontal: 0.0),
+            itemBuilder: (context, _) => Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            onRatingUpdate: (rating) {
+              print(rating);
+            },
+          ),
+        ],
       ),
     );
   }

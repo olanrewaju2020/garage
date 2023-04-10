@@ -18,6 +18,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
   final List<String> _searchLocations = [];
   Vehicle? _vehicle;
   List<Vehicle> get vehicles => app.vehicles;
+  String serviceType = '';
 
   Vehicle? get vehicle => _vehicle;
   List<Vehicle> get vehiclesOwn => app.vehiclesOwn;
@@ -85,7 +86,9 @@ class VehicleProvider extends ChangeNotifier with Validations {
   Future<List<Vehicle>> vehicleList() async {
     isLoading = true;
     notifyListeners();
-    RestService().httpMethod(method: "GET", url: 'vehicle/list').then((response) {
+    RestService()
+        .httpMethod(method: "GET", url: 'vehicle/list')
+        .then((response) {
       if (response.isSuccessful) {
         app.vehicles = List<Vehicle>.from(
             response.data.map((vehicle) => Vehicle.fromJson(vehicle))).toList();
@@ -129,7 +132,9 @@ class VehicleProvider extends ChangeNotifier with Validations {
       required BuildContext context}) {
     isLoading = true;
     notifyListeners();
-    RestService().httpMethod(method: 'PUT', url: 'vehicle/update').then((response) {
+    RestService()
+        .httpMethod(method: 'PUT', url: 'vehicle/update')
+        .then((response) {
       if (response.isSuccessful) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Dashboard()));
@@ -145,7 +150,9 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void deleteVehicle({required BuildContext context, required String number}) {
     isLoading = true;
     notifyListeners();
-    RestService().httpMethod(method: 'PUT', url: 'vehicle/remove').then((response) {
+    RestService()
+        .httpMethod(method: 'PUT', url: 'vehicle/remove')
+        .then((response) {
       if (response.isSuccessful) {
         isLoading = false;
         notifyListeners();
@@ -171,7 +178,6 @@ class VehicleProvider extends ChangeNotifier with Validations {
         isLoading = false;
         app.servicesByOwner = List<GService>.from(
             response.data.map((service) => GService.fromJson(service)));
-
       } else {
         app.servicesByOwner = [];
         isLoading = false;
@@ -182,19 +188,17 @@ class VehicleProvider extends ChangeNotifier with Validations {
     });
   }
 
-  serviceCompanies(String serviceType){
+  serviceCompanies(String serviceType) {
     isLoading = true;
     notifyListeners();
     RestService()
-        .httpMethod(
-        method: 'GET', url: '/user/fetch/$serviceType')
+        .httpMethod(method: 'GET', url: '/user/fetch/$serviceType')
         .then((response) {
       if (response.isSuccessful) {
         isLoading = false;
-        app.serviceVendors = List<User>.from(
-            response.data.map((user) => User.fromJson(user)));
+        app.serviceVendors =
+            List<User>.from(response.data.map((user) => User.fromJson(user)));
         notifyListeners();
-
       } else {
         app.serviceVendors = [];
         isLoading = false;
@@ -204,21 +208,20 @@ class VehicleProvider extends ChangeNotifier with Validations {
     });
   }
 
-  void requestNewService({required BuildContext context, required VehicleService request}) {
+  void requestNewService(
+      {required BuildContext context, required VehicleService request}) {
     isLoading = true;
     notifyListeners();
-    RestService().httpMethod(
-        method:'POST',
-        url: 'service/new',
-      body: request.toNewService()
-    ).then((response) {
-      if(response.isSuccessful) {
+    RestService()
+        .httpMethod(
+            method: 'POST', url: 'service/new', body: request.toNewService())
+        .then((response) {
+      if (response.isSuccessful) {
         isLoading = false;
         notifyListeners();
         ShowToast(msg: response.data, type: ErrorType.success);
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => Dashboard())
-        );
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Dashboard()));
       } else {
         isLoading = false;
         notifyListeners();
@@ -226,7 +229,6 @@ class VehicleProvider extends ChangeNotifier with Validations {
       }
     });
   }
-
 
   void setVendor(vendor) {
     app.vendor = vendor;
@@ -236,13 +238,13 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void fetchServiceByCar({required String vehicleId}) {
     isLoading = true;
     notifyListeners();
-    RestService().httpMethod(
-      method: 'GET',
-      url: 'service/fetch/car/$vehicleId'
-    ).then((response) {
-      if(response.isSuccessful) {
+    RestService()
+        .httpMethod(method: 'GET', url: 'service/fetch/car/$vehicleId')
+        .then((response) {
+      if (response.isSuccessful) {
         isLoading = false;
-        app.servicesByCar = List<GService>.from(response.data.map((service) => GService.fromJson(service)));
+        app.servicesByCar = List<GService>.from(
+            response.data.map((service) => GService.fromJson(service)));
         notifyListeners();
         // Navigator.of(context)
       } else {
@@ -266,13 +268,15 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void searchMechanic({required String location, required String serviceType}) {
     isLoading = true;
     notifyListeners();
-    RestService().httpMethod(
-        method: 'GET',
-        url: 'user/search?address=$location&serviceType=$serviceType'
-    ).then((response) {
-      if(response.isSuccessful) {
+    RestService()
+        .httpMethod(
+            method: 'GET',
+            url: 'user/search?address=$location&serviceType=$serviceType')
+        .then((response) {
+      if (response.isSuccessful) {
         isLoading = false;
-        app.serviceVendors = List<User>.from(response.data.map((mechanics) => User.fromJson(mechanics)));
+        app.serviceVendors = List<User>.from(
+            response.data.map((mechanics) => User.fromJson(mechanics)));
         notifyListeners();
       } else {
         isLoading = false;
@@ -280,7 +284,31 @@ class VehicleProvider extends ChangeNotifier with Validations {
         ShowToast(msg: response.error, type: ErrorType.error);
       }
     });
-    print(location);
   }
 
+  void bookMechanic(
+      {String? mechanicId = '',
+      DateTime? date,
+      required String serviceType,
+      required BuildContext context}) {
+    isLoading = true;
+    notifyListeners();
+    RestService().httpMethod(method: 'POST', url: '/service/new', body: {
+      "serviceproviderUuid": mechanicId,
+      "serviceOwnerUuid": app.user.uuid,
+      "vehicleUuid": app.vehicleSelected.uuid,
+      "service_type": serviceType,
+      "owner_complain": "",
+      "trans_date": '$date'
+    }).then((response) {
+      if (response.isSuccessful) {
+        showSuccess(
+            context: context, message: response.data, route: Dashboard());
+      } else {
+        ShowToast(msg: response.error, type: ErrorType.error);
+      }
+    });
+    isLoading = false;
+    notifyListeners();
+  }
 }

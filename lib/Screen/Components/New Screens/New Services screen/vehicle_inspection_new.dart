@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/search_new.dart';
+import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/list_of_mechanic.dart';
 
 import '../../../../misc/enum.dart';
+import 'book_appointment.dart';
 
 class NewVehicleInspection extends StatefulWidget {
   const NewVehicleInspection({Key? key}) : super(key: key);
@@ -40,76 +41,30 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
+            children: const [
+              SizedBox(
                 height: 25,
               ),
-              const Center(
+              Center(
                 child: Image(
                   image: AssetImage('assets/images/box4.png'),
                   width: 150,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 30,
               ),
-              BookAppointment(serviceType: ServiceType.none,),
-              const SizedBox(
+              BookAppointment(
+                serviceType: ServiceType.none,
+              ),
+              SizedBox(
                 height: 25,
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Image(
-                    image: AssetImage('assets/images/message.png'),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.0, left: 15),
-                    child: Text('Chat with Mechanic', style: TextStyle(
-                        color: Color(0xff646464),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18
-                    ),),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(top: 18.0),
-                    child: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Color(0xff7E808A),
-                      size: 16,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
+              ChatWithMechanic(serviceType: ServiceType.inspection),
+              SizedBox(
                 height: 25,
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Image(
-                    image: AssetImage('assets/images/calls.png'),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15.0, left: 15),
-                    child: Text('Call Mechanic ', style: TextStyle(
-                        color: Color(0xff646464),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18
-                    ),),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(top: 18.0),
-                    child: Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: Color(0xff7E808A),
-                      size: 16,
-                    ),
-                  ),
-                ],
-              )
+              CallMechanic()
             ],
           ),
         ),
@@ -118,30 +73,75 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
   }
 }
 
-class BookAppointment extends StatelessWidget {
-  final ServiceType serviceType;
+class CallMechanic extends StatelessWidget {
+  const CallMechanic({
+    super.key,
+  });
 
-  const BookAppointment({
-    super.key, required this.serviceType
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const [
+        Image(
+          image: AssetImage('assets/images/calls.png'),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 15.0, left: 15),
+          child: Text(
+            'Call Mechanic ',
+            style: TextStyle(
+                color: Color(0xff646464),
+                fontWeight: FontWeight.w600,
+                fontSize: 18),
+          ),
+        ),
+        Spacer(),
+        Padding(
+          padding: EdgeInsets.only(top: 18.0),
+          child: Icon(
+            Icons.arrow_forward_ios_rounded,
+            color: Color(0xff7E808A),
+            size: 16,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ChatWithMechanic extends StatelessWidget {
+  final ChatType chatType;
+  final ServiceType serviceType;
+  const ChatWithMechanic({
+    super.key, this.chatType = ChatType.chat, required this.serviceType,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchMechanic(serviceType: "inspection"))),
+      onTap:(){
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => ListOfMechanic(
+              serviceType: serviceType,
+              chatType: chatType))
+        );
+      },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Image(
-            image: AssetImage('assets/images/cal.png'),
+            image: AssetImage('assets/images/message.png'),
           ),
           Padding(
             padding: EdgeInsets.only(top: 15.0, left: 15),
-            child: Text('Book an appointment', style: TextStyle(
-              color: Color(0xff646464),
-              fontWeight: FontWeight.w600,
-              fontSize: 18
-            ),),
+            child: Text(
+              'Chat with Mechanic',
+              style: TextStyle(
+                  color: Color(0xff646464),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18),
+            ),
           ),
           Spacer(),
           Padding(
@@ -157,3 +157,4 @@ class BookAppointment extends StatelessWidget {
     );
   }
 }
+

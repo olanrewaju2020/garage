@@ -3,6 +3,7 @@ import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20s
 import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/rescue_new.dart';
 import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/vehicle_inspection_new.dart';
 import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/vehicle_servicing_new.dart';
+import 'package:garage_repair/misc/enum.dart';
 
 class ServicesOne extends StatefulWidget {
   const ServicesOne({Key? key}) : super(key: key);
@@ -65,6 +66,7 @@ class _ServicesOneState extends State<ServicesOne> {
                 imageUrl: 'assets/images/6s.png',
                 description: 'Lorem ipsum dolor sit amet, \nconsectetur adipiscing elit.',
                 route: VehicleServicingNew(
+                  serviceType: ServiceType.servicing,
                   title: 'Vehicle Servicing', imageUrl: 'assets/images/box2.png',),
               ),
               SizedBox(

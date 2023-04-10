@@ -51,6 +51,7 @@ dependencies:
   jiffy: ^5.0.0
   image_picker: ^0.8.6+2
   shared_preferences: ^2.0.17
+  dotted_border: ^2.0.0+3
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SwipeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const SwipeAppBar({
+class GAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const GAppBar({
     Key ? key,
     required this.screenTitle,
   }) : super(key: key);
@@ -11,27 +11,28 @@ class SwipeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leading: InkWell(
+    return  AppBar(
+      leading: GestureDetector(
         onTap: () => Navigator.of(context).pop(),
-        child: Icon(Icons.arrow_back_ios)
-      ),
-      title: screenTitle != null
-          ? Center(
-            child: Text(
-        screenTitle,
-        style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 15,
-              color: Color(0xff000000),
-              fontStyle: FontStyle.normal
+        child: const Icon(
+          Icons.arrow_back_ios_new_rounded,
+          color: Colors.black,
+          size: 20,
         ),
       ),
-          )
-          : Image.asset('assets/v2/icons/swipe_logo.png'),
+      title: Text(
+        screenTitle,
+        style: const TextStyle(
+            color: Color(0xff21B24B),
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+            fontStyle: FontStyle.normal),
+      ),
+      elevation: 0,
+      backgroundColor: const Color(0xffEBEBEB),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(60);
+  Size get preferredSize => const Size.fromHeight(60);
 }

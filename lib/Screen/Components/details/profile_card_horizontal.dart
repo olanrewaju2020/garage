@@ -7,60 +7,64 @@ import '../New Screens/New Services screen/book_machanic.dart';
 class ProfileCardHorizontal extends StatelessWidget {
   final User user;
   const ProfileCardHorizontal({
-    super.key, required this.user,
+    super.key,
+    required this.user,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookMechanic(mechanic: user))),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => BookMechanic(mechanic: user))),
       child: Column(
         children: [
           Container(
             height: 95,
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-                horizontal: 18, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,
-                color: Color(0xff21B24B),
+                color: const Color(0xff21B24B),
               ),
               borderRadius: BorderRadius.circular(23),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image(
+                const Image(
                   image: AssetImage('assets/images/woman.png'),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 13.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        user.fullName,
-                        style: TextStyle(
-                            color: Color(0xff0D0221),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(height: 3),
-                      Text(
-                        user.address ?? '',
-                        style: TextStyle(
-                            color: Color(0xff282828),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400),
-                      )
-                    ],
+                Expanded(
+                  flex: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 13.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          user.fullName,
+                          style: const TextStyle(
+                              color: Color(0xff0D0221),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          user.address ?? '',
+                          style: const TextStyle(
+                              color: Color(0xff282828),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-                Spacer(),
                 Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: RatingBar.builder(
@@ -70,8 +74,7 @@ class ProfileCardHorizontal extends StatelessWidget {
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
-                      itemPadding:
-                      const EdgeInsets.symmetric(horizontal: 0.0),
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 0.0),
                       itemBuilder: (context, _) => const Icon(
                         Icons.star,
                         color: Colors.amber,

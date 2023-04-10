@@ -35,4 +35,5 @@ class GService {
   String toString() {
     return 'GService{vehicle: $vehicle, serviceOwner: $serviceOwner, serviceProvider: $serviceProvider, uuid: $uuid, serviceType: $serviceType, description: $description, status: $status, cost: $cost, datePosted: $datePosted, dateCreated: $dateCreated, rate: $rate}';
   }
+
 }

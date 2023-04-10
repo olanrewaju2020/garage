@@ -26,6 +26,7 @@ class _SearchMechanicState extends State<SearchMechanic> {
       setState(() {
         recentSearch =  pref.getStringList('recentSearch') ?? [];
       });
+      Provider.of<VehicleProvider>(context, listen: false).serviceType = widget.serviceType;
     });
 
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/details/quick.dart';
 import 'package:provider/provider.dart';
 
+import '../../misc/enum.dart';
 import '../../provider/auth_provider.dart';
 import '../Components/New Screens/New Services screen/repair_vehicle_new.dart';
 import '../Components/New Screens/New Services screen/rescue_new.dart';
@@ -110,21 +111,29 @@ class _DashboardHomeState extends State<DashboardHome> {
                       NewWidget(
                           title: 'Vehicle \nInspection',
                           imageLog: 'assets/images/7.png',
-                          route: VehicleServicingNew(title: 'Vehicle Inspection', imageUrl: 'assets/images/box4.png')),
-                          // route: NewVehicleInspection()),
+                          route: VehicleServicingNew(
+                              serviceType: ServiceType.inspection,
+                              title: 'Vehicle Inspection',
+                              imageUrl: 'assets/images/box4.png')),
                       NewWidget(
                           title: 'Vehicle \nServicing',
                           imageLog: 'assets/images/6.png',
-                          route: VehicleServicingNew(title: 'Vehicle Servicing', imageUrl: 'assets/images/box2.png')),
+                          route: VehicleServicingNew(
+                              serviceType: ServiceType.servicing,
+                              title: 'Vehicle Servicing', imageUrl: 'assets/images/box2.png')),
                       NewWidget(
                           title: 'Rescue \nService',
                           imageLog: 'assets/images/tow2.png',
-                          route: VehicleServicingNew(title: 'Rescue Service', imageUrl: 'assets/images/box3.png')),
+                          route: VehicleServicingNew(
+                              serviceType: ServiceType.rescueService,
+                              title: 'Rescue Service', imageUrl: 'assets/images/box3.png')),
                           // route: RescusNew()),
                       NewWidget(
                           title: 'Vehicle \nRepair',
                           imageLog: 'assets/images/spanner.png',
-                          route: VehicleServicingNew(title: 'Repair Vehicle', imageUrl: 'assets/images/box1.png')),
+                          route: VehicleServicingNew(
+                              serviceType: ServiceType.repair,
+                              title: 'Repair Vehicle', imageUrl: 'assets/images/box1.png')),
                           // route: RepairVehicleNew()),
                     ],
                   ),

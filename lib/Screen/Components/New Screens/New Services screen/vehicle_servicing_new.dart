@@ -2,17 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/vehicle_inspection_new.dart';
 
 import '../../../../misc/enum.dart';
+import 'book_appointment.dart';
 
 class VehicleServicingNew extends StatefulWidget {
   final String imageUrl;
   final String title;
-  const VehicleServicingNew({Key? key, required this.imageUrl, required this.title}) : super(key: key);
+  final ServiceType serviceType;
+  const VehicleServicingNew({Key? key, required this.imageUrl, required this.title, required this.serviceType}) : super(key: key);
 
   @override
   State<VehicleServicingNew> createState() => _VehicleServicingNewState();
 }
 
 class _VehicleServicingNewState extends State<VehicleServicingNew> {
+
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) { });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,11 +66,11 @@ class _VehicleServicingNewState extends State<VehicleServicingNew> {
               const SizedBox(
                 height: 30,
               ),
-              const BookAppointment(serviceType: ServiceType.none,),
+              BookAppointment(serviceType: widget.serviceType,),
               const SizedBox(
                 height: 25,
               ),
-              const ChatWithMechanic(),
+              ChatWithMechanic(chatType: ChatType.chat, serviceType: widget.serviceType,),
               const SizedBox(
                 height: 25,
               ),
@@ -109,39 +120,3 @@ class CallMechanic extends StatelessWidget {
   }
 }
 
-class ChatWithMechanic extends StatelessWidget {
-  const ChatWithMechanic({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Image(
-          image: AssetImage('assets/images/message.png'),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 15.0, left: 15),
-          child: Text(
-            'Chat with Mechanic',
-            style: TextStyle(
-                color: Color(0xff646464),
-                fontWeight: FontWeight.w600,
-                fontSize: 18),
-          ),
-        ),
-        Spacer(),
-        Padding(
-          padding: EdgeInsets.only(top: 18.0),
-          child: Icon(
-            Icons.arrow_forward_ios_rounded,
-            color: Color(0xff7E808A),
-            size: 16,
-          ),
-        ),
-      ],
-    );
-  }
-}
