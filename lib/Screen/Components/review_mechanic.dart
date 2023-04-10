@@ -45,10 +45,10 @@ class _ReviewMechanicState extends State<ReviewMechanic> {
                 letterSpacing: 0.5
               ),),
             ),
-            SizedBox(
+            const SizedBox(
               height: 3,
             ),
-            Center(
+            const Center(
               child: Text('Adekola Seyi', style: TextStyle(
                   color: Color(0xff21B24B),
                   fontWeight: FontWeight.w400,
