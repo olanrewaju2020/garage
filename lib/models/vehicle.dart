@@ -43,7 +43,7 @@ class Vehicle {
         color: vehicle['color'],
         model: vehicle['model'],
         image: vehicle['image'],
-        createdAt: Jiffy(vehicle['createdAt']).yMMMEd,
+        createdAt: Jiffy.parse(vehicle['createdAt']).yMMMEd,
         owner: User.fromOwnerJson(vehicle["owner"]));
   }
 

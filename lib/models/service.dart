@@ -27,8 +27,8 @@ class GService {
     vehicle: Vehicle.fromServiceJson(json["vehicle"]),
     serviceOwner: User.fromOwnerJson(json["serviceOwner"]),
     serviceProvider: User.fromOwnerJson(json["serviceProvider"]),
-    datePosted: Jiffy(json["datePosted"]).yMMMEd,
-    dateCreated: Jiffy(json["dateCreated"]).yMMMEd
+    datePosted: Jiffy.parse(json["datePosted"]).yMMMEd,
+    dateCreated: Jiffy.parse(json["dateCreated"]).yMMMEd
   );
 
   @override

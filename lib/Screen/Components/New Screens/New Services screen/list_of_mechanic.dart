@@ -1,30 +1,41 @@
+import 'package:chat_bubbles/bubbles/bubble_normal.dart';
+import 'package:chat_bubbles/bubbles/bubble_special_one.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:garage_repair/Models/user.dart';
+import 'package:garage_repair/Screen/Components/appbar.dart';
+import 'package:garage_repair/Screen/Components/g_text_field.dart';
+import 'package:garage_repair/Screen/g_loader.dart';
 import 'package:garage_repair/provider/vehicle_provider.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../misc/enum.dart';
 import '../../../../service_locator.dart';
+import '../mechanic_experience_card.dart';
 
 class ListOfMechanic extends StatefulWidget {
   final ChatType chatType;
   final ServiceType serviceType;
-  const ListOfMechanic({Key? key, this.chatType = ChatType.chat, required this.serviceType,}) : super(key: key);
+  const ListOfMechanic({
+    Key? key,
+    this.chatType = ChatType.chat,
+    required this.serviceType,
+  }) : super(key: key);
 
   @override
   State<ListOfMechanic> createState() => _ListOfMechanicState();
 }
 
 class _ListOfMechanicState extends State<ListOfMechanic> {
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<VehicleProvider>(context, listen: false).serviceCompanies(ServiceTypeString(widget.serviceType));
+      Provider.of<VehicleProvider>(context, listen: false)
+          .serviceCompanies(ServiceTypeString(widget.serviceType));
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,100 +61,111 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
         backgroundColor: const Color(0xffEBEBEB),
       ),
       body: SingleChildScrollView(
-        child: Consumer<VehicleProvider >(
-  builder: (context, provider, child) {
-  return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0),
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(
-                  app.serviceVendors.length, (index) => MechanicExperienceCard(
-                    mechanic: app.serviceVendors[index], route: )),
-            ),
-          ),
-        );
-  },
-),
+        child: Consumer<VehicleProvider>(
+          builder: (context, provider, child) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List.generate(
+                      app.serviceVendors.length,
+                      (index) => MechanicExperienceCard(
+                          mechanic: app.serviceVendors[index],
+                          route: ChatWithEngineer(
+                              mechanic: app.serviceVendors[index]))),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class MechanicExperienceCard extends StatelessWidget {
-  final User? mechanic;
-  const MechanicExperienceCard({
-    super.key, required this.mechanic,
-  });
+class ChatWithEngineer extends StatefulWidget {
+  final User mechanic;
+  const ChatWithEngineer({Key? key, required this.mechanic}) : super(key: key);
+
+  @override
+  State<ChatWithEngineer> createState() => _ChatWithEngineerState();
+}
+
+class _ChatWithEngineerState extends State<ChatWithEngineer> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<VehicleProvider>(context, listen: false).fetchChatMessages();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 115,
-      margin: const EdgeInsets.only(bottom: 20),
-      width: double.infinity,
-      padding:
-          const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: const Color(0xff21B24B),
-        ),
-        borderRadius: BorderRadius.circular(23),
+    return Scaffold(
+      appBar: const GAppBar(
+        screenTitle: 'Chat',
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Image(
-            image: AssetImage('assets/images/person1.png'),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 18.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  mechanic?.fullName ?? '',
-                  style: const TextStyle(
-                      color: Color(0xff0D0221),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600),
+      body: Consumer<VehicleProvider>(
+        builder: (context, provider, child) {
+          return provider.isLoading
+              ? const GLoader()
+              : Column(children: [
+                  Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      child: ListView(
+                        reverse: true,
+                          children: List.generate(app.messageLogs.length, (index) =>
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BubbleSpecialOne(
+                        text: app.messageLogs[index].description,
+                      tail: true,
+                      isSender:  app.user.uuid == (app.messageLogs[index].postedBy?.uuid ?? ''),
+                      color: app.user.uuid == (app.messageLogs[index].postedBy?.uuid ?? '')
+                          ? Colors.green : Colors.white30,
+                      textStyle:  app.user.uuid == (app.messageLogs[index].postedBy?.uuid ?? '')
+                          ? const TextStyle(color: Colors.white, fontSize: 16)
+                          : const TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                    const SizedBox(height: 12,),
+                    Text(Jiffy.parseFromDateTime(app.messageLogs[index].dateCreated ?? DateTime.now()).yMMMdjm)
+                  ],
                 ),
-                const SizedBox(height: 3),
-                const Text(
-                  '5 years experience',
-                  style: TextStyle(
-                      color: Color(0xff282828),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400),
-                )
-              ],
-            ),
-          ),
-          const Spacer(),
-          Padding(
-              padding: const EdgeInsets.only(top: 30.0),
-              child: RatingBar.builder(
-                initialRating: 3,
-                minRating: 1,
-                itemSize: 20.0,
-                direction: Axis.horizontal,
-                allowHalfRating: true,
-                itemCount: 5,
-                itemPadding: const EdgeInsets.symmetric(horizontal: 0.0),
-                itemBuilder: (context, _) => const Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-                onRatingUpdate: (rating) {
-                  //print(rating);
-                },
               )),
-        ],
+                      )
+                  )),
+            Container(
+              height: 100,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(style: BorderStyle.solid),
+                boxShadow: const [
+                  BoxShadow(blurRadius: 10, spreadRadius: 1)
+                ]
+              ),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 75,
+                    child: GTextField(
+                      label: '', stream: Stream.value(''),
+                      prefixIconData: Icons.emoji_emotions, suffixIconData: Icons.attach_file_sharp,),
+                  ),
+                  IconButton(onPressed: () {
+                    provider.sendServiceLog();
+                  }, icon: const Icon(Icons.attach_file_sharp))
+                ],
+              )
+            )
+                ]);
+        },
       ),
     );
   }

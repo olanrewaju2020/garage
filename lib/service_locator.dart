@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'Models/service.dart';
 import 'Models/user.dart';
 import 'Models/vehicle.dart';
+import 'models/serviceLog.dart';
 
 GetIt locator = GetIt.instance;
 final app = locator.get<App>();
@@ -24,8 +25,10 @@ class App {
   List<GService> servicesByOwner = [];
   List<GService> servicesByCar = [];
   List<User> serviceVendors = [];
-  User? vendor = User();
+  User vendor = User();
   Vehicle vehicleSelected = Vehicle();
+
+  List<ServiceLog> messageLogs = [];
 
 
 }

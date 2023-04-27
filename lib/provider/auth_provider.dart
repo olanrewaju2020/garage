@@ -16,12 +16,12 @@ import '../service_locator.dart';
 
 class AuthProvider extends ChangeNotifier with Validations {
   bool isLoading = false;
-  String? _email;
+  String _email = '';
   bool _isActivated = false;
   User? _user;
   File? _pickedFile;
 
-  String get email => _email ?? '';
+  String get email => _email;
   bool get isActivated => _isActivated;
   User get user => _user ?? User();
   File? get pickedFile => _pickedFile;
@@ -191,16 +191,12 @@ class AuthProvider extends ChangeNotifier with Validations {
   }
 
   void updateUserAddress({required String city, required String homeAddress, required String workAddress}) {
-    print("============================");
-    print(city);
-    print(homeAddress);
-    print(workAddress);
   }
 
   void pickProfileImage() async {
-    final _picker = ImagePicker();
-    XFile? pickedXFile = await _picker.pickImage(source: ImageSource.camera);
-    _pickedFile = File(pickedXFile!.path ?? '');
+    final picker = ImagePicker();
+    XFile? pickedXFile = await picker.pickImage(source: ImageSource.camera);
+    _pickedFile = File(pickedXFile?.path ?? '');
     isLoading = true;
     notifyListeners();
     String img64 = base64Encode(await pickedXFile!.readAsBytes());

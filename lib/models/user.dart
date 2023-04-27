@@ -1,7 +1,7 @@
 import '../service_locator.dart';
 
 class User {
-  String? firstName, lastName, phone, email, tellUsWhereYouFoundUs,
+  String firstName, lastName, phone, email, tellUsWhereYouFoundUs,
       address, createdAt, password, oldPassword, token, otp, uuid, aboutUs,
       category, serviceType;
   bool accountStatus;
@@ -9,16 +9,17 @@ class User {
   get fullName => '$firstName $lastName';
 
   User(
-      {this.firstName,
-      this.lastName,
-      this.phone,
-        this.address,
-      this.email,
-      this.tellUsWhereYouFoundUs,
-      this.password,
-      this.token,
-      this.otp, this.accountStatus = false, this.createdAt,
-      this.uuid, this.aboutUs, this.category, this.serviceType, this.oldPassword});
+      {this.firstName = '',
+      this.lastName = '',
+      this.phone = '',
+        this.address = '',
+      this.email = '',
+      this.tellUsWhereYouFoundUs = '',
+      this.password = '',
+      this.token = '',
+      this.otp = '', this.accountStatus = false, this.createdAt ='',
+      this.uuid ='', this.aboutUs = '', this.category = '', this.serviceType = '',
+        this.oldPassword = ''});
 
   toRegister() {
     return {
@@ -68,16 +69,16 @@ class User {
   toEmail()  => {"email": email};
 
   factory User.fromJson(Map<String, dynamic>service) => User(
-      uuid: service["uuid"],
-      accountStatus: service["accountStatus"],
-      firstName: service["firstName"],
-      lastName: service["lastName"],
-      email:service["email"],
-       phone: service["phone"],
-       category: service["category"],
-       serviceType: service["serviceList"],
-       createdAt: service["createdAt"],
-       address: service["address"]
+      uuid: service["uuid"] ?? '',
+      accountStatus: service["accountStatus"] ?? false,
+      firstName: service["firstName"] ?? '',
+      lastName: service["lastName"] ?? '',
+      email:service["email"] ?? '',
+       phone: service["phone"] ?? '',
+       category: service["category"] ?? '',
+       serviceType: service["serviceList"] ?? '',
+       createdAt: service["createdAt"] ?? '',
+       address: service["address"] ?? ''
   );
 
   toChangePasswordJson() => {

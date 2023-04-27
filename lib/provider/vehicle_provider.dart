@@ -11,6 +11,7 @@ import '../misc/enum.dart';
 import '../misc/utils.dart';
 import '../Service/rest_service.dart';
 import '../misc/validations.dart';
+import '../models/serviceLog.dart';
 import '../service_locator.dart';
 
 class VehicleProvider extends ChangeNotifier with Validations {
@@ -43,7 +44,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
             method: 'POST', url: 'vehicle/add', body: Vehicle().toSaveVehicle())
         .then((response) {
       if (response.isSuccessful) {
-        vehiclesOwnList(ownerId: app.user.uuid ?? '');
+        vehiclesOwnList(ownerId: app.user.uuid);
         isLoading = false;
         notifyListeners();
         Navigator.push(
@@ -172,7 +173,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
     notifyListeners();
     RestService()
         .httpMethod(
-            method: 'GET', url: 'service/fetch/owner/${app.user.uuid ?? ""}')
+            method: 'GET', url: 'service/fetch/owner/${app.user.uuid}')
         .then((response) {
       if (response.isSuccessful) {
         isLoading = false;
@@ -311,4 +312,21 @@ class VehicleProvider extends ChangeNotifier with Validations {
     isLoading = false;
     notifyListeners();
   }
+
+  void fetchChatMessages() {
+    isLoading = true;
+    notifyListeners();
+    RestService().httpMethod(method: 'GET', url: '/service/conversation/list/')
+      .then((response){
+        if(response.isSuccessful){
+          app.messageLogs = List<ServiceLog>.from(response.data.map((log) => ServiceLog.fromJson(log)));
+        } else {
+          ShowToast(msg: response.error, type: ErrorType.error);
+        }
+    });
+    isLoading = false;
+    notifyListeners();
+  }
+
+  void sendServiceLog() {}
 }
