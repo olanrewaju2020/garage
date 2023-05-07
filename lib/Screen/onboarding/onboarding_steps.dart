@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/onboarding/login.dart';
 
-class OnboardingSteps extends StatefulWidget {
-  const OnboardingSteps({Key? key}) : super(key: key);
+class OnBoardingSteps extends StatefulWidget {
+  const OnBoardingSteps({Key? key}) : super(key: key);
 
   @override
-  State<OnboardingSteps> createState() => _OnboardingStepsState();
+  State<OnBoardingSteps> createState() => _OnBoardingStepsState();
 }
 
-class _OnboardingStepsState extends State<OnboardingSteps> {
+class _OnBoardingStepsState extends State<OnBoardingSteps> {
   late PageController _pageController;
 
   int _pageIndex = 0;
@@ -52,17 +52,21 @@ class _OnboardingStepsState extends State<OnboardingSteps> {
             ),
             Row(
               children: [
-
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: Text('Skip', style: TextStyle(
-                    color: Color(0xff21B24B
-                    ),
-                    fontWeight: FontWeight.w900,
-                    fontSize: 15,
-                    fontStyle: FontStyle.normal
-                  ),),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Login()));
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 5.0),
+                    child: Text('Skip', style: TextStyle(
+                      color: Color(0xff21B24B
+                      ),
+                      fontWeight: FontWeight.w900,
+                      fontSize: 15,
+                      fontStyle: FontStyle.normal
+                    ),),
+                  ),
                 ),
 
 
@@ -92,7 +96,7 @@ class _OnboardingStepsState extends State<OnboardingSteps> {
                     style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(), primary: Colors.green),
                     child:
-                        Icon(Icons.arrow_forward_rounded, color: Colors.white),
+                        const Icon(Icons.arrow_forward_rounded, color: Colors.white),
                     // child: SvgPicture.asset("assets/Unkown.png",
                     //     color: Colors.white),
                   ),

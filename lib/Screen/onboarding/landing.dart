@@ -44,7 +44,7 @@ class _LandingPageState extends State<LandingPage>
     Timer(
         const Duration(seconds: 5),
         () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) =>  OnboardingSteps())));
+            MaterialPageRoute(builder: (context) =>  OnBoardingSteps())));
   }
 
   @override
@@ -56,6 +56,7 @@ class _LandingPageState extends State<LandingPage>
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+
           Center(
             child: Container(
               height: 250,

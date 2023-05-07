@@ -1,4 +1,3 @@
-import 'package:chat_bubbles/bubbles/bubble_normal.dart';
 import 'package:chat_bubbles/bubbles/bubble_special_one.dart';
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Models/user.dart';
@@ -151,6 +150,7 @@ class _ChatWithEngineerState extends State<ChatWithEngineer> {
                 ]
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                     width: 75,
