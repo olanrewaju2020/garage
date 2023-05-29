@@ -1,6 +1,7 @@
 import 'package:chat_bubbles/bubbles/bubble_special_one.dart';
 import 'package:flutter/material.dart';
 import 'package:garage_repair/Models/user.dart';
+import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/vehicle_inspection_new.dart';
 import 'package:garage_repair/Screen/Components/appbar.dart';
 import 'package:garage_repair/Screen/Components/g_text_field.dart';
 import 'package:garage_repair/Screen/g_loader.dart';
@@ -73,7 +74,7 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
                       (index) => MechanicExperienceCard(
                           mechanic: app.serviceVendors[index],
                           route: chatType == ChatType.chat ? ChatWithEngineer(
-                              mechanic: app.serviceVendors[index]) )),
+                              mechanic: app.serviceVendors[index])  : CallMechanic(mechanic: app.serviceVendors[index]))),
                 ),
               ),
             );

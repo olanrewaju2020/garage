@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garage_repair/Models/user.dart';
 import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/list_of_mechanic.dart';
 
 import '../../../../misc/enum.dart';
@@ -76,8 +77,9 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
 
 class CallMechanic extends StatelessWidget {
   final ServiceType serviceType;
+  final User? mechanic;
   const CallMechanic({
-    super.key, this.serviceType = ServiceType.none,
+    super.key, this.serviceType = ServiceType.none, this.mechanic,
   });
 
   @override
