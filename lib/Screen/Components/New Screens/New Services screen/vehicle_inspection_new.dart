@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/list_of_mechanic.dart';
 
 import '../../../../misc/enum.dart';
+import '../../chat_with_mechanic.dart';
 import 'book_appointment.dart';
 
 class NewVehicleInspection extends StatefulWidget {
@@ -74,69 +75,29 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
 }
 
 class CallMechanic extends StatelessWidget {
-  const CallMechanic({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Image(
-          image: AssetImage('assets/images/calls.png'),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 15.0, left: 15),
-          child: Text(
-            'Call Mechanic ',
-            style: TextStyle(
-                color: Color(0xff646464),
-                fontWeight: FontWeight.w600,
-                fontSize: 18),
-          ),
-        ),
-        Spacer(),
-        Padding(
-          padding: EdgeInsets.only(top: 18.0),
-          child: Icon(
-            Icons.arrow_forward_ios_rounded,
-            color: Color(0xff7E808A),
-            size: 16,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ChatWithMechanic extends StatelessWidget {
-  final ChatType chatType;
   final ServiceType serviceType;
-  const ChatWithMechanic({
-    super.key, this.chatType = ChatType.chat, required this.serviceType,
+  const CallMechanic({
+    super.key, this.serviceType = ServiceType.none,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:(){
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => ListOfMechanic(
-              serviceType: serviceType,
-              chatType: chatType))
-        );
+      onTap: () {
+        MaterialPageRoute(builder: (context) => ListOfMechanic(
+            serviceType: serviceType,
+            chatType: ChatType.phone));
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
           Image(
-            image: AssetImage('assets/images/message.png'),
+            image: AssetImage('assets/images/calls.png'),
           ),
           Padding(
             padding: EdgeInsets.only(top: 15.0, left: 15),
             child: Text(
-              'Chat with Mechanic',
+              'Call Mechanic ',
               style: TextStyle(
                   color: Color(0xff646464),
                   fontWeight: FontWeight.w600,
@@ -157,4 +118,5 @@ class ChatWithMechanic extends StatelessWidget {
     );
   }
 }
+
 

@@ -44,24 +44,23 @@ class _LandingPageState extends State<LandingPage>
     Timer(
         const Duration(seconds: 5),
         () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) =>  OnBoardingSteps())));
+            MaterialPageRoute(builder: (context) => OnBoardingSteps())));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffEBEBEB),
+      backgroundColor: const Color(0xffEBEBEB),
       body: SafeArea(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-
+        children: const [
           Center(
-            child: Container(
+            child: SizedBox(
               height: 250,
               width: 250,
-              child: const Center(
+              child: Center(
                 child: Image(image: AssetImage('assets/images/logo.png')),
               ),
             ),

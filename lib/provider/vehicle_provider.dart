@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Models/service.dart';
 import '../Models/user.dart';
@@ -15,6 +16,7 @@ import '../models/serviceLog.dart';
 import '../service_locator.dart';
 
 class VehicleProvider extends ChangeNotifier with Validations {
+  final logMessageCtrl = TextEditingController();
   bool isLoading = false;
   final List<String> _searchLocations = [];
   Vehicle? _vehicle;
@@ -320,6 +322,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
       .then((response){
         if(response.isSuccessful){
           app.messageLogs = List<ServiceLog>.from(response.data.map((log) => ServiceLog.fromJson(log)));
+          notifyListeners();
         } else {
           ShowToast(msg: response.error, type: ErrorType.error);
         }
@@ -328,5 +331,31 @@ class VehicleProvider extends ChangeNotifier with Validations {
     notifyListeners();
   }
 
-  void sendServiceLog() {}
+  void sendServiceLog({String message = '', String category = ''}) {
+    isLoading = true;
+    notifyListeners();
+
+    final request = ServiceLog(
+      uuid: app.user.uuid, description: message, category: category).sendMesage();
+
+    RestService().httpMethod(method: 'POST',
+        url: '/service/conversation/add/${app.user.uuid}',
+        body: request)
+      .then((response){
+        if(response.isSuccessful) {
+          ShowToast(msg: response.data);
+          final log = ServiceLog.fromJson({
+          "uuid": app.user.uuid,
+          "description": message,
+          "category": category,
+          "dateCreated": DateTime.now().toString()
+        });
+          print("======================");
+          app.messageLogs.add(log);
+          print(app.messageLogs);
+        }
+    });
+    isLoading = false;
+    notifyListeners();
+  }
 }

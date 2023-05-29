@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:garage_repair/Screen/Components/New%20Screens/New%20Services%20screen/vehicle_inspection_new.dart';
 
 import '../../../../misc/enum.dart';
+import '../../chat_with_mechanic.dart';
 import 'book_appointment.dart';
+import 'list_of_mechanic.dart';
 
 class VehicleServicingNew extends StatefulWidget {
   final String imageUrl;
@@ -74,7 +75,7 @@ class _VehicleServicingNewState extends State<VehicleServicingNew> {
               const SizedBox(
                 height: 25,
               ),
-             const CallMechanic()
+              CallMechanic(serviceType: widget.serviceType,)
             ],
           ),
         ),
@@ -84,38 +85,48 @@ class _VehicleServicingNewState extends State<VehicleServicingNew> {
 }
 
 class CallMechanic extends StatelessWidget {
+  final serviceType;
   const CallMechanic({
-    super.key,
+    super.key, required this.serviceType
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Image(
-          image: AssetImage('assets/images/calls.png'),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 15.0, left: 15),
-          child: Text(
-            'Call Mechanic ',
-            style: TextStyle(
-                color: Color(0xff646464),
-                fontWeight: FontWeight.w600,
-                fontSize: 18),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ListOfMechanic(
+                serviceType: serviceType,
+                chatType: ChatType.phone))
+        );
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Image(
+            image: AssetImage('assets/images/calls.png'),
           ),
-        ),
-        Spacer(),
-        Padding(
-          padding: EdgeInsets.only(top: 18.0),
-          child: Icon(
-            Icons.arrow_forward_ios_rounded,
-            color: Color(0xff7E808A),
-            size: 16,
+          Padding(
+            padding: EdgeInsets.only(top: 15.0, left: 15),
+            child: Text(
+              'Call Mechanic ',
+              style: TextStyle(
+                  color: Color(0xff646464),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18),
+            ),
           ),
-        ),
-      ],
+          Spacer(),
+          Padding(
+            padding: EdgeInsets.only(top: 18.0),
+            child: Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: Color(0xff7E808A),
+              size: 16,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

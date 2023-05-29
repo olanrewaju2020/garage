@@ -24,4 +24,11 @@ class ServiceLog {
   String toString() {
     return 'ServiceLog{uuid: $uuid, description: $description, category: $category, dateCreated: $dateCreated, postedBy: $postedBy}';
   }
+
+  sendMesage() => {
+    "postedBy": uuid,
+    "comment": description,
+    "category": category
+  };
+
 }

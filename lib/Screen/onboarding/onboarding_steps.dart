@@ -110,27 +110,6 @@ class _OnBoardingStepsState extends State<OnBoardingSteps> {
   }
 }
 
-// class DotIndicator extends StatelessWidget {
-//   const DotIndicator({
-//     Key? key,
-//     this.isActive = false,
-//   }) : super(key: key);
-//
-//   final bool isActive;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return AnimatedContainer(
-//       duration: Duration(milliseconds: 300),
-//       height: isActive ? 12 : 4,
-//       width: 4,
-//       decoration: BoxDecoration(
-//           color: isActive ? Colors.green : Colors.green.withOpacity(0.4),
-//           borderRadius: const BorderRadius.all(Radius.circular(12))),
-//     );
-//   }
-// }
-
 class Onboard {
   final String image, title, description;
 
@@ -177,41 +156,43 @@ class OnboardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 10,
-        ),
-        Center(child: Image.asset(image)),
-        const SizedBox(
-          height: 50,
-        ),
-        Text(title,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontStyle: FontStyle.normal,
-                color: Colors.black,
-                fontSize: 22,
-                fontFamily: "manrope")),
-        const SizedBox(
-          height: 16,
-        ),
-        Center(
-          child: Text(
-            description,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.normal,
-                height: 1.5,
-                color: Colors.black,
-                fontSize: 14,
-                fontFamily: "manrope"),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 10,
           ),
-        ),
-        const Spacer(),
-      ],
+          Center(child: Image.asset(image)),
+          const SizedBox(
+            height: 50,
+          ),
+          Text(title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.normal,
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontFamily: "manrope")),
+          const SizedBox(
+            height: 16,
+          ),
+          Center(
+            child: Text(
+              description,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                  height: 1.5,
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontFamily: "manrope"),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

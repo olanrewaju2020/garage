@@ -72,8 +72,8 @@ class _ListOfMechanicState extends State<ListOfMechanic> {
                       app.serviceVendors.length,
                       (index) => MechanicExperienceCard(
                           mechanic: app.serviceVendors[index],
-                          route: ChatWithEngineer(
-                              mechanic: app.serviceVendors[index]))),
+                          route: chatType == ChatType.chat ? ChatWithEngineer(
+                              mechanic: app.serviceVendors[index]) )),
                 ),
               ),
             );
@@ -150,17 +150,23 @@ class _ChatWithEngineerState extends State<ChatWithEngineer> {
                 ]
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 75,
+                  Expanded(
                     child: GTextField(
                       label: '', stream: Stream.value(''),
+                      controller: provider.logMessageCtrl,
                       prefixIconData: Icons.emoji_emotions, suffixIconData: Icons.attach_file_sharp,),
                   ),
-                  IconButton(onPressed: () {
-                    provider.sendServiceLog();
-                  }, icon: const Icon(Icons.attach_file_sharp))
+                  TextButton(onPressed: () {
+                    provider.sendServiceLog(message: provider.logMessageCtrl.text);
+                  },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    shape: const CircleBorder(),
+                  ),
+                       child: const Icon(Icons.send, color: Colors.white,),)
                 ],
               )
             )
