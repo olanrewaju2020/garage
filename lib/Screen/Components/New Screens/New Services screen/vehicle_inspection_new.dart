@@ -38,12 +38,12 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
         elevation: 0,
         backgroundColor: const Color(0xffEBEBEB),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          padding: EdgeInsets.symmetric(horizontal: 15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               SizedBox(
                 height: 25,
               ),
@@ -66,7 +66,7 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
               SizedBox(
                 height: 25,
               ),
-              CallMechanic()
+              CallMechanic(serviceType: ServiceType.inspection)
             ],
           ),
         ),
@@ -77,9 +77,8 @@ class _NewVehicleInspectionState extends State<NewVehicleInspection> {
 
 class CallMechanic extends StatelessWidget {
   final ServiceType serviceType;
-  final User? mechanic;
   const CallMechanic({
-    super.key, this.serviceType = ServiceType.none, this.mechanic,
+    super.key, this.serviceType = ServiceType.none,
   });
 
   @override
