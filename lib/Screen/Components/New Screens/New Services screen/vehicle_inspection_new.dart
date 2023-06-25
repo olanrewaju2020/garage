@@ -89,9 +89,9 @@ class CallMechanic extends StatelessWidget {
             serviceType: serviceType,
             chatType: ChatType.phone));
       },
-      child: Row(
+      child: const Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Image(
             image: AssetImage('assets/images/calls.png'),
           ),

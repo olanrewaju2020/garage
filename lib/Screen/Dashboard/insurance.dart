@@ -12,9 +12,9 @@ class _InsuranceState extends State<Insurance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff4f4f2),
+      backgroundColor: const Color(0xfff4f4f2),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Insurance',
           style: TextStyle(
               color: Colors.black,
