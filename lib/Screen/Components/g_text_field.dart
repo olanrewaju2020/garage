@@ -59,7 +59,7 @@ class _GTextFieldState extends State<GTextField> {
               const SizedBox(
                 height: 5,
               ),
-              TextField(
+              TextFormField(
                 autofocus: false,
                 controller: widget.controller,
                 style: const TextStyle(fontSize: 12.0, height: 2.1, color: Colors.black),

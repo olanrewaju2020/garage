@@ -226,6 +226,7 @@ Future<dynamic> showSuccess(
     {required BuildContext context, String message = 'Request sent successfully', required Widget route}) {
   return showDialog(context: context, builder: (context) {
     return Dialog(
+        backgroundColor: Colors.transparent,
         child: ClipRect(
           child: Container(
             padding: const EdgeInsets.all(16),

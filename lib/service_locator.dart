@@ -30,5 +30,7 @@ class App {
 
   List<ServiceLog> messageLogs = [];
 
+  List<String> vehiclesUse = [];
+
 
 }

@@ -9,7 +9,8 @@ import '../misc/utils.dart';
 import 'api_response.dart';
 
 class RestService {
-  String baseUrl = 'http://10.0.2.2:3003/';
+  // String baseUrl = 'http://10.0.2.2:3003/';
+  String baseUrl = 'https://garag.pmcsolutions.co';
   final _headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",

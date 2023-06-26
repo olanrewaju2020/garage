@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Models/service.dart';
 import '../Models/user.dart';
@@ -350,12 +349,28 @@ class VehicleProvider extends ChangeNotifier with Validations {
           "category": category,
           "dateCreated": DateTime.now().toString()
         });
-          print("======================");
           app.messageLogs.add(log);
-          print(app.messageLogs);
         }
     });
     isLoading = false;
     notifyListeners();
+  }
+
+  void fetchInsuranceClass() {
+    isLoading = true;
+    notifyListeners();
+    
+    RestService().httpMethod(method: 'GET', url: 'insurance/edit');
+  }
+
+  void vehicleClassification() async {
+    isLoading = true;
+    notifyListeners();
+
+    final response = await RestService().httpMethod(method: 'GET', url: 'insurance/list/vehicle/use');
+    app.vehiclesUse = List<String>.from(response.data.map((vehicle) => vehicle)).toList();
+    isLoading = false;
+    notifyListeners();
+
   }
 }
