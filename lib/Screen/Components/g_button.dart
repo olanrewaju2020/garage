@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GButton extends StatelessWidget {
-  final Stream<bool>? isValid;
+  Stream<bool>? isValid;
   final Color backgroundColor;
   final Color textColor;
   bool isLoading;

@@ -65,23 +65,22 @@ class _GTextFieldState extends State<GTextField> {
                 style: const TextStyle(fontSize: 12.0, height: 2.1, color: Colors.black),
                 decoration: InputDecoration(
                   prefixIcon: Icon(widget.prefixIconData),
-                  suffixIcon: GestureDetector(
-                      child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            // color: Colors.green
-                          ),
-                          width: 15,
-                          child: widget.isSecret ?
-                              GestureDetector(
-                                onTap:() {
-                                  setState(() {
-                                    isVisible = isVisible ? false : true;
-                                  });
-                                },
-                                child: Icon(isVisible ? Icons.visibility_off : Icons.visibility)
-                              )
-                              :  Icon(widget.suffixIconData))),
+                  suffixIcon: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        // color: Colors.green
+                      ),
+                      width: 15,
+                      child: widget.isSecret ?
+                          GestureDetector(
+                            onTap:() {
+                              setState(() {
+                                isVisible = isVisible ? false : true;
+                              });
+                            },
+                            child: Icon(isVisible ? Icons.visibility_off : Icons.visibility)
+                          )
+                          :  Icon(widget.suffixIconData)),
                   border: InputBorder.none,
                   errorBorder: OutlineInputBorder(
                       borderSide: const BorderSide(

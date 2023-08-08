@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Models/service.dart';
 import '../Models/user.dart';
 import '../Models/vehicle.dart';
 import '../Models/vehicle_service.dart';
 import '../Screen/Dashboard/dashboard.dart';
+import '../Screen/Dashboard/policy_screen.dart';
 import '../misc/enum.dart';
 import '../misc/utils.dart';
 import '../Service/rest_service.dart';
@@ -40,9 +42,9 @@ class VehicleProvider extends ChangeNotifier with Validations {
       required BuildContext context}) {
     isLoading = true;
     notifyListeners();
+    final request = Vehicle().toSaveVehicle();
     RestService()
-        .httpMethod(
-            method: 'POST', url: 'vehicle/add', body: Vehicle().toSaveVehicle())
+        .httpMethod(method: 'POST', url: 'vehicle/add', body: request)
         .then((response) {
       if (response.isSuccessful) {
         vehiclesOwnList(ownerId: app.user.uuid);
@@ -173,8 +175,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
     isLoading = true;
     notifyListeners();
     RestService()
-        .httpMethod(
-            method: 'GET', url: 'service/fetch/owner/${app.user.uuid}')
+        .httpMethod(method: 'GET', url: 'service/fetch/owner/${app.user.uuid}')
         .then((response) {
       if (response.isSuccessful) {
         isLoading = false;
@@ -317,14 +318,16 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void fetchChatMessages() {
     isLoading = true;
     notifyListeners();
-    RestService().httpMethod(method: 'GET', url: '/service/conversation/list/')
-      .then((response){
-        if(response.isSuccessful){
-          app.messageLogs = List<ServiceLog>.from(response.data.map((log) => ServiceLog.fromJson(log)));
-          notifyListeners();
-        } else {
-          ShowToast(msg: response.error, type: ErrorType.error);
-        }
+    RestService()
+        .httpMethod(method: 'GET', url: '/service/conversation/list/')
+        .then((response) {
+      if (response.isSuccessful) {
+        app.messageLogs = List<ServiceLog>.from(
+            response.data.map((log) => ServiceLog.fromJson(log)));
+        notifyListeners();
+      } else {
+        ShowToast(msg: response.error, type: ErrorType.error);
+      }
     });
     isLoading = false;
     notifyListeners();
@@ -335,22 +338,25 @@ class VehicleProvider extends ChangeNotifier with Validations {
     notifyListeners();
 
     final request = ServiceLog(
-      uuid: app.user.uuid, description: message, category: category).sendMesage();
+            uuid: app.user.uuid, description: message, category: category)
+        .sendMesage();
 
-    RestService().httpMethod(method: 'POST',
-        url: '/service/conversation/add/${app.user.uuid}',
-        body: request)
-      .then((response){
-        if(response.isSuccessful) {
-          ShowToast(msg: response.data);
-          final log = ServiceLog.fromJson({
+    RestService()
+        .httpMethod(
+            method: 'POST',
+            url: '/service/conversation/add/${app.user.uuid}',
+            body: request)
+        .then((response) {
+      if (response.isSuccessful) {
+        ShowToast(msg: response.data);
+        final log = ServiceLog.fromJson({
           "uuid": app.user.uuid,
           "description": message,
           "category": category,
           "dateCreated": DateTime.now().toString()
         });
-          app.messageLogs.add(log);
-        }
+        app.messageLogs.add(log);
+      }
     });
     isLoading = false;
     notifyListeners();
@@ -359,7 +365,7 @@ class VehicleProvider extends ChangeNotifier with Validations {
   void fetchInsuranceClass() {
     isLoading = true;
     notifyListeners();
-    
+
     RestService().httpMethod(method: 'GET', url: 'insurance/edit');
   }
 
@@ -367,10 +373,39 @@ class VehicleProvider extends ChangeNotifier with Validations {
     isLoading = true;
     notifyListeners();
 
-    final response = await RestService().httpMethod(method: 'GET', url: 'insurance/list/vehicle/use');
-    app.vehiclesUse = List<String>.from(response.data.map((vehicle) => vehicle)).toList();
+    final response = await RestService()
+        .httpMethod(method: 'GET', url: 'insurance/list/vehicle/use');
+    app.vehiclesUse =
+        List<String>.from(response.data.map((vehicle) => vehicle)).toList();
     isLoading = false;
     notifyListeners();
+  }
+
+  void addInsurance(
+      {required BuildContext context,
+      required TextEditingController classOfInsurance,
+      required TextEditingController coverType,
+      required TextEditingController vehicleUse}) async {
+
+    RestService()
+        .httpMethod(method: 'POST', url: 'insurance/add', body: {
+      "classOfNumber" : classOfInsurance.text,
+      "coverType" : coverType.text,
+      "vehicleUse" : vehicleUse.text
+    }).then((response){
+          if(response.isSuccessful) {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (
+                    context) => const PolicyDetails())
+            );
+            classOfInsurance.clear();
+            coverType.clear();
+            vehicleUse.clear();
+          }
+
+
+    });
+
 
   }
 }

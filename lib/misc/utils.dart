@@ -89,8 +89,7 @@ Future<dynamic> showSearchableBottomSheet(
                                     onTap: () {
                                       app.vendor = app.serviceVendors[index];
                                       controller.text =
-                                          app.serviceVendors[index].firstName ??
-                                              '';
+                                          app.serviceVendors[index].firstName;
                                       Navigator.of(context)
                                           .pop(app.serviceVendors[index]);
                                     },
@@ -99,7 +98,7 @@ Future<dynamic> showSearchableBottomSheet(
                                         const Icon(Icons.person),
                                         const SizedBox(width: 10),
                                         Text(
-                                            "${app.serviceVendors[index].firstName}", style: Theme.of(context).textTheme.titleLarge),
+                                            app.serviceVendors[index].firstName, style: Theme.of(context).textTheme.titleLarge),
                                         Text(
                                             " ${app.serviceVendors[index].lastName}", style: Theme.of(context).textTheme.titleLarge),
                                       ],
@@ -113,7 +112,7 @@ Future<dynamic> showSearchableBottomSheet(
                                             const Icon(Icons.location_on),
                                             const SizedBox(width: 10),
                                             Text(
-                                                "${app.serviceVendors[index].address}"),
+                                                app.serviceVendors[index].address),
                                           ],
                                         ),
                                         Row(
@@ -121,12 +120,12 @@ Future<dynamic> showSearchableBottomSheet(
                                             const Icon(Icons.phone),
                                             const SizedBox(width: 10),
                                             Text(
-                                                "${app.serviceVendors[index].phone}"),
+                                                app.serviceVendors[index].phone),
                                           ],
                                         ),
                                       ],
                                     ),
-                                    trailing: Text(app.serviceVendors[index].serviceType ?? ''),
+                                    trailing: Text(app.serviceVendors[index].serviceType),
                                   ),
                                 ))))
               ]),
@@ -258,7 +257,7 @@ Future<dynamic> showSuccess(
                     label: 'Okay',
                     onPressed: () {
                       Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => route), (route) => false);
+                          MaterialPageRoute(builder: (context) => route), (route) => true);
                     },
                   ),
                 )
