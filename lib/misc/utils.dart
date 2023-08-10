@@ -161,7 +161,7 @@ Future<dynamic> showBottomSheetDDown(
                             onTap: () {
                               controller.text = optionsList[index];
                               onSelect == null ? null : onSelect();
-                              Navigator.of(context).pop();
+                              Navigator.of(context).pop(true);
                             },
                             title: Text(optionsList[index])))),
               )

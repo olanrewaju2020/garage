@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:logger/logger.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../misc/validations.dart';
@@ -14,6 +15,7 @@ class Bloc with Validations{
   final stateCtrl = TextEditingController();
   final lgaCtrl = TextEditingController();
   final addressCtrl = TextEditingController();
+  final issueDateCtrl = TextEditingController();
 
   final _insuranceClass = BehaviorSubject<String>();
   final _coverType = BehaviorSubject<String>();
@@ -25,6 +27,7 @@ class Bloc with Validations{
   final _policyDate = BehaviorSubject<String>();
   final _lga = BehaviorSubject<String>();
   final _address = BehaviorSubject<String>();
+  final _issueDate = BehaviorSubject<String>();
 
   Stream<String> get insuranceClass =>  _insuranceClass.stream.transform(validateName);
   Stream<String> get coverType => _coverType.transform(validateName);
@@ -35,21 +38,21 @@ class Bloc with Validations{
   Stream<String> get state => _state.stream;
   Stream<String> get lga => _lga.stream;
   Stream<String> get address => _address;
+  Stream<String> get issueDate => _issueDate;
 
   insuranceClassOnChanged(String className) => _insuranceClass.sink.add(className);
   coverTypeOnChanged(String type) => _coverType.sink.add(type);
   vehicleUseOnChanged(String type) => _vehicleUse.sink.add(type);
   policyHolderOnChanged(String type) => _policyHolder.sink.add(type);
-  companyNameOnChanged(String type) => _companyName.sink.add(type);
-  ninOnChanged(String type) => _nin.sink.add(type);
+  companyNameOnChanged(String name) => _companyName.sink.add(name);
+  ninOnChanged(String nin) => _nin.sink.add(nin);
   stateOnChanged(String state) => _state.sink.add(state);
   lgaOnChanged(String lga) => _lga.sink.add(lga);
   addressOnChanged(String address) => _lga.sink.add(address);
+  issueDateOnChanged(String dt) => _issueDate.sink.add(dt);
 
   Stream<bool> get isPolicyDataValid =>
-      Rx.combineLatest([policyHolder, companyName, nin, state, lga, address], (values) {
-        return true;
-      });
+      Rx.combineLatest([policyHolder, companyName, issueDate, vehicleUse], (values) => true);
 
   dispose() {
     _insuranceClass.close();

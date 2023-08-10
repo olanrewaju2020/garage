@@ -188,7 +188,7 @@ class _AddMaintaincePlanState extends State<AddMaintaincePlan> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => AddMaintenance2(serviceType: app.serviceType ?? 'Tolling',)));
                   },
-                  child: VehicleDetails(vehicle: app.vehiclesOwn[0],),
+                  child: VehicleDetails(vehicle: app.vehicleSelected,),
                 )
               ]),
         ),

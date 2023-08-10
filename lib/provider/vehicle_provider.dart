@@ -386,26 +386,45 @@ class VehicleProvider extends ChangeNotifier with Validations {
       required TextEditingController classOfInsurance,
       required TextEditingController coverType,
       required TextEditingController vehicleUse}) async {
-
-    RestService()
-        .httpMethod(method: 'POST', url: 'insurance/add', body: {
-      "classOfNumber" : classOfInsurance.text,
-      "coverType" : coverType.text,
-      "vehicleUse" : vehicleUse.text
-    }).then((response){
-          if(response.isSuccessful) {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (
-                    context) => const PolicyDetails())
-            );
-            classOfInsurance.clear();
-            coverType.clear();
-            vehicleUse.clear();
-          }
-
-
+    RestService().httpMethod(method: 'POST', url: 'insurance/add', body: {
+      "classOfNumber": classOfInsurance.text,
+      "coverType": coverType.text,
+      "vehicleUse": vehicleUse.text
+    }).then((response) {
+      if (response.isSuccessful) {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const PolicyDetails()));
+        classOfInsurance.clear();
+        coverType.clear();
+        vehicleUse.clear();
+      }
     });
+  }
 
+  void addPolicy(
+      {required BuildContext context,
+      required TextEditingController policyHolder,
+      required TextEditingController companyName,
+      required TextEditingController nin,
+      required TextEditingController policyDate,}) async {
 
+    Logger().i(app.vehicles);
+
+    RestService().httpMethod(method: 'POST', url: 'insurance/add', body: {
+      "ownerId": app.user.uuid,
+      "vehicleId": app.vehicleSelected.uuid,
+      "policyHoldler": policyHolder.text,
+      "companyName": companyName.text,
+      "nin": nin.text,
+      "issueDate": policyDate.text
+    }).then((response){
+      if(response.isSuccessful) {
+        showSuccess(context: context, route: Dashboard());
+        policyHolder.clear();
+        companyName.clear();
+        nin.clear();
+        policyDate.clear();
+      }
+    });
   }
 }

@@ -54,6 +54,6 @@ class Vehicle {
 
   @override
   String toString() {
-    return 'Vehicle{vehicleNumber: $vehicleNumber, company: $company, regNumber: $regNumber, color: $color, image: $image, model: $model, owner: $owner}';
+    return 'Vehicle{vehicleNumber: $vehicleNumber, company: $company, regNumber: $regNumber, color: $color, image: $image, model: $model, uuid: $uuid, userUuid: $userUuid, status: $status, createdAt: $createdAt, owner: $owner}';
   }
 }
